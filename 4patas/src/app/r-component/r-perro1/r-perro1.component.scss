@@ -1,0 +1,22 @@
+div{
+  text-align: center;
+}
+
+svg{
+  max-width: 200px;
+  height: auto;
+}
+
+#tail{
+  transform-origin: 0 100%;
+  animation: tail-move 1s infinite;
+}
+
+@keyframes tail-move {
+  0% { transform: rotate(0); }
+  20% { transform: rotate(0.5deg); }
+  40% { transform: rotate(-0.5deg);}
+  60% { transform: rotate(0.5deg); }
+  80% { transform: rotate(-0.5deg);}
+  100% { transform: rotate(0.5deg); }
+}
