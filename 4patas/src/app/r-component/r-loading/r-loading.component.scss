@@ -1,0 +1,71 @@
+.dog  {    
+  
+  padding-top: 50%;
+
+    width: 33%;
+    height: 33%;
+
+
+}
+img{
+display:block;
+margin:auto;
+}
+.screen {
+	background-color: rgba(0,0,0,0.5);
+	left: 0;
+	top: 0;
+	border-radius: 0;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	opacity: 1;
+	z-index: 1000;
+  -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+}
+
+.title {
+  color: #fff;
+  font-family: arial, helvetica, sans-serif;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+  margin-left: -30px;
+}
+.screen:hover .title {
+  margin-left: 0;
+}
+p {
+  font-size: 2em;
+  padding: 5%;
+}
+.screen.fade-in .title {
+  margin-left: 0;
+}
+.screen.fade-in:hover {
+}
+.cta {
+	clear: both;
+	font-weight: bold;
+	font-family: arial,helvetica, sans-serif;
+	display: block;
+	font-size: 2em;
+}
+ion-label {
+  font-size: 1rem;
+    position: fixed;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+}
+ion-button {
+  border-radius: 50!important;
+}

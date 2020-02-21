@@ -1,0 +1,42 @@
+<div class="card--neumorphic">
+  <div class="logintitulo">
+    Ingresar  datos
+  </div>
+
+  <ion-list color="light" lines="none">
+    <ion-item lines="none" color="light">
+      <ion-icon name="mail-outline"></ion-icon>
+      <article class="input-material-design">
+        <input type="text" name="name" autocomplete="off" required>
+        <label for="name" class="input-label">
+          <span class="input-content">Correo</span>
+        </label>
+      </article>
+    </ion-item>
+    <ion-item lines="none" color="light">
+      <ion-icon name="key-outline"></ion-icon>
+
+      <article class="input-material-design">
+        <input type="text" name="name" autocomplete="off" required>
+        <label for="name" class="input-label">
+          <span class="input-content">Contraseña</span>
+        </label>
+      </article>
+
+    </ion-item>
+
+  </ion-list>
+  <div class="abajo">
+    <ion-button expand="block">Entrar</ion-button>
+    <ion-row>
+      <ion-col size="12" size-md="8">
+        <ion-col>
+          <a class="links" [routerLink]="['/forgot-password']">Reiniciar password</a>
+        </ion-col>
+        <ion-col>
+          <a class="links" [routerLink]="['/register']">Registrarse</a>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>

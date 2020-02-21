@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { RAlertaComponent} from '../r-component/r-alerta/r-alerta.component';
 import { RPerro1Component } from '../r-component/r-perro1/r-perro1.component';
+import { RLoadingComponent } from '../r-component/r-loading/r-loading.component';
 
 @NgModule({
     imports: [
@@ -13,11 +14,13 @@ import { RPerro1Component } from '../r-component/r-perro1/r-perro1.component';
     ],
     declarations: [
         RAlertaComponent,
-        RPerro1Component
+        RPerro1Component,
+        RLoadingComponent
     ],
     exports: [
         RAlertaComponent,
-        RPerro1Component
+        RPerro1Component,
+        RLoadingComponent
     ],
     entryComponents: [],
 })

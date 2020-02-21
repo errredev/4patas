@@ -25,6 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+
+
+
 $colorLight: #fafafa;
 $colorDark: #2c2c2c;
 $colorPrimary: #0097a7;
@@ -273,9 +276,12 @@ p {
 }
 
 
-
-
+	  
+ion-item{
+   --ion-background-color:#fff!important;
+}
 .card--neumorphic {
+   background: white;
   padding-top: 10px;
   max-width: 380px;
   margin: 0 auto;
@@ -377,3 +383,16 @@ $duration: 1.4s;
    transform:rotate(450deg);
  }
 }
+
+
+ion-alert .alert-wrapper {
+background: var(--ion-color-dark) !important;
+.alert-button-group {
+  background: var(--ion-color-dark) !important;
+  //color: var(--ion-color-dark)!important;
+
+ // button {
+  //  color: white;
+ // }
+}
+} 

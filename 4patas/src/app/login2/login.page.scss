@@ -12,28 +12,24 @@ padding-top: 10px;
 .abajo {
      padding-top: 40px;
 }
+.logo  {
+    width: 48%;
+    height: 48%;
+    padding-top: 25px;
 
+}
 ion-button {
     color : whitesmoke!important;
-    padding-bottom: 15px;
+    padding-top: 25px;
 }
 .links {
     padding-left :15px!important;
     color : #00251a;
 }
-.rutas {
-    top: 200px;
+.app-r-perro1 {
+     width: 48%!important;
+    height: 48%!important;
 }
-ion-segment{
-    padding-top: 50px!important;
-}
-
-.contenedor {
-    padding: 10px!important;
-}
-ion-item{
-   --ion-background-color:#fff!important;
-}
-.center {
-    text-align: center!important;
+ion-header{
+background: var(ion-background-color)!important;
 }

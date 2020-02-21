@@ -1,0 +1,54 @@
+<div class="card--neumorphic">
+  <div class="logintitulo">
+    registre sus datos
+  </div>
+
+  <ion-list>
+    <ion-item lines="none" color="light">
+      <ion-icon name="mail-outline"></ion-icon>
+      <article class="input-material-design">
+        <input type="text" name="name" autocomplete="off" required>
+        <label for="name" class="input-label">
+          <span class="input-content">Correo</span>
+        </label>
+      </article>
+    </ion-item>
+    <ion-item lines="none" color="light">
+      <ion-icon name="key-outline"></ion-icon>
+
+      <article class="input-material-design">
+        <input type="text" name="name" autocomplete="off" required>
+        <label for="name" class="input-label">
+          <span class="input-content">Contraseña</span>
+        </label>
+      </article>
+
+    </ion-item>
+    <ion-item lines="none" color="light">
+      <ion-icon name="key-outline"></ion-icon>
+    
+      <article class="input-material-design">
+        <input type="text" name="name" autocomplete="off" required>
+        <label for="name" class="input-label">
+          <span class="input-content">Repetir Contraseña</span>
+        </label>
+      </article>
+    
+    </ion-item>
+
+  </ion-list>
+  <div class="abajo">
+    <ion-button expand="block">Registrarme</ion-button>
+    <ion-row>
+      <ion-col>
+        <ion-col>
+          <a class="links" [routerLink]="['/login/olvido']">Reiniciar password</a>
+        </ion-col>
+        <ion-col>
+          <a class="links" [routerLink]="['/login/entrar']">Acceso</a>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+

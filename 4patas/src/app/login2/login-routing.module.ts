@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginPage } from './login.page';
 import { EntrarComponent} from './components/entrar/entrar.component';
-import { RegistroComponent } from './components/registro/registro.component';
-import { ReiniciarComponent } from './components/reiniciar/reiniciar.component';
 const routes: Routes = [
   {
     path: '', redirectTo: '/login/entrar', pathMatch: 'full'
@@ -15,18 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: 'entrar',
-        component: EntrarComponent,
-        data: { animation: 'isRight' }
-      },
-      {
-        path: 'registro',
-        component: RegistroComponent,
-          data: { animation: 'isRight' }
-      },
-      {
-        path: 'olvido',
-        component: ReiniciarComponent,
-        data: { animation: 'isRight' }
+        component: EntrarComponent
       }
     ]
   },
