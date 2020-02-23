@@ -5,6 +5,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 })
 export class AppService {
   swchloading$ = new EventEmitter<boolean>();
+  menuok$ = new EventEmitter<boolean>();
   public mensaje: string;
   constructor() {
     this.swchloading$.emit(false);
@@ -17,6 +18,11 @@ export class AppService {
   desactivarloading(): void {
     this.swchloading$.emit(false);
     this.mensaje = null;
-
+  }
+  ponermenu(): void {
+    this.menuok$.emit (true);
+  }
+  quitarrmenu(): void {
+    this.menuok$.emit(true);
   }
 }

@@ -39,7 +39,7 @@ export class EntrarComponent implements OnInit {
     this.user.password = this.rForm.value.pwd;
     const user = await this.srvAuth.onLogin(this.user);
     if (user) {
-      this.loading.dismiss();
+      this.svcloading.desactivarloading();
       this.router.navigateByUrl('/');
     } else {
       const alert = await this.alrControl.create({

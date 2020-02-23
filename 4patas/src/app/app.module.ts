@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RComponentsModule } from '../app/r-component/r.component.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { CommonModule } from '@angular/common';
 
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -26,6 +26,7 @@ import { StorageBucket, AngularFireStorage } from '@angular/fire/storage';
     RComponentsModule,
     BrowserAnimationsModule,
     AngularFireAuthModule,
+    CommonModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     IonicModule.forRoot(),

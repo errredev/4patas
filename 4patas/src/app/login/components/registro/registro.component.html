@@ -1,44 +1,37 @@
+<div class='contenedor'>
 <div class="card--neumorphic">
   <div class="logintitulo">
-    registre sus datos
+    Registre sus datos
   </div>
 
-  <ion-list>
-    <ion-item lines="none" color="light">
-      <ion-icon name="mail-outline"></ion-icon>
-      <article class="input-material-design">
-        <input type="text" name="name" autocomplete="off" required>
-        <label for="name" class="input-label">
-          <span class="input-content">Correo</span>
-        </label>
-      </article>
-    </ion-item>
-    <ion-item lines="none" color="light">
-      <ion-icon name="key-outline"></ion-icon>
-
-      <article class="input-material-design">
-        <input type="text" name="name" autocomplete="off" required>
-        <label for="name" class="input-label">
-          <span class="input-content">Contraseña</span>
-        </label>
-      </article>
+<form [formGroup]="rForm">
+  <ion-item lines="none">
+    <ion-icon name="mail-outline"></ion-icon>
+    <ion-item>
+      <ion-label color="primary" position="floating">Correo</ion-label>
+      <ion-input mode="md" formControlName="email" type="text" color="primary"></ion-input>
 
     </ion-item>
-    <ion-item lines="none" color="light">
-      <ion-icon name="key-outline"></ion-icon>
-    
-      <article class="input-material-design">
-        <input type="text" name="name" autocomplete="off" required>
-        <label for="name" class="input-label">
-          <span class="input-content">Repetir Contraseña</span>
-        </label>
-      </article>
-    
+  </ion-item>
+  <ion-text class="center" color="danger" *ngIf="!rForm.controls.email.valid  && rForm.controls.email.dirty">
+    Favor ingresar Correo Valido.
+  </ion-text>
+  <ion-item lines="none">
+
+    <ion-icon name="key-outline"></ion-icon>
+    <ion-item>
+      <ion-label color="primary" position="floating">Contraseña</ion-label>
+      <ion-input formControlName="pwd" type="password" color="primary"></ion-input>
     </ion-item>
 
-  </ion-list>
+  </ion-item>
+  <ion-text class="center" color="danger" *ngIf="!rForm.controls.pwd.valid  && rForm.controls.pwd.dirty">
+    Largo minimo 6 caracteres
+  </ion-text>
   <div class="abajo">
-    <ion-button expand="block">Registrarme</ion-button>
+
+    <ion-button shape="round" size="large" expand="block" [disabled]="!rForm.valid" (click)="onSignUp()">Registrarse
+    </ion-button>
     <ion-row>
       <ion-col>
         <ion-col>
@@ -50,5 +43,7 @@
       </ion-col>
     </ion-row>
   </div>
+</form>
+</div>
 </div>
 
