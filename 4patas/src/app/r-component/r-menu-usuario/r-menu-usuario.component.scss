@@ -1,106 +1,77 @@
-$font: 400 16px "open sans", arial;
-$icon: 400 1em/50px 'FontAwesome';
 
-$h: 50px;
+.ion-content {
+ background: whitesmoke!important;
+};
+ion-icon{
+  padding-right: 20px;
+  color : #56c8d8
+}
+ion.item ´{
+  color: #bdbdbd
+}
 
+.inactivo {
+  border: 1px; 
+  color: #bdbdbd;
+}
+.activo {
+  right: 2px;
+  bottom: 4px;
+  background: silver !important;
+  color: #56c8d8;
+-webkit-box-shadow: 12px 13px 14px -4px #2d5256; 
+box-shadow: 12px 13px 14px -4px #2d5256;
+}
+.coloricon {
+  color: #ff7043;
+}
 
-
-nav{
-  background: #999;
-  border: 1px solid #999;
-  box-shadow: 5px 5px 0 rgba(0,0,0,.05);
-  margin: 0 auto;
-  max-width: 600px;
-  min-width: 320px;
+ion-header {
+  height: 170px;
+   background-image: './assets/app/fondo_menu.jpg'!important;
+}
+.logo {
+   height: 170px;
+   width: 100%;
+   z-index: 1!important;
+    position:absolute!important;
+}
+.cabecera {
+  height: 100%;
   width: 100%;
-  
-  input {
-    display: none;
-    position: relative;
-  }
-  
-  label, .subitems {
-    display: block;
-    color: #fff;
-    text-indent: 1em;
-    height: $h;
-    line-height: $h;
-  }
-  
-  input + label {
-    background: #7f1420;
-    border-top: 2px solid rgba(255,255,255, .15);
-    border-bottom: 2px solid rgba(0,0,0, .15);
-    transition: all 250ms;
-    
-    &:after{
-      color: #fff;
-      content: '\f077';
-      display: inline-block;
-      float: right;
-      font: $icon;
-      margin-right: 15px;
-      position: relative;
-    }
-    
-    &:nth-child(2){
-      background: #fec222;
-      border-top: 2px solid rgba(255,255,255, .25);
-      border-bottom: 2px solid rgba(0,0,0, .25);
-    }
-  }
-  
-  .subitems{
-    height: 0;
-    margin: 0 auto;
-    transition: all 250ms;
-    width: 95%;
-    
-    ul{
-      margin: 0;
-      padding: 0;
-      
-      li{
-        background: #fff;
-        border-top: 1px solid #f1f1f1;
-        color: #222;
-        height: $h;
-        list-style: none;
-        transition: all 250ms;
-        
-        &:before{
-          color: #555;
-          content: '\f055';
-          display: inline-block;
-          font: $icon;
-          margin-right: 15px;
-          margin-left: -15px;
-        }
-        
-        &:nth-of-type(odd) {
-          transform-origin: center top;
-          transform: perspective(300px) rotateX(-90deg);
-        }
-        
-        &:nth-of-type(even) {
-          transform-origin: center bottom;
-          transform: perspective(300px) rotateX(90deg);
-          margin-top: -2*$h;
-        }
-      }
-    }
-  }
-  
-  input:checked + label + .subitems{
-    height: 100%;
-    
-    ul li {
-      transform: rotateX(0deg);
-      margin-top: 0;
-    }
-  }
-  
-  input:checked + label:after{
-    content: '\f078'
-  }
+  background: skyblue;
+
+}
+.labelcabecera{
+  bottom: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding-left: 20px;
+  color : #00424b;
+  z-index: 2!important;
+   position:absolute!important;
+}
+.avatar{
+  left: 20px;
+   border: 2px solid  #00424b;
+  border-radius: 100%;
+  width: 90px;
+  height: 90px;
+  z-index: 2!important;
+  bottom: 50px;
+   position:absolute!important;
+}
+ion-labe{
+  padding-right: 100px!important;
+} 
+.hijo {
+  -webkit-box-shadow: 12px 13px 14px -4px #2d5256; 
+  box-shadow: 12px 13px 14px -4px #2d5256;
+  width: 260px!important;
+  color:  #cfd8dc!important;
+
+}
+.hijo-item {
+  left : 20px;
+  color:  #bdbdbd!important
 }

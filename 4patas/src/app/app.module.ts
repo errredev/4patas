@@ -18,6 +18,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { StorageBucket, AngularFireStorage } from '@angular/fire/storage';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -30,6 +31,7 @@ import { StorageBucket, AngularFireStorage } from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     IonicModule.forRoot(),
+
     AppRoutingModule
   ],
   providers: [
