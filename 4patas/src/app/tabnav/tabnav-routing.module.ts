@@ -23,6 +23,10 @@ const routes: Routes = [
         path: 'avisos',
         loadChildren: () => import('../avisos/avisos.module').then(m => m.AvisosPageModule)
       },
+      {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+      },
     ]
   },
 ];

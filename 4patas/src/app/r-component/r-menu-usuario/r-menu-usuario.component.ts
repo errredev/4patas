@@ -4,7 +4,7 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 import { AlertController, MenuController  } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-
+import {ThemeService} from '../../services/theme/theme.service';
 @Component({
   selector: 'app-r-menu-usuario',
   templateUrl: './r-menu-usuario.component.html',
@@ -108,16 +108,23 @@ export class RMenuUsuarioComponent implements OnInit {
         iconName2: 'eye', iconName: 'eye-outline', displayText: 'Filtro de visualización',
         bajar: false, subir: false, expanded: false, hasChild: true,
         iconFinal2: 'chevron-down', iconFinal: 'radio-button-on-outline', activo: false, subOptions: [
-          { iconName2: 'sunny-outline', iconName: 'sunny', displayText: 'Gato', url: '/home' },
-          { iconName2: 'moon-outline', iconName: 'moon', displayText: 'Perro', url: '/home' },
+          {
+            iconName2: 'sunny-outline', iconName: 'sunny', iconFinal: 'checkmark-circle',
+          displayText: 'Gato', url: '/home', check: false },
+          {
+            iconName2: 'moon-outline', iconName: 'moon', iconFinal: 'checkmark-circle',
+            displayText: 'Perro', url: '/home', check: false },
         ]
       },
       {
         iconName2: 'bulb', iconName: 'bulb-outline', displayText: 'Modo Pantalla',
         bajar: false, subir: false, expanded: false, hasChild: true,
         iconFinal2: 'chevron-down', iconFinal: 'radio-button-on-outline', activo: false, subOptions: [
-          { iconName2: 'sunny-outline', iconName: 'sunny', displayText: 'Claro', url: '/home' },
-          { iconName2: 'moon-outline', iconName: 'moon', displayText: 'Oscuro', url: '/home' },
+          { iconName2: 'sunny-outline', iconName: 'sunny', iconFinal: 'checkmark-circle',
+          displayText: 'Claro', url: '/home', check: false },
+          {
+            iconName2: 'moon-outline', iconName: 'moon', iconFinal: 'checkmark-circle',
+            displayText: 'Oscuro', url: '/home', check: false},
         ]
       },
       {
@@ -150,6 +157,7 @@ export class RMenuUsuarioComponent implements OnInit {
       }
     ];
    }
+// ******************** Cuando se presiona un item principal del menu *******************************
 push(index) {
   this.lista[index].activo = true ;
   if (this.lista[index].hasChild) {
@@ -164,21 +172,24 @@ push(index) {
    }
   this.llamaraccion(this.lista[index].displayText);
 }
-  public llenarmenu(index: number) {
-  setInterval(() => {
-    if (index === this.prelista.length) {
-      return;
-    }
-    this.lista.push(this.prelista[index]);
-    index++;
-  }, 600);
-}
+
+ // public llenarmenu(index: number) {
+ // setInterval(() => {
+//  if (index === this.prelista.length) {
+ //     return;
+ //   }
+//    this.lista.push(this.prelista[index]);
+//    index++;
+//  }, 600);
+// }
+// ******************** Oninit *******************************
   ngOnInit() {
     this.currentState = 'initial';
     this.lista = this.prelista;
    // this.llenarmenu(0);
 
   }
+  // ******************** Pregunta si desea salir *******************************
   async Logout() {
     console.log ('logout');
     const alert = await this.alrControl.create({
@@ -198,25 +209,55 @@ push(index) {
     });
     await alert.present();
 }
+// ******************** Si la opcion es salir *******************************
   async Salir() {
     await this.authSrv.logout();
-    console.log('Salir');
-    this.menu.enable(true, 'star');
-    this.menu.close('start');
-    this.ngZone.run(() => this.navigateTo('/login'));
+    this.irpara('/login');
    // this.router.navigate(['/login']);
   }
+  // ******************** *******************************
  llamaraccion(accion: string) {
    console.log (accion);
    switch (accion) {
      case 'Salir': {
-       console.log('accion salir');
        this.Logout();
-     } }
+       break;
+     }
+     case 'Editar': {
+       this.irpara('tabnav/profile');
+       break;
+     }
+    }
   }
+  // ******************** *******************************
+  irpara(donde) {
+    this.menu.enable(true, 'star');
+    this.menu.close('start');
+    this.ngZone.run(() => this.navigateTo(donde));
+  }
+   // ******************** *******************************
   navigateTo(url) {
-
     this.router.navigate([url]);
 
+  }
+
+ // ******************** *******************************
+
+  subpush(y, x) {
+    switch (this.lista[y].subOptions[x].displayText) {
+      case 'Claro': {
+        console.log('Modo Claro');
+        this.lista[y].subOptions[1].check = false;
+        this.lista[y].subOptions[x].check = true;
+        break;
+      }
+      // tslint:disable-next-line:no-switch-case-fall-through
+      case 'Oscuro': {
+        console.log('Modo Oscuro');
+        this.lista[y].subOptions[0].check = false;
+        this.lista[y].subOptions[x].check = true;
+        break;
+      }
+    }
   }
 }

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons [routerLink]="['/']" routerLinkActive="router-link-active"  slot="start">
+      <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+    </ion-buttons>
+    <ion-title color="secondary" >Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <form (ngSubmit)="onSaveUser(profileForm.value)" [formGroup]="profileForm">
+      <ion-card class="profile-card">
+        <ion-card-header class="ion-text-center animated bounceInDown">
+          <div  *ngIf="previewUrl">
+            <img [src]="previewUrl" height="300" />
+          </div>
+          <div class="label bottom">
+            <p>Cambiar</p>
+            <img   [src]="currentImage" (click)="inputImageProfile.click()" />
+            <input hidden type="file" #inputImageProfile formControlName="photoURL"
+              (change)="showPreview($event)" />
+          </div>
+
+        </ion-card-header>
+        <ion-card-content class="animated fadeIn">
+          <ion-item lines="none" >
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="displayName" ></ion-input>
+          </ion-item>
+            <ion-text class="ion-text-center ion-padding-start" color="danger"
+              *ngIf="!profileForm.controls.displayName.valid  && profileForm.controls.displayName.dirty">
+              Largo minimo 3 caracteres
+            </ion-text>
+          <ion-item lines="none" class="slide-bottom1">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="email" type="text" placeholder="correo"></ion-input>
+          </ion-item>
+<br>
+<br>
+         <div class ="span"></div>
+          <div class="mat-dialog-actions">
+            <ion-button expand="block"  [disabled]="!profileForm.valid" type="submit"  value="Save" >Grabar
+              <ion-ripple-effect></ion-ripple-effect>
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </form>
+
+
+</ion-content>
