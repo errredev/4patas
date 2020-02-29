@@ -12,9 +12,9 @@ export class ThemeService {
   }
 
   darkMode() {
-    this.renderer.addClass (this.document, 'dark-theme');
+    this.renderer.addClass (this.document.body, 'dark-theme');
   }
   ligthMode() {
-    this.renderer.addClass(this.document, 'light-theme');
+    this.renderer.addClass(this.document.body, 'light-theme');
   }
 }

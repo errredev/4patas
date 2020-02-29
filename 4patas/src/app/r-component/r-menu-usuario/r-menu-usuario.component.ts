@@ -81,7 +81,8 @@ export class RMenuUsuarioComponent implements OnInit {
               public alrControl: AlertController,
               private router: Router,
               private menu: MenuController,
-              private ngZone: NgZone) {
+              private ngZone: NgZone,
+              private themeSrv: ThemeService) {
     this.ultimoIndice = 0;
     this.lista = new Array<SideMenuOption> ();
     this.prelista = [
@@ -249,6 +250,7 @@ push(index) {
         console.log('Modo Claro');
         this.lista[y].subOptions[1].check = false;
         this.lista[y].subOptions[x].check = true;
+        document.body.classList.toggle('dark', true);
         break;
       }
       // tslint:disable-next-line:no-switch-case-fall-through
@@ -256,6 +258,7 @@ push(index) {
         console.log('Modo Oscuro');
         this.lista[y].subOptions[0].check = false;
         this.lista[y].subOptions[x].check = true;
+        document.body.classList.toggle('dark' );
         break;
       }
     }

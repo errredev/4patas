@@ -31,7 +31,6 @@ import { StorageBucket, AngularFireStorage } from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     IonicModule.forRoot(),
-
     AppRoutingModule
   ],
   providers: [
