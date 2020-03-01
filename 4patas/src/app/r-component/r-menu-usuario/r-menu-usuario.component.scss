@@ -1,13 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+
 
 .ion-content {
- background: whitesmoke!important;
-};
-ion-icon{
+  background: var(--ion-color-primary);
   padding-right: 20px;
   color : #56c8d8
 }
 ion.item ´{
-  color: #bdbdbd
+color:  var(--ion-color-dark)!important;
+font-family: 'Acme', ;
 }
 
 .inactivo {
@@ -23,12 +24,11 @@ ion.item ´{
 box-shadow: 12px 13px 14px -4px #2d5256;
 }
 .coloricon {
-  color: #ff7043;
+  color: var(--ion-color-primary)!important;
 }
 
 ion-header {
   height: 170px;
-   background-image: './assets/app/fondo_menu.jpg'!important;
 }
 .logo {
    height: 170px;
@@ -43,11 +43,12 @@ ion-header {
 
 }
 .labelcabecera{
+  font-family: 'Acme', ;
   bottom: 20px;
   font-weight: bold;
   font-size: 1.1rem;
   padding-left: 20px;
-  color : #00424b;
+  color : var(--ion-color-tertiary)!important;
   z-index: 2!important;
    position:absolute!important;
 }
@@ -63,15 +64,21 @@ ion-header {
 }
 ion-labe{
   padding-right: 100px!important;
+    color:  var(--ion-color-dark)!important;
 } 
 .hijo {
   -webkit-box-shadow: 12px 13px 14px -4px #2d5256; 
   box-shadow: 12px 13px 14px -4px #2d5256;
-  width: 260px!important;
-  color:  #cfd8dc!important;
+  color: var(--ion-color-dark)!important;
+  background: var(--ion-color-light)!important;
 
 }
 .hijo-item {
-  left : 20px;
-  color:  #bdbdbd!important
+  padding-bottom: 20;
+  width: 190px;
+  color:  var(--ion-color-dark)!important;
+  background: var(--ion-color-light)!important;
+}
+.iconfinal {
+
 }

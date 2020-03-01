@@ -28,10 +28,18 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
 ion-title {
     font-size : 1.6rem;
-    font-family: 'Lobster'!important;
+	font-family: 'Lobster'!important;
+	background: white;;
+}
+ion-icon {
+	color : var(--ion-color-dark);
+}
+ion-button {
+    
 }
 .contenedor {
     padding: 10px!important;
@@ -40,6 +48,9 @@ ion-item {
 	border: 0px!important;
 }
 
+ion-label {
+
+}
 $colorLight: #fafafa;
 $colorDark: #2c2c2c;
 $colorPrimary: #0097a7;

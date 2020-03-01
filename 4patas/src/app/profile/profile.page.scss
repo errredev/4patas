@@ -27,7 +27,7 @@
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      border: 2px solid var( --ion-color-primary);
+      border: 2px solid var(--ion-color-secondary);
       &:hover{
         border: 2px solid var( --ion-color-primary);
         cursor: pointer;
@@ -36,9 +36,10 @@
   }
 }
 ion-input {
-    padding-left: 10px!important;
+   width: 100%!important;
+   display: table;
     border-radius: 10px;
-    background: #FFF3E0!important;
+
 }
 ion-button {
     top :30px!important;

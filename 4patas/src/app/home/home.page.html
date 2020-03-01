@@ -1,16 +1,79 @@
 <ion-header>
   <ion-toolbar>
   
-    <ion-title class= "animated bounceInRight faster" ><img class="logo" src="./assets/app/titulo.png"><img></ion-title>
+    <ion-title color="tertiary" class= "animated bounceInRight faster">PetBoard</ion-title>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class= "animated bounceInUp fast" >
+<ion-content padding class= "animated bounceInUp fast" >
+<!--https://dribbble.com/shots/2210153-Day-057-Twitter-Profile-->
 
 
-<app-r-alerta></app-r-alerta>
+<ion-grid>
+  <ion-row>
+      <ion-col sizeXl="2" sizeLg="3" sizeMd="4" sizeSm="6" sizeXs="12"  *ngFor="let image of [1,2,3,4,5,6,7,8,9,10,11]">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>9 kilometros</ion-card-subtitle>
+              <img src="./assets/demo/perro2.jpg">
+              <ion-card-title>Firulaise</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                  <ion-row>
+                      <ion-col size=4>1</ion-col>
+                      <ion-col size=4>1</ion-col>
+                      <ion-col size=4>1</ion-col>
+                  </ion-row>
+                  <ion-button >Grabar
+                    <ion-ripple-effect></ion-ripple-effect>
+                  </ion-button>
+            </ion-card-content>
+          </ion-card>
+          <br>
+      </ion-col>
+  </ion-row>
+  </ion-grid>
+
+<br>
+
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>9 kilometros</ion-card-subtitle>
+    <img src="./assets/demo/perro4.jpg">
+    <ion-card-title>Firulaise</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-row>
+      <ion-col size=4>1</ion-col>
+      <ion-col size=4>1</ion-col>
+      <ion-col size=4>1</ion-col>
+    </ion-row>
+    <ion-button>Grabar
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>9 kilometros</ion-card-subtitle>
+    <img src="./assets/demo/perro4.jpg">
+    <ion-card-title>Firulaise</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-row>
+      <ion-col size=4>1</ion-col>
+      <ion-col size=4>1</ion-col>
+      <ion-col size=4>1</ion-col>
+    </ion-row>
+    <ion-button>Grabar
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-button>
+  </ion-card-content>
+</ion-card>
 
 </ion-content>

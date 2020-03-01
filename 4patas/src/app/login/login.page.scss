@@ -1,10 +1,10 @@
  ion-icon {
-color :var( --ion-text-color)!important;
+color :var(#A050B3)!important;
 padding-right: 20px;
 padding-top: 10px;
  }
 .logintitulo {
-    color : #00251a!important;
+    color : #A050B3!important;
     text-align: center;
     font-size: 25px;
     padding-bottom: 40px;
@@ -28,9 +28,12 @@ ion-button {
     color : whitesmoke!important;
     padding-top: 25px;
 }
+ion-content {
+  background: #FAF5E8!important;
+}
 .links {
     padding-left :15px!important;
-    color : #00251a;
+    color : #A050B3;
 }
 .app-r-perro1 {
      width: 48%!important;
