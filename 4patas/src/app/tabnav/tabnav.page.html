@@ -1,16 +1,6 @@
-<ion-content >
-<ion-fab  vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button color="secondary">
-    <ion-icon name="share"></ion-icon>
-  </ion-fab-button>
-  <ion-fab-list side="top">
-    <ion-fab-button>
-      <ion-icon name="logo-vimeo"></ion-icon>
-    </ion-fab-button>
-  </ion-fab-list>
-</ion-fab>
-  <ion-tabs color='secondary'>
-    <ion-tab-bar slot="bottom">
+<ion-content>
+  <ion-tabs>
+    <!-- <ion-tab-bar slot="bottom">
       <ion-tab-button tab="home">
         <ion-icon name="home-outline"></ion-icon>
         <ion-label>Home</ion-label>
@@ -25,11 +15,39 @@
       </ion-tab-button>
 
     
-        <ion-tab-button tab="lista-mensajes">
-          <ion-icon name="mail-outline"></ion-icon>
-          <ion-label>Mensajes</ion-label>
-        </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
+      
+    </ion-tab-bar> -->
 
+    <div id="nabBar">
+      <div id="botonera"></div>
+      <ion-fab-button
+        [class.seleccion]="tabOpcion[0].selec"
+        size="small"
+        [@seleccionado]="tabOpcion[0].estado"
+        (click)="push(0)"
+        id="fab1"
+        color="light"
+      >
+        <ion-icon  [style.color]="tabOpcion[0].colorIcon" name="home"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        size="small"
+        [@seleccionado]="tabOpcion[1].estado"
+        (click)="push(1)"
+        id="fab2"
+        color="light"
+      >
+        <ion-icon  [style.color]="tabOpcion[1].colorIcon" name="notifications"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        size="small"
+        [@seleccionado]="tabOpcion[2].estado"
+        (click)="push(2)"
+        id="fab3"
+        color="light"
+      >
+        <ion-icon [style.color]="tabOpcion[2].colorIcon"  name="mail"></ion-icon>
+      </ion-fab-button>
+    </div>
+  </ion-tabs>
 </ion-content>

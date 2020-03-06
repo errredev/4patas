@@ -11,9 +11,7 @@ import { AppService } from '../../../services/app/app.service';
   selector: 'app-entrar',
   templateUrl: './entrar.component.html',
   styleUrls: ['./entrar.component.scss'],
-  animations: [routerTransition()],
-  // tslint:disable-next-line:no-host-metadata-property
-  host: { '[@routerTransition]': '' }
+  animations: [routerTransition],
 })
 export class EntrarComponent implements OnInit {
   private loading;

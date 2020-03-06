@@ -8,6 +8,8 @@
  * For more information on global stylesheets, visit the documentation:
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
+
+
 @import "./theme/magic.css";
 @import "./theme/animate.css";
 
@@ -27,12 +29,12 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 ion-title {
     font-size : 1.6rem;
-	font-family: 'Lobster'!important;
+    font-family: 'Raleway', 'black';
+	font-weight:  400!important;
+	color: var(--ion-color-primary);
 	background: white;;
 }
 ion-icon {

@@ -1,0 +1,54 @@
+
+ion-tab-bar {
+background: var(--ion-color-dark);
+position: relative;
+}
+#tabBar{
+    background: var(--ion-color-primary)!important;
+    position: absolute;
+    z-index: 1001;  
+    width :80%;
+
+}
+ion-button {
+    border-radius: 100%;
+}
+#botonera {
+    opacity: 0.8;
+    padding: 5px;
+    background: white;
+    border-radius: 30px;
+    border: 2px solid var(--ion-color-dark);
+    position: absolute;
+    z-index: 1002;  
+    bottom: 10px;
+    height: 52px;
+    width :80%;
+    left: 10%;
+    
+}
+#fab1 {
+    left: 15%;
+    position: absolute;
+    z-index: 1003;  
+    bottom: 15px;
+    
+}
+#fab2 {
+    left: 44%;
+    position: absolute;
+    z-index: 1003;  
+    bottom: 15px;
+}
+#fab3 {
+    right: 15%;
+    position: absolute;
+    z-index: 1003;  
+    bottom: 15px;
+}
+.seleccion {
+    color: var(--ion-color-primary)!important;
+}
+ion-icon{
+   
+}

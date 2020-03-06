@@ -1,39 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title class= "animated bounceInRight faster">Avisos</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class= "animated bounceInUp faster">
-<div class="layout">
-  <div>
-    <div class="card--material">
-      <img src="https://via.placeholder.com/400x250/b7c6c8" />
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed elementum massa. Nam molestie porttitor
-        erat,
-        a sodales augue. Vestibulum malesuada risus ut euismod
-        condimentum.
-      </div>
+<ion-content>
+<ion-grid>
+  <ion-row>
+<ion-col sizeXl="4" sizeLg="4" sizeMd="6" sizeSm="12" sizeXs="12" *ngFor="let image of [1,2,3,4,5,6,7,8,9,10,11]">
+  <div class="c-card">
+    <div class="c-card__header">
+      <h2 class="c-card__title">Swimming Championships</h2>
+      <button class="c-button c-button--join" type="button">Get Tickets Now</button>
+    </div>
+    <div class="c-card__content">
+      <p class="c-card__details">
+        <span class="c-card__description">Platinum Package</span>
+        <span class="c-card__amount">$249.99</span>
+      </p>
     </div>
   </div>
-  <div>
-    <div class="card--neumorphic">
-      <img src="https://via.placeholder.com/380x220/b7c6c8" />
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed elementum massa. Nam molestie porttitor
-        erat,
-        a sodales augue. Vestibulum malesuada risus ut euismod
-        condimentum.
-      </div>
-    </div>
-  </div>
-</div>
-<h1>Rotating Icon Buttons</h1>
-<div class="main-wrapper">
-  <i class="material-icons">search</i>
-
-</div>
-<p>CodePen by Cole Waldrip</p>
-
+  
+</ion-col>
+</ion-row>
+</ion-grid>
 </ion-content>
