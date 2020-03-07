@@ -29,10 +29,37 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Mansalva&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Barriecito&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Chango&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+
+.alertCustomCss {
+	color: white; // text color for basic alerts
+	
+    button {
+        color: var(--ion-color-tertiary)!important;
+        background-color: var(--ion-color-dark);;
+	}
+	.alert-header{
+		background-color: var(--ion-color-light);
+        color: var(--ion-color-dark)!important; 
+	}
+    .alert-message {
+		background-color: var(--ion-color-light);
+        color: var(--ion-color-primary); // 
+    }
+    .alert-wrapper {
+		background-color:var(--ion-color-light)!important;
+		color: var(--ion-color-primary)!important; 
+    }
+  }
+
 ion-title {
     font-size : 1.6rem;
-    font-family: 'Raleway', 'black';
+    font-family: 'Mansalva', cursive;
 	font-weight:  400!important;
 	color: var(--ion-color-primary);
 	background: white;;

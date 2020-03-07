@@ -9,6 +9,7 @@ ion-item ´{
 color:  white!important;
 
 
+
 }
 
 .inactivo {
@@ -43,13 +44,12 @@ ion-header {
 
 }
 .labelcabecera{
- font-family: 'Montserrat', Black;
- font-weight: 400;
-  bottom: 20px;
+ font-family: 'Acme', sans-serif!important;
+  font-size: 25px!important;
+  bottom: 15px;
   font-weight: bold;
-  font-size: 1.1rem;
   padding-left: 20px;
-  color : var(--ion-color-tertiary)!important;
+  color : var(--ion-color-primary)!important;
   z-index: 2!important;
    position:absolute!important;
 }
@@ -63,9 +63,11 @@ ion-header {
   bottom: 50px;
    position:absolute!important;
 }
-ion-labe{
-  padding-right: 100px!important;
-    color:  var(--ion-color-dark)!important;
+ion-label{
+  font-family: 'Raleway', sans-serif!important;
+  font-size:  15px!important;
+  padding-left: 20px!important;
+  color:  var(--ion-color-dark)!important;
 } 
 .hijo {
   -webkit-box-shadow: 12px 13px 14px -4px #2d5256; 

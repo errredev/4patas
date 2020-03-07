@@ -10,6 +10,7 @@ export class AppService {
   constructor() {
     this.swchloading$.emit(false);
     this.mensaje = this.mensaje;
+    this.menuok$.emit(false);
   }
   activarloading(mensaje): void {
     this.swchloading$.emit(true);
@@ -23,6 +24,6 @@ export class AppService {
     this.menuok$.emit (true);
   }
   quitarrmenu(): void {
-    this.menuok$.emit(true);
+    this.menuok$.emit(false);
   }
 }

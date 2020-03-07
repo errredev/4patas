@@ -1,9 +1,11 @@
 <div class="erreCabecera">
   <Div id="titulo" color="tertiary">PetBoard</Div>
+  
+  <img (click)="abrirMenu()" class="avatar" *ngIf="authSrv.userData$| async" [src]="user.photoURL" />  
 
-  <ion-buttons slot="start">
+  <!-- <ion-buttons slot="start">
     <ion-menu-button></ion-menu-button>
-  </ion-buttons>
+  </ion-buttons> -->
 </div>
 
 <ion-content>
@@ -17,13 +19,17 @@
         sizeMd="6"
         sizeSm="12"
         sizeXs="12"
-        *ngFor="let aviso of avisos "
+        *ngFor="let aviso of avisos"
       >
         <ion-card>
           <ion-card-header>
-            <ion-label>{{aviso.dias}}</ion-label>
-            <ion-label class="dias">dia</ion-label>
+            
+
+            <ion-label class="diasNumero">{{aviso.dias}}</ion-label>
+            <ion-label class="dias">dias</ion-label>
             <ion-item lines="none">
+              <label id="distancia">{{aviso.distancia}}</label>
+              <label id="fecha">{{aviso.creacion}}</label>
               <ion-text>{{aviso.nombre}}</ion-text>
             </ion-item>
             <img class="foto" [src]="aviso.portada" />
@@ -34,19 +40,33 @@
                 <ion-col>
                   <ion-icon name="heart-outline"></ion-icon>
                 </ion-col>
-                <ion-col> <ion-text>{{aviso.difundido}}</ion-text> </ion-col>
+                <ion-col> 
+                  <ion-text id="numeros">{{aviso.difundido}}</ion-text> 
+                </ion-col>
               </ion-col>
-              <ion-col size="4"
-                ><ion-icon name="bookmark-outline"></ion-icon
-              ></ion-col>
-              <ion-col size="4"
-                ><ion-icon name="eye-outline"></ion-icon
-              ></ion-col>
+                <ion-col size="4">
+                <ion-col>
+                  <ion-icon name="bookmark-outline"></ion-icon>
+                </ion-col>
+                <ion-col> 
+                  <ion-text id="numeros">{{aviso.difundido}}</ion-text> 
+                </ion-col>
+              </ion-col>
+                <ion-col size="4">
+                <ion-col>
+                  <ion-icon name="eye-outline"></ion-icon>
+                </ion-col>
+                <ion-col> 
+                  <ion-text id="numeros">{{aviso.difundido}}</ion-text> 
+                </ion-col>
+              </ion-col>
             </ion-row>
             <ion-row>
+              <br>
               <ion-col size="3">
                 <ion-label class="ayudabusca">Mestizo</ion-label>
               </ion-col>
+
               <ion-col size="3">Macho </ion-col>
               <ion-col size="3">Adulto</ion-col>
               <ion-col size="3">Sano</ion-col>

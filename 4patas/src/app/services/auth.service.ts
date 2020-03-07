@@ -24,44 +24,44 @@ export class AuthService {
     this.userData$ = afAuth.authState;
   }
   // login
-    async onLogin(user: User) {
-      try {
-        return await this.afAuth.auth.signInWithEmailAndPassword (
-          user.email,
-          user.password
-          );
-       } catch (error) {
+  async onLogin(user: User) {
+    try {
+      return await this.afAuth.auth.signInWithEmailAndPassword(
+        user.email,
+        user.password
+      );
+    } catch (error) {
       this.errMensaje = error.code;
       if (error.code === 'auth/user-not-found') {
-          this.errMensaje = 'El usuario ingresado no esta registrado';
-       }
-      if (error.code === 'auth/wrong-password') {
-          this.errMensaje = 'El password ingresado es incorrecto';
-        }
+        this.errMensaje = 'El usuario ingresado no esta registrado';
       }
-     }
+      if (error.code === 'auth/wrong-password') {
+        this.errMensaje = 'El password ingresado es incorrecto';
+      }
+    }
+  }
   // registro
-     async onRegister(user: User) {
-       try {
-         return await this.afAuth.auth.createUserWithEmailAndPassword (
-           user.email,
-           user.password
-         );
-         } catch (error) {
-         this.errMensaje = error.code;
-         if (error.code === 'auth/email-already-in-use') {
-          this.errMensaje = 'el correo ingresado ya se encuentra registrado.';
-         }
-         }
-     }
-      async usuarioactivo() {
-        const user = this.afAuth.authState;
-        console.log(user);
-        return user;
-     }
-// salir de aplicacion
+  async onRegister(user: User) {
+    try {
+      return await this.afAuth.auth.createUserWithEmailAndPassword(
+        user.email,
+        user.password
+      );
+    } catch (error) {
+      this.errMensaje = error.code;
+      if (error.code === 'auth/email-already-in-use') {
+        this.errMensaje = 'el correo ingresado ya se encuentra registrado.';
+      }
+    }
+  }
+  async usuarioactivo() {
+    const user = this.afAuth.authState;
+    console.log(user);
+    return user;
+  }
+  // salir de aplicacion
   async logout() {
-   await this.afAuth.auth.signOut().then(() => {
+    await this.afAuth.auth.signOut().then(() => {
       console.log('sali');
     });
   }
@@ -107,16 +107,16 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL
     })
-        .then(() => {
+      .then(() => {
         this.swchloading$.emit('desactivar');
         console.log('User updated!');
         this.errMensaje = '';
       }
-    )
+      )
       .catch(err => {
         this.swchloading$.emit('desactivar');
         console.log('Error', err);
         this.errMensaje = err;
-    });
+      });
   }
 }

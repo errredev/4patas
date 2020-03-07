@@ -4,7 +4,8 @@ padding-right: 20px;
 padding-top: 10px;
  }
 .logintitulo {
-    color : #A050B3!important;
+    font-family: acme,;
+    color : var(--ion-color-primary);
     text-align: center;
     font-size: 25px;
     padding-bottom: 40px;

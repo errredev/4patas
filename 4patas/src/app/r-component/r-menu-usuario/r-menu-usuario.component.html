@@ -1,11 +1,11 @@
-<ion-header>
-  <img />
+<ion-header >
+ 
 
-  <img class="avatar" src="./assets/app/avatar.png" />
+  <img  class="avatar" *ngIf="authSrv.userData$| async" [src]="user.photoURL" />
 
-  <ion-label class="labelcabecera">rodolfo.leiva.rojas@gmail.com</ion-label>
+  <ion-label *ngIf="authSrv.userData$| async" class="labelcabecera">{{user.displayName}}</ion-label>
 </ion-header>
-<ion-content [@cardAnimation]="lista.length" fullscreen="true">
+<ion-content  [@cardAnimation]="lista.length" fullscreen="true">
   <div
     *ngFor="let item of lista; let i = index"
   >

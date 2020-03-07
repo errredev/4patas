@@ -42,20 +42,21 @@ export class RegistroComponent implements OnInit {
     if (user) {
       const userAct = new User();
       userAct.email = user.user.email;
-      userAct.displayName = user.user.email;
+      userAct.displayName = 'Anonimo';
       userAct.uid = user.user.uid;
-      userAct.photoURL = 'assets/images/usuario.jpg';
+      userAct.photoURL = 'assets/images/avatar.png';
       // userAct.phoneNumber = 1;
       this.srvAuth.saveUserProfile(userAct);
       this.presentToast();
       this.svcloading.desactivarloading();
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/');
     } else {
       const alert = await this.alrControl.create({
         header: 'Alerta',
         subHeader: 'Operacion fallida',
         message: this.srvAuth.errMensaje,
-        buttons: ['OK']
+        buttons: ['OK'],
+        cssClass: 'alertCustomCss' //
       });
       this.svcloading.desactivarloading();
       await alert.present();

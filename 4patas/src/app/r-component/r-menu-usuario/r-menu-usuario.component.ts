@@ -1,13 +1,11 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { SideMenuOption } from './models/side-menu-option';
-import { trigger, transition, style, animate, state } from '@angular/animations';
 import { AlertController, MenuController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { ThemeService } from '../../services/theme/theme.service';
 import { Accordion } from '../../animations/accordion.animations';
 import { escalonado} from '../../animations/escalonado.animation';
-
+import { AppService } from '../../services/app/app.service';
 @Component({
   selector: 'app-r-menu-usuario',
   templateUrl: './r-menu-usuario.component.html',
@@ -16,8 +14,7 @@ import { escalonado} from '../../animations/escalonado.animation';
 
 })
 export class RMenuUsuarioComponent implements OnInit {
-  optionHeight = 45;
-  paddingLeft = 16;
+  public user: firebase.User;
   public ultimoIndice: number;
   public lista: any;
   public prelista: any;
@@ -29,7 +26,8 @@ export class RMenuUsuarioComponent implements OnInit {
               private router: Router,
               private menu: MenuController,
               private ngZone: NgZone,
-              private themeSrv: ThemeService) {
+              public svcloading: AppService
+  ) {
     this.ultimoIndice = 0;
     this.lista = new Array<SideMenuOption>();
     this.prelista = [
@@ -137,9 +135,14 @@ export class RMenuUsuarioComponent implements OnInit {
   // }
   // ******************** Oninit *******************************
   ngOnInit() {
-    this.currentState = 'initial';
     this.lista = this.prelista;
     // this.llenarmenu(0);
+    this.authSrv.userData$.subscribe(user => {
+      // console.log(user.email);
+      if (user) {
+        this.user = user;
+      }
+    });
 
   }
   // ******************** Pregunta si desea salir *******************************
@@ -158,14 +161,17 @@ export class RMenuUsuarioComponent implements OnInit {
             this.Salir();
           }
         }
-      ]
+      ],
+      cssClass: 'alertCustomCss' //
     });
     await alert.present();
   }
   // ******************** Si la opcion es salir *******************************
   async Salir() {
-    await this.authSrv.logout();
+   
     this.irpara('/login');
+    this.authSrv.logout();
+    // this.svcloading.quitarrmenu();
     // this.router.navigate(['/login']);
   }
   // ******************** *******************************

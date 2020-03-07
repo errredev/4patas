@@ -11,7 +11,9 @@ import { AppService } from '../../../services/app/app.service';
   selector: 'app-entrar',
   templateUrl: './entrar.component.html',
   styleUrls: ['./entrar.component.scss'],
-  animations: [routerTransition],
+  animations: [routerTransition()],
+  // tslint:disable-next-line:no-host-metadata-property
+  host: { '[@routerTransition]': '' }
 })
 export class EntrarComponent implements OnInit {
   private loading;
@@ -38,13 +40,15 @@ export class EntrarComponent implements OnInit {
     const user = await this.srvAuth.onLogin(this.user);
     if (user) {
       this.svcloading.desactivarloading();
+      this.svcloading.ponermenu();
       this.router.navigateByUrl('/');
     } else {
       const alert = await this.alrControl.create({
         header: 'Alerta',
         subHeader: 'Operacion fallida',
         message: this.srvAuth.errMensaje,
-        buttons: ['OK']
+        buttons: ['OK'],
+        cssClass: 'alertCustomCss' //
       });
       this.svcloading.desactivarloading();
       await alert.present();

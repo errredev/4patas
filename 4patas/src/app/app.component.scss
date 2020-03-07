@@ -1,4 +1,5 @@
 
+
 .fade-in {
 	opacity: 1;
 	animation-name: fadeInOpacity;
@@ -140,9 +141,3 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
-:root {
-  .dark-theme
-  {
-      --ion-background-color: #37474F!important;
-      }
-  }

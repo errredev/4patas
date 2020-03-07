@@ -9,17 +9,6 @@ ion-content {
   height: 80px !important;
   min-height: 80px;
 }
-
-.avatar{
-  left: 10px;
-  border: 1px solid  #00424b;
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  z-index: 200!important;
-  top: 10px;
-  position:absolute!important;
-}
 #titulo {
   position: relative;
   top: 45px;
@@ -34,19 +23,19 @@ ion-content {
   line-height: 26.4px!important;
   font-weight: 400!important;
 }
-// .circulo {
-//   background-color: var(--ion-color-primary);
-//   border: 1px solid var(--ion-color-light);
-//   height: 40px;
-//   border-radius: 50%;
-//   -moz-border-radius: 50%;
-//   -webkit-border-radius: 50%;
-//   width: 40px;
-//   position: absolute;
-//   color: var(--ion-color-primary);
-//   right: 10px;
-//   top: 10px;
-// }
+.circulo {
+  background-color: var(--ion-color-primary);
+  border: 1px solid var(--ion-color-light);
+  height: 40px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  width: 40px;
+  position: absolute;
+  color: var(--ion-color-primary);
+  right: 10px;
+  top: 10px;
+}
 
 ion-card {
   position: relative;
@@ -65,7 +54,7 @@ ion-card {
     ion-label {
       font-family: "Mansalva", cursive;
       font-size: 1.3rem;
-  
+      text-align: center !important;
       position: absolute;
       color: var(--ion-color-light);
       top: 10px;
@@ -73,17 +62,6 @@ ion-card {
     }
     .dias {
       color: var(--ion-color-tertiary) !important;
-      right: 20px;
-      top : 30px;
-      font-family: "acme";
-      font-size: 20px;
-    }
-    .diasNumero {
-      color: var(--ion-color-tertiary) !important;
-      right: 20px;
-      top : 10px;
-      font-family: "acme";
-      font-size: 20px;
     }
     object-fit: cover;
     min-height: 200px;
@@ -144,28 +122,4 @@ ion-text {
   width: 860px;
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
-}
-#numeros {
-  font-family: "Raleway" !important;
-  font-size: 15px !important;
-}
-#iconofotos {
-  position: absolute;
-  font-size: 30px;
-  top:15px;
-  z-index: 10;
-  padding-left: 40!important;
-  color :white
-}
-#distancia {
-  position: absolute;
-  color:var(--ion-color-warning);
-  top:5px;
-  left: 170px;
-}
-#fecha {
-  position: absolute;
-  color:var(--ion-color-warning);
-  top:25px;
-  left: 170px;
 }
