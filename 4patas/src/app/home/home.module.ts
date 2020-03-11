@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 
 import { RComponentsModule } from '../r-component/r.component.module';
+import { AvisoComponent } from '../avisos/aviso/aviso.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { RComponentsModule } from '../r-component/r.component.module';
     RComponentsModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, AvisoComponent]
 })
 export class HomePageModule {}

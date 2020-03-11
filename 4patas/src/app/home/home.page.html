@@ -1,7 +1,29 @@
 <div class="erreCabecera">
-  <Div id="titulo" color="tertiary">PetBoard</Div>
-  
-  <img (click)="abrirMenu()" class="avatar" *ngIf="authSrv.userData$| async" [src]="user.photoURL" />  
+  <div id="titulo" color="tertiary">PetBoard</div>
+  <div id="contenedortags">
+    <label
+      [className]="swtSize ? 'activo' : 'inactivo'"
+      (click)="opcionesTamano()"
+      id="tags"
+      >{{size}}</label
+    >
+    <label
+      [className]="swtSexo ? 'activo' : 'inactivo'"
+      (click)="opcionesSexo()"
+      id="tags"
+      >{{sexo}}</label
+    >
+    <label  [className]="swtEdad ? 'activo' : 'inactivo'"
+    (click)="opcionesEdad()" id="tags">{{edad}}</label>
+    <label  [className]="swtSalud ? 'activo' : 'inactivo'"
+     (click)="opcionesSalud()" id="tags">{{salud}}</label>
+  </div>
+  <img
+    (click)="abrirMenu()"
+    class="avatar"
+    *ngIf="authSrv.userData$| async"
+    [src]="user.photoURL"
+  />
 
   <!-- <ion-buttons slot="start">
     <ion-menu-button></ion-menu-button>
@@ -11,8 +33,8 @@
 <ion-content>
   <!--https://dribbble.com/shots/2210153-Day-057-Twitter-Profile<div class="circulo">-->
 
-  <ion-grid [@cardAnimation]="avisos.length" >
-    <ion-row  justify-content-center>
+  <ion-grid [@cardAnimation]="avisos.length">
+    <ion-row justify-content-center>
       <ion-col
         sizeXl="4"
         sizeLg="6"
@@ -21,60 +43,12 @@
         sizeXs="12"
         *ngFor="let aviso of avisos"
       >
-        <ion-card>
-          <ion-card-header>
-            
-
-            <ion-label class="diasNumero">{{aviso.dias}}</ion-label>
-            <ion-label class="dias">dias</ion-label>
-            <ion-item lines="none">
-              <label id="distancia">{{aviso.distancia}}</label>
-              <label id="fecha">{{aviso.creacion}}</label>
-              <ion-text>{{aviso.nombre}}</ion-text>
-            </ion-item>
-            <img class="foto" [src]="aviso.portada" />
-          </ion-card-header>
-          <ion-card-content>
-            <ion-row>
-              <ion-col size="4">
-                <ion-col>
-                  <ion-icon name="heart-outline"></ion-icon>
-                </ion-col>
-                <ion-col> 
-                  <ion-text id="numeros">{{aviso.difundido}}</ion-text> 
-                </ion-col>
-              </ion-col>
-                <ion-col size="4">
-                <ion-col>
-                  <ion-icon name="bookmark-outline"></ion-icon>
-                </ion-col>
-                <ion-col> 
-                  <ion-text id="numeros">{{aviso.difundido}}</ion-text> 
-                </ion-col>
-              </ion-col>
-                <ion-col size="4">
-                <ion-col>
-                  <ion-icon name="eye-outline"></ion-icon>
-                </ion-col>
-                <ion-col> 
-                  <ion-text id="numeros">{{aviso.difundido}}</ion-text> 
-                </ion-col>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <br>
-              <ion-col size="3">
-                <ion-label class="ayudabusca">Mestizo</ion-label>
-              </ion-col>
-
-              <ion-col size="3">Macho </ion-col>
-              <ion-col size="3">Adulto</ion-col>
-              <ion-col size="3">Sano</ion-col>
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
-        <br />
+        <app-aviso [aviso]="aviso"></app-aviso>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <br />
+  <br />
+  <br />
+  <br />
 </ion-content>
