@@ -36,30 +36,66 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
 
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Poppins ExtraLight'), local('Poppins-ExtraLight'),
+       url('./assets/fonts/poppins/poppins-v9-latin-200.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./assets/fonts/poppins/poppins-v9-latin-200.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* poppins-regular - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Poppins Regular'), local('Poppins-Regular'),
+       url('./assets/fonts/poppins/poppins-v9-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./assets/fonts/poppins/poppins-v9-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* poppins-900 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Poppins Black'), local('Poppins-Black'),
+       url('./assets/fonts/poppins/poppins-v9-latin-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./assets/fonts/poppins/poppins-v9-latin-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+
+
+
+
+
 .alertCustomCss {
 	color: white; // text color for basic alerts
 	
     button {
-        color: var(--ion-color-tertiary)!important;
-        background-color: var(--ion-color-dark);;
+        color: white!important;
+		background-color: var(--ion-color-dark);
+		
 	}
 	.alert-header{
-		background-color: var(--ion-color-light);
+		
+		background-color: white;
         color: var(--ion-color-dark)!important; 
 	}
     .alert-message {
-		background-color: var(--ion-color-light);
+		
+		background-color: white;
         color: var(--ion-color-primary); // 
     }
     .alert-wrapper {
-		background-color:var(--ion-color-light)!important;
+		
+		background-color: white!important;
 		color: var(--ion-color-primary)!important; 
     }
   }
 
 ion-title {
     font-size : 1.6rem;
-    font-family: 'Mansalva', cursive;
+    font-family: 'acme', cursive;
 	font-weight:  400!important;
 	color: var(--ion-color-primary);
 	background: white;;

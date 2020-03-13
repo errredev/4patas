@@ -21,6 +21,19 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'crearaviso',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./crearaviso/crearaviso.module').then( m => m.CrearavisoPageModule)
+  },
+  {
+    path: 'entrar',
+    loadChildren: () => import('./entrar/entrar.module').then( m => m.EntrarPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   }
 ];
 

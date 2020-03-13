@@ -20,9 +20,7 @@ color:  white!important;
   right: 2px;
   bottom: 4px;
   background: silver !important;
-  color: #56c8d8;
--webkit-box-shadow: 12px 13px 14px -4px #2d5256; 
-box-shadow: 12px 13px 14px -4px #2d5256;
+ 
 }
 .coloricon {
   color: var(--ion-color-primary)!important;
@@ -40,7 +38,7 @@ ion-header {
 .cabecera {
   height: 100%;
   width: 100%;
-  background: skyblue;
+  
 
 }
 .labelcabecera{
@@ -55,7 +53,7 @@ ion-header {
 }
 .avatar{
   left: 20px;
-   border: 2px solid  #00424b;
+   border: 2px solid  var(--ion-color-dark)!important;
   border-radius: 100%;
   width: 90px;
   height: 90px;

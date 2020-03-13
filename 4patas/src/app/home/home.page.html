@@ -1,22 +1,31 @@
 <div class="erreCabecera">
-  <div id="titulo" color="tertiary">PetBoard</div>
+  <div id="titulo" color="dark">Avisos</div>
+
   <div id="contenedortags">
     <label
-      [className]="swtSize ? 'activo' : 'inactivo'"
+      [className]="swtSize ? 'activo bounce' : 'inactivo'"
       (click)="opcionesTamano()"
       id="tags"
       >{{size}}</label
     >
     <label
-      [className]="swtSexo ? 'activo' : 'inactivo'"
+      [className]="swtSexo ? 'activo bounce' : 'inactivo'"
       (click)="opcionesSexo()"
       id="tags"
       >{{sexo}}</label
     >
-    <label  [className]="swtEdad ? 'activo' : 'inactivo'"
-    (click)="opcionesEdad()" id="tags">{{edad}}</label>
-    <label  [className]="swtSalud ? 'activo' : 'inactivo'"
-     (click)="opcionesSalud()" id="tags">{{salud}}</label>
+    <label
+      [className]="swtEdad ? 'activo bounce' : 'inactivo'"
+      (click)="opcionesEdad()"
+      id="tags"
+      >{{edad}}</label
+    >
+    <label
+      [className]="swtSalud ? 'activo' : 'inactivo'"
+      (click)="opcionesSalud()"
+      id="tags"
+      >{{salud}}</label
+    >
   </div>
   <img
     (click)="abrirMenu()"
@@ -29,8 +38,9 @@
     <ion-menu-button></ion-menu-button>
   </ion-buttons> -->
 </div>
+<div class="fab" [routerLink]="['/crearaviso']"  > <ion-icon name="add"></ion-icon></div>
 
-<ion-content>
+<ion-content color="light">
   <!--https://dribbble.com/shots/2210153-Day-057-Twitter-Profile<div class="circulo">-->
 
   <ion-grid [@cardAnimation]="avisos.length">

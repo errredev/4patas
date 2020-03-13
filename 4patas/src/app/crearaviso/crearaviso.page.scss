@@ -1,0 +1,25 @@
+#fotos{
+    
+    position: relative;
+   
+    width: 100%;
+    right: 2px!important;
+    height: 220px;
+}
+.foto{
+    position: relative;
+    border: 1px solid green;
+    width: 40%;
+    left: 2px;
+    height: 50%;
+}
+ion-col{
+  padding: 10px;  
+} 
+ion-card{
+    background: var(--ion-color-light)!important;
+    border-radius: 10px;
+    position: relative;
+    height: 94px!important;
+    left: 3px;
+}

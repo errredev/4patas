@@ -126,8 +126,6 @@ export class HomePage implements OnInit {
       header: 'Sexo',
       buttons: [{
         text: 'Hembra',
-  
-
         handler: () => {
           this.ngZone.run(() => {
             this.sexo = 'Hembra';
@@ -161,8 +159,6 @@ export class HomePage implements OnInit {
       header: 'Edad',
       buttons: [{
         text: 'Cachorro',
- 
-
         handler: () => {
           this.ngZone.run(() => {
             this.swtEdad = true;

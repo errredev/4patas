@@ -2,11 +2,14 @@
 ion-card {
   position: relative;
   min-width: 330px;
+  background: var(--ion-color-light);
   border-radius: 20px;
+  box-shadow:  5px 5px 10px #bbbab6, 
+             -5px -5px 10px #ffffff;
   ion-card-header {
     ion-item {
-      background-color: white;
-      border: 2px solid white !important;
+      background: var(--ion-color-light);
+     
       position: absolute;
       width: 100%;
       left: 10%;
@@ -14,9 +17,9 @@ ion-card {
       border-radius: 30px;
     }
     ion-label {
-      font-family: "Mansalva", cursive;
+      font-family: "Poppin";
       font-size: 1.3rem;
-  
+
       position: absolute;
       color: var(--ion-color-light);
       top: 10px;
@@ -64,8 +67,9 @@ ion-card-content {
   font-size: 0.5 rem !important;
 }
 ion-text {
-  font-family: "Mansalva", cursive;
-  font-size: 40px !important;
+  background: var(--ion-color-light);
+  font-family: Poppins;
+  font-size: 35px !important;
   padding-left: 20px;
 
   font-size: 2rem;

@@ -23,7 +23,6 @@ export class TabnavPage implements OnInit {
   push(opcion) {
     this.tabOpcion[opcion].estado = 'ok';
     this.tabOpcion[opcion].selec = true;
-    this.tabOpcion[opcion].colorIcon = 'rgb(242,93,7)';
     if (this.ultimo < 4) {
       this.tabOpcion[this.ultimo].colorIcon = '#8d8c895b';
       this.tabOpcion[this.ultimo].estado = 'inicial';
