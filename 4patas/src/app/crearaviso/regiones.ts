@@ -118,7 +118,7 @@ export const Regiones = [
         ]
     },
     {
-        region: 'Metropolitana de Santiago',
+        region: 'Metropolitana',
         numero: 'MET',
         comunas: [
             'Alhué',
@@ -176,7 +176,7 @@ export const Regiones = [
         ]
     },
     {
-        region: 'Libertador Gral. Bernardo O’Higgins',
+        region: 'Lib. Gral. Bernardo O’Higgins',
         numero: 'VI',
         comunas: [
             'Chimbarongo',

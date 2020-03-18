@@ -78,6 +78,7 @@ export class AuthService {
     }
   }
 
+
   preSaveUserProfile(user: User, image?: FileI): void {
     this.swchloading$.emit('Activar');
     if (image) {
@@ -85,6 +86,10 @@ export class AuthService {
     } else {
       this.saveUserProfile(user);
     }
+  }
+
+  public datosuser(): User {
+    return this.afAuth.auth.currentUser;
   }
 
   private uploadImage(user: User, image: FileI): void {

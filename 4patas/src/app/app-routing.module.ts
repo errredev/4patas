@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'cropp',
+    loadChildren: () => import('./cropp/cropp.module').then( m => m.CroppPageModule)
   }
 ];
 

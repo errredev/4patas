@@ -1,20 +1,19 @@
-export interface User {
+export interface AvisoI {
     id?: string;
-    userid: string;
-    fecha: Date;
-    descripcion: string;
+    uid?: string;
+    fecha?: string;
+    descripcion?: string;
     nombre: string;
     size: string;
     sexo: string;
     edad: string;
     salud: string;
-    favoritos: number;
-    seguimiento: number;
-    mensajes: number;
-    portada: string;
-    calle: string;
-    numero: number;
+    favoritos?: number;
+    seguimiento?: number;
+    mensajes?: number;
+    portada?: string;
+    direccion?: string;
+    region: string;
     comuna: string;
-    departamento: string;
-    estatus: string;
+    estatus?: string;
 }

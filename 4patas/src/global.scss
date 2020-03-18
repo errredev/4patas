@@ -92,20 +92,20 @@
 		color: var(--ion-color-primary)!important; 
     }
   }
-
+ion-item {
+	background: var(--ion-color-light)!important;
+}
 ion-title {
-    font-size : 1.6rem;
-    font-family: 'acme', cursive;
-	font-weight:  400!important;
+    font-size : 24px;
+    font-family: 'Poppins', cursive;
+	font-weight:  900!important;
 	color: var(--ion-color-primary);
-	background: white;;
+	background: var(--ion-color-light);
 }
 ion-icon {
 	color : var(--ion-color-dark);
 }
-ion-button {
-    
-}
+
 .contenedor {
     padding: 10px!important;
 }
@@ -113,9 +113,8 @@ ion-item {
 	border: 0px!important;
 }
 
-ion-label {
 
-}
+
 $colorLight: #fafafa;
 $colorDark: #2c2c2c;
 $colorPrimary: #0097a7;
