@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { CroppPageRoutingModule } from './cropp-routing.module';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { CroppPage } from './cropp.page';
 
@@ -13,7 +14,8 @@ import { CroppPage } from './cropp.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CroppPageRoutingModule
+    CroppPageRoutingModule,
+    ImageCropperModule
   ],
   declarations: [CroppPage]
 })

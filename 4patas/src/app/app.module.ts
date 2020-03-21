@@ -17,7 +17,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { StorageBucket, AngularFireStorage } from '@angular/fire/storage';
-
+import { HttpClientModule } from '@angular/common/http';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,8 @@ import { StorageBucket, AngularFireStorage } from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     IonicModule.forRoot(),
+    HttpClientModule,
+    AngularSvgIconModule.forRoot(),
     AppRoutingModule
   ],
   providers: [

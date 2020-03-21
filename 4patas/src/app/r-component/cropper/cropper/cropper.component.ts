@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+
 @Component({
-  selector: 'app-cropp',
-  templateUrl: './cropp.page.html',
-  styleUrls: ['./cropp.page.scss'],
+  selector: 'app-cropper',
+  templateUrl: './cropper.component.html',
+  styleUrls: ['./cropper.component.scss'],
 })
-export class CroppPage implements OnInit {
+export class CropperComponent implements OnInit {
+
   title = 'angular-image-uploader';
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
 
   fileChangeEvent(event: any): void {
+    console.log();
     this.imageChangedEvent = event;
   }
   imageCropped(event: ImageCroppedEvent) {
@@ -30,5 +33,4 @@ export class CroppPage implements OnInit {
 
   ngOnInit() {
   }
-
 }

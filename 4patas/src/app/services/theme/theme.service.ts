@@ -1,4 +1,4 @@
-import { Injectable, RendererFactory2, Inject, Renderer2 } from '@angular/core';
+import { Injectable, Inject} from '@angular/core';
 import { inject } from '@angular/core/testing';
 import { DOCUMENT } from '@angular/common';
 
@@ -6,15 +6,11 @@ import { DOCUMENT } from '@angular/common';
   providedIn: 'root'
 })
 export class ThemeService {
-  renderer: Renderer2;
-  constructor(private renderFactory: RendererFactory2, @Inject(DOCUMENT) private document: Document) {
-   this.renderer = this.renderFactory.createRenderer (null, null);
+  public primary = '#ff3e00';
+  public secondary = '#d1d0cc';
+  constructor() {
+
   }
 
-  darkMode() {
-    this.renderer.addClass (this.document.body, 'dark-theme');
-  }
-  ligthMode() {
-    this.renderer.addClass(this.document.body, 'light-theme');
-  }
+  
 }

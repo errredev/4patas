@@ -12,38 +12,90 @@
 </ion-header>
 
 <ion-content color="light">
+  <!-- <input
+                hidden
+                type="file"
+                #inputImage1
+                (change)="showPreview($event)"
+              /> -->
   <div id="fotos">
     <ion-grid>
       <ion-row>
         <ion-col size="6">
-          <ion-card><div class="centro"><svg id="add" width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3ZM1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12Z" fill="#d1d0cc"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.5523 7 13 7.44772 13 8V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V8C11 7.44772 11.4477 7 12 7Z" fill="#d1d0cc"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 11.4477 7.44772 11 8 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H8C7.44772 13 7 12.5523 7 12Z" fill="#d1d0cc"/>
-</svg></div></ion-card>
+          <ion-card
+            [ngClass]="{'cardvacia' : imagenes[0].cargada, 'cardvacia' : !(imagenes[0].cargada)}"
+            (click)="inputImage1.click()"
+          >
+            <img
+              class="imagen slit-in-vertical"
+              *ngIf="(imagenes[0].cargada)"
+              [src]="imagenes[0].imagen"
+            />
+            <svg-icon
+              [className]="imagenes[0].activo ? 'svg-icon addactivo' : 'svg-icon addinactivo'"
+              class="svg-icon"
+              src="./assets/svg/fotoadd.svg"
+              [svgStyle]="{ 'width.px':30  }"
+              [stretch]="true"
+            ></svg-icon>
+          </ion-card>
         </ion-col>
         <ion-col size="6">
-          <ion-card><div class="centro"><svg id="add" width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3ZM1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12Z" fill="#d1d0cc"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.5523 7 13 7.44772 13 8V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V8C11 7.44772 11.4477 7 12 7Z" fill="#d1d0cc"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 11.4477 7.44772 11 8 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H8C7.44772 13 7 12.5523 7 12Z" fill="#d1d0cc"/>
-</svg></div></ion-card>
+          <ion-card
+            [ngClass]="{'cardvacia' : imagenes[1].cargada, 'cardvacia' : !(imagenes[1].cargada)}"
+            (click)="inputImage1.click()"
+          >
+            <img
+              class="imagen slit-in-vertical"
+              *ngIf="(imagenes[1].cargada)"
+              [src]="imagenes[1].imagen"
+            />
+            <svg-icon
+              [className]="imagenes[1].activo ? 'svg-icon addactivo animated fadeIn' : 'svg-icon addinactivo'"
+              class="svg-icon"
+              src="./assets/svg/fotoadd.svg"
+              [svgStyle]="{ 'width.px':30  }"
+              [stretch]="true"
+            ></svg-icon>
+          </ion-card>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="6">
-          <ion-card><div class="centro"><svg id="add" width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3ZM1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12Z" fill="#d1d0cc"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.5523 7 13 7.44772 13 8V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V8C11 7.44772 11.4477 7 12 7Z" fill="#d1d0cc"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 11.4477 7.44772 11 8 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H8C7.44772 13 7 12.5523 7 12Z" fill="#d1d0cc"/>
-</svg></div></ion-card>
+          <ion-card
+            [ngClass]="{'cardvacia' : imagenes[2].cargada, 'cardvacia' : !(imagenes[2].cargada)}"
+            (click)="inputImage1.click()"
+          >
+            <img
+              class="imagen slit-in-vertical"
+              *ngIf="(imagenes[2].cargada)"
+              [src]="imagenes[2].imagen"/>
+            <svg-icon
+              [className]="imagenes[2].activo ? 'svg-icon addactivo' : 'svg-icon addinactivo'"
+              class="svg-icon"
+              src="./assets/svg/fotoadd.svg"
+              [svgStyle]="{ 'width.px':30  }"
+              [stretch]="true"
+            ></svg-icon
+          ></ion-card>
         </ion-col>
         <ion-col size="6">
-          <ion-card><div class="centro"><svg id="add" width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3ZM1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12Z" fill="#d1d0cc"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.5523 7 13 7.44772 13 8V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V8C11 7.44772 11.4477 7 12 7Z" fill="#d1d0cc"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 11.4477 7.44772 11 8 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H8C7.44772 13 7 12.5523 7 12Z" fill="#d1d0cc"/>
-</svg></div></ion-card>
+          <ion-card
+            [ngClass]="{'cardvacia' : imagenes[3].cargada, 'cardvacia' : !(imagenes[3].cargada)}"
+            (click)="inputImage1.click()"
+          >
+            <img
+              class="imagen slit-in-vertical"
+              *ngIf="(imagenes[3].cargada)"
+              [src]="imagenes[3].imagen"/>
+            <svg-icon
+              [className]="imagenes[3].activo ? 'svg-icon addactivo' : 'svg-icon addinactivo'"
+              class="svg-icon"
+              src="./assets/svg/fotoadd.svg"
+              [svgStyle]="{ 'width.px':30  }"
+              [stretch]="true"
+            ></svg-icon
+          ></ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -86,52 +138,81 @@
       </ion-select>
     </ion-item>
     <ion-item color="light" lines="none">
-      <ion-label color="dark">Region</ion-label>
-      <ion-select 
-        
-        (ionChange)= "onChange($event)"
-        formControlName="region" 
-        interface="action-sheet">
-        <div  *ngFor="let region of regiones"  >
-          <ion-select-option 
-            [value]="region.region"
+      <ion-label color="dark">Región</ion-label>
+      <ion-select
+        (ionChange)="onChange($event)"
+        formControlName="region"
+        interface="action-sheet"
+      >
+        <div *ngFor="let region of regiones">
+          <ion-select-option [value]="region.region">
+            {{region.region}}</ion-select-option
           >
-          {{region.region}}</ion-select-option>
         </div>
-      
       </ion-select>
     </ion-item>
-    
-     <ion-item color="light" lines="none">
-      <ion-label color="dark">comunas</ion-label>
-      <ion-select 
-        formControlName="comuna" 
-        interface="action-sheet">
-        <div  *ngFor="let comuna of comunas"  >
-          <ion-select-option 
-            [value]="comuna"
-          >
-          {{comuna}}</ion-select-option>
-        </div>
-      
-      </ion-select>
-    </ion-item>
-     <ion-item color="light" lines="none">
-      <ion-input  placeholder="Direccion" formControlName="direccion"></ion-input>
-    </ion-item>
-    <ion-item color="light" lines="none"  >
-  <ion-textarea  placeholder="Como lo describirias....."  formControlName="descripcion"></ion-textarea>
-</ion-item>
 
-       <br>
-       <br>
-        <ion-button
-        expand="block"
-        [disabled]="!avisoForm.valid"
-        type="submit"
-        value="Save"
-        >Grabar
-        <ion-ripple-effect></ion-ripple-effect> </ion-button
-    >
+    <ion-item color="light" lines="none">
+      <ion-label color="dark">comunas</ion-label>
+      <ion-select formControlName="comuna" interface="action-sheet">
+        <div *ngFor="let comuna of comunas">
+          <ion-select-option [value]="comuna"> {{comuna}}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+    <ion-item color="light" lines="none">
+      <ion-input
+        placeholder="Direccion"
+        formControlName="direccion"
+      ></ion-input>
+    </ion-item>
+    <ion-item color="light" lines="none">
+      <ion-textarea
+        placeholder="Como lo describirias....."
+        formControlName="descripcion"
+      ></ion-textarea>
+    </ion-item>
+
+    <br />
+    <br />
+    <ion-button
+      expand="block"
+      [disabled]="!avisoForm.valid"
+      type="submit"
+      value="Save"
+      >Grabar <ion-ripple-effect></ion-ripple-effect>
+    </ion-button>
   </form>
+ <input
+          hidden
+          type="file"
+          #inputImage1
+          (change)="fileChangeEvent($event)"
+        />
+  <!-- ******************** CROPPER************************************* -->
+  <div *ngIf="cropvisible" id="container">
+    <div class="row" style="margin-top: 5%;">
+      <div class="text-center col-md-12">
+       
+      </div>
+    </div>
+    <ion-button (click)="tomarcropp()">Tomar Seleccion</ion-button>
+    <div class="row" style="margin-top: 5%;">
+      <div class="text-center col-md-8">
+        <h5>Por favor Encuadra la imagen para guardar</h5>
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="4 / 3"
+          [resizeToWidth]="256"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady()"
+          (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+      </div>
+
+    </div>
+  </div>
 </ion-content>

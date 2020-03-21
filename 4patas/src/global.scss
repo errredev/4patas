@@ -12,7 +12,7 @@
 
 @import "./theme/magic.css";
 @import "./theme/animate.css";
-
+@import "./theme/animaciones.css";
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 
@@ -66,7 +66,12 @@
 
 
 
-
+.cropper .move 
+{
+  width: 100%;
+  cursor: move;
+  border: 2px solid var(--ion-color-primary) !important;
+}
 
 .alertCustomCss {
 	color: white; // text color for basic alerts

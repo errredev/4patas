@@ -5,7 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { CrearavisoPageRoutingModule } from './crearaviso-routing.module';
-
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { CropperComponent} from '../r-component/cropper/cropper/cropper.component';
 import { CrearavisoPage } from './crearaviso.page';
 
 @NgModule({
@@ -14,8 +16,10 @@ import { CrearavisoPage } from './crearaviso.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
+    AngularSvgIconModule,
+    ImageCropperModule,
     CrearavisoPageRoutingModule
   ],
-  declarations: [CrearavisoPage]
+  declarations: [CrearavisoPage, CropperComponent ]
 })
 export class CrearavisoPageModule {}
