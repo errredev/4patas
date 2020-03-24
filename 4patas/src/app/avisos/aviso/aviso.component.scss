@@ -25,14 +25,14 @@ ion-card {
       z-index: 8;
     }
     .dias {
-      color: var(--ion-color-tertiary) !important;
+      color: var(--ion-color-medium) !important;
       right: 20px;
       top : 30px;
       font-family: "acme";
       font-size: 20px;
     }
     .diasNumero {
-      color: var(--ion-color-tertiary) !important;
+      color: var(--ion-color-medium) !important;
       right: 20px;
       top : 10px;
       font-family: "acme";
@@ -67,8 +67,9 @@ ion-card-content {
 }
 ion-text {
   background: var(--ion-color-light);
-  font-family: Poppins;
-  font-size: 35px !important;
+  font-family: Nunito;
+  font-weight: 900;
+  font-size: 25px !important;
   padding-left: 20px;
 
   font-size: 2rem;
@@ -80,7 +81,7 @@ ion-text {
   border-bottom-left-radius: 30px;
 }
 #numeros {
-  font-family: "Raleway" !important;
+  font-family: "Nunito" !important;
   font-size: 15px !important;
 }
 #iconofotos {
@@ -93,13 +94,13 @@ ion-text {
 }
 #distancia {
   position: absolute;
-  color:var(--ion-color-warning);
+  color:var(--ion-color-secondary);
   top:5px;
   left: 170px;
 }
 #fecha {
   position: absolute;
-  color:var(--ion-color-warning);
+  color:var(--ion-color-secondary);
   top:25px;
   left: 170px;
 }

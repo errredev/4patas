@@ -37,10 +37,12 @@ ion-col{
   box-shadow:  5px 5px 10px var(--ion-color-secondary), 
              -5px -5px 10px var(--ion-color-medium)!important;
 }
+@mixin font-regular {
+	font-family: var(--font-normal);
+    font-weight: 400;
+}
 ion-label {
-
- font-family: var(--font-normal)!important;
- font-weight: 400;
+  @include font-regular;
 
 }
 ion-textarea{
@@ -54,17 +56,15 @@ box-shadow: inset 5px 5px 10px  var(--ion-color-secondary),
 ion-button {
   position: relative;
   top: 1px;
-  font-family: var(--font-normal);
   font-size: 20px;
-  font-weight: 400;
   bottom: 70px;
   width: 80%;
   left:10%;
   height: 56px;
   z-index: 100;
   border-radius: 49px;
-background: #f6f5f0!important;
-box-shadow:  7px 7px 21px var(--secondary), 
+  background: #f6f5f0!important;
+  box-shadow:  7px 7px 21px var(--secondary), 
              -7px -7px 21px var(--sombra-palida);
   
 }
@@ -76,8 +76,8 @@ box-shadow:  7px 7px 21px var(--secondary),
   width: 94%;
   max-height: 114px!important;
   border-radius: 20px;
-background: #f6f5f0;
-box-shadow:  5px 5px 10px #d1d0cc, 
+  background: #f6f5f0;
+  box-shadow:  5px 5px 10px #d1d0cc, 
              -5px -5px 10px #ffffff;
 }
 #add {

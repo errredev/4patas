@@ -9,6 +9,8 @@ import { ThemeService } from '../services/theme/theme.service';
 import { Router } from '@angular/router';
 import {CroppService} from '../services/cropp/cropp.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { AlertController} from '@ionic/angular';
+
 
 @Component({
   selector: 'app-crearaviso',
@@ -42,9 +44,20 @@ export class CrearavisoPage implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '';
 
-  fileChangeEvent(event: any): void {
+  async fileChangeEvent(event: any): Promise<void> {
+    if (this.indice !== 4) {
     this.cropvisible = true;
     this.imageChangedEvent = event;
+    } else {
+      const alert = await this.alrControl.create({
+        header: 'Información',
+        subHeader: 'imposible de realizar',
+        message: 'Alcanzo el numero maximo de fotos',
+        buttons: ['OK'],
+        cssClass: 'alertCustomCss' //
+      });
+      await alert.present();
+    }
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
@@ -58,22 +71,23 @@ export class CrearavisoPage implements OnInit {
   loadImageFailed() {
     // show message
   }
-  tomarcropp() {
+  async tomarcropp() {
     this.cropvisible = false;
     this.imagenes[this.indice].imagen = this.croppedImage;
+    const imagensubida = await this.avisoS.uploadImage('prueba.png', this.imagenes[this.indice].imagen);
+    console.log(this.imagenes[this.indice].imagen);
     this.imagenes[this.indice].cargada = true;
     this.imagenes[this.indice].activo = false;
-    if (this.indice < 2) {
-      this.indice ++;
+    this.indice ++;
+    if (this.indice < 3) {
       this.imagenes[this.indice].activo = true;
     }
-  
   }
   constructor(private avisoS: AvisoService,
               private authsrv: AuthService,
               public themesrv: ThemeService,
               public router: Router,
-              public croppsrv: CroppService) {
+              public alrControl: AlertController) {
     this.regiones = Regiones;
     const user = this.authsrv.datosuser();
     this.uid = user.uid;

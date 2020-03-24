@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map, finalize } from 'rxjs/operators';
+
 import { AvisoI } from '../shared/models/aviso.interace';
-// import { FileI } from '../../shared/models/file.interface';
+import {Mensaje} from '../shared/models/mensaje';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
@@ -12,7 +11,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class AvisoService {
   private avisoCollection: AngularFirestoreCollection<AvisoI>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private storage: AngularFireStorage) {
     this.avisoCollection = afs.collection<AvisoI>('avisos');
   }
 
@@ -49,13 +48,12 @@ export class AvisoService {
   //     return this.itemsCollection.doc(item.id).update(item);
   //   }
   // }
-public saveAviso(aviso: AvisoI, Userid: string) {
-  // const id = this.afs.createId();
-  // this.afs.collection('avisos').doc(id).set({
-   
-  // });
+  public saveAviso(aviso: AvisoI, Userid: string) {
+    // const id = this.afs.createId();
+    // this.afs.collection('avisos').doc(id).set({
+    // });
 
-  const avisoObj = {
+    const avisoObj = {
       nombre: aviso.nombre,
       size: aviso.size,
       sexo: aviso.sexo,
@@ -70,23 +68,23 @@ public saveAviso(aviso: AvisoI, Userid: string) {
       favoritos: 0,
       mensajes: 0,
       portada: 'url',
-    fecha: Date().toLocaleString()
+      fecha: Date().toLocaleString()
     };
-  return this.avisoCollection.add(avisoObj);
+    return this.avisoCollection.add(avisoObj);
   }
 
-  // private uploadImage(item: AvisoI, image: FileI) {
-  //   this.filePath = `images/${image.name}`;
-  //   const fileRef = this.storage.ref(this.filePath);
-  //   const task = this.storage.upload(this.filePath, image);
-  //   task.snapshotChanges()
-  //     .pipe(
-  //       finalize(() => {
-  //         fileRef.getDownloadURL().subscribe(urlImage => {
-  //           this.downloadURL = urlImage;
-  //           this.saveItem(item);
-  //         });
-  //       })
-  //     ).subscribe();
-  // }
+  public async uploadImage(nombre: string, base64: any): Promise <Mensaje> {
+    try {
+      const task = await this.storage.ref('avisos/').child(nombre)
+        .putString(base64, 'data_url');
+      const reff = await this.storage.ref(task.metadata.fullPath);
+      reff.getDownloadURL().subscribe(urlImage => {
+        const downloadURL = urlImage;
+        console.log(downloadURL);
+        return { exitoso: true, texto: downloadURL};
+      });
+    } catch (error) {
+      return { exitoso: false, texto: 'Error en carga de imagen' };
+    }
+  }
 }

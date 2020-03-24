@@ -11,7 +11,8 @@ export interface AvisoI {
     favoritos?: number;
     seguimiento?: number;
     mensajes?: number;
-    portada?: string;
+    especie: string;
+    fotos?: string [];
     direccion?: string;
     region: string;
     comuna: string;

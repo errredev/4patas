@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { StorageBucket, AngularFireStorage } from '@angular/fire/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { MyErrorHandler } from './error';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +41,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     StatusBar,
     SplashScreen,
     AngularFireStorage,
+    // { provide: ErrorHandler, useClass: MyErrorHandler },
     { provide: StorageBucket, useValue: 'gs://patas4.appspot.com'},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

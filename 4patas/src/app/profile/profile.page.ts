@@ -19,9 +19,9 @@ export class ProfilePage implements OnInit {
   uploadForm: FormGroup;
   private loading;
   constructor(private authSvc: AuthService,
-              public router: Router,
-              public loadingCtrl: LoadingController,
-              public toastController: ToastController) {
+    public router: Router,
+    public loadingCtrl: LoadingController,
+    public toastController: ToastController) {
   }
 
   public profileForm = new FormGroup({
@@ -30,22 +30,22 @@ export class ProfilePage implements OnInit {
     photoURL: new FormControl(''),
   });
   ngOnInit() {
-   // this.authSvc.userData$.subscribe(user => {
-   //   this.initValuesForm1(user);
-  //   console.log('pase por aqui 2');
-  //  });
+    // this.authSvc.userData$.subscribe(user => {
+    //   this.initValuesForm1(user);
+    //   console.log('pase por aqui 2');
+    //  });
     if (this.authSvc.userData$) {
       this.initValuesForm2();
     }
 
-    this.authSvc.swchloading$.subscribe (estado => {
+    this.authSvc.swchloading$.subscribe(estado => {
       if (estado === 'Activar') {
-          this.loadingCtrl.create({
-            message: 'Guardando'
-          }).then((overlay) => {
-            this.loading = overlay;
-            this.loading.present();
-          });
+        this.loadingCtrl.create({
+          message: 'Guardando'
+        }).then((overlay) => {
+          this.loading = overlay;
+          this.loading.present();
+        });
       } else {
         this.loading.dismiss();
         this.presentToast();
@@ -56,22 +56,23 @@ export class ProfilePage implements OnInit {
   onSaveUser(user: User): void {
     user.photoURL = this.currentImage;
     this.authSvc.preSaveUserProfile(user, this.image);
-    console.log (this.image);
+    console.log(this.image);
   }
 
   private initValuesForm2(): void {
-     this.currentImage = this.authSvc.afAuth.auth.currentUser.photoURL;
-     if (this.authSvc.afAuth.auth.currentUser.email === this.authSvc.afAuth.auth.currentUser.displayName) {
-        this.profileForm.patchValue({
-          displayName: '',
-          email: this.authSvc.afAuth.auth.currentUser.email,
-        });
-      } else {
+    console.log(this.authSvc.afAuth.auth.currentUser.photoURL);
+    this.currentImage = this.authSvc.afAuth.auth.currentUser.photoURL;
+    if (this.authSvc.afAuth.auth.currentUser.email === this.authSvc.afAuth.auth.currentUser.displayName) {
+      this.profileForm.patchValue({
+        displayName: '',
+        email: this.authSvc.afAuth.auth.currentUser.email,
+      });
+    } else {
       this.profileForm.patchValue({
         displayName: this.authSvc.afAuth.auth.currentUser.displayName,
         email: this.authSvc.afAuth.auth.currentUser.email,
       });
-      }
+    }
   }
   // Image Preview
   showPreview(e) {
@@ -81,6 +82,7 @@ export class ProfilePage implements OnInit {
       reader.onload = (event: any) => {
         this.currentImage = event.target.result;
         this.image = e.target.files[0];
+        console.log(this.image);
       };
     }
   }
