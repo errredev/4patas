@@ -11,7 +11,7 @@ export interface AvisoI {
     favoritos?: number;
     seguimiento?: number;
     mensajes?: number;
-    especie: string;
+    especie?: string;
     fotos?: string [];
     direccion?: string;
     region: string;

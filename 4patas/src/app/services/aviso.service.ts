@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { AvisoI } from '../shared/models/aviso.interace';
-import {Mensaje} from '../shared/models/mensaje';
+import { Mensaje} from '../shared/models/mensaje';
 import { AngularFireStorage } from '@angular/fire/storage';
+import {Imagen} from '../shared/models/imagen';
 
 @Injectable({
   providedIn: 'root'
@@ -15,44 +16,29 @@ export class AvisoService {
     this.avisoCollection = afs.collection<AvisoI>('avisos');
   }
 
-  // public getAllItems(): Observable<AvisoI[]> {
-  //   return this.afs
-  //     .collection('items')
-  //     .snapshotChanges()
-  //     .pipe(
-  //       map(actions =>
-  //         // concatena el ID con el contenido
-  //         actions.map(a => {
-  //           const data = a.payload.doc.data() as AvisoI;
-  //           const id = a.payload.doc.id;
-  //           return { id, ...data };
-  //         })
-  //       )
-  //     );
-  // }
+  public async crearAviso(aviso: AvisoI, Userid: string, imagenes: Imagen[]): Promise <Mensaje>  {
+    aviso.fotos = [];
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < imagenes.length; i++) {
+      if (imagenes[i].cargada) {
+        const nombreArchivo =  aviso.nombre + i + '.png';
+        const nombreDirectorio = Userid + '/';
+        console.log(nombreArchivo);
+        const imagensubida = await this.uploadImage(nombreArchivo, nombreDirectorio, imagenes[i].imagen);
+        console.log(imagensubida);
+        if (imagensubida.exitoso) {
+          console.log(imagensubida.texto);
+          aviso.fotos.push(imagensubida.texto);
+        } else {
+          console.log(imagensubida);
+          return imagensubida;
+        }
+      }
+    }
+    return this.saveAviso(aviso, Userid);
+  }
 
-  // public getOneItem(id: AvisoI): Observable<AvisoI> {
-  //   return this.afs.doc<AvisoI>(`items/${id}`).valueChanges();
-  // }
-  // public deleteItemById(item: AvisoI) {
-  //   return this.itemsCollection.doc(item.id).delete();
-  // }
-  // new
-  // public preAddAndUpdateItem(item: AvisoI, image: FileI): void {
-  //   this.uploadImage(item, image);
-  // }
-  // public editItemById(item: AvisoI, newImage?: FileI) {
-  //   if (newImage) {
-  //     this.uploadImage(item, newImage);
-  //   } else {
-  //     return this.itemsCollection.doc(item.id).update(item);
-  //   }
-  // }
-  public saveAviso(aviso: AvisoI, Userid: string) {
-    // const id = this.afs.createId();
-    // this.afs.collection('avisos').doc(id).set({
-    // });
-
+  public async saveAviso(aviso: AvisoI, Userid: string): Promise<Mensaje>  {
     const avisoObj = {
       nombre: aviso.nombre,
       size: aviso.size,
@@ -64,27 +50,30 @@ export class AvisoService {
       uid: Userid,
       descripcion: aviso.descripcion,
       direccion: aviso.direccion,
+      especie: aviso.especie,
+      fotos: aviso.fotos,
       estatus: 'Activo',
       favoritos: 0,
       mensajes: 0,
-      portada: 'url',
       fecha: Date().toLocaleString()
     };
-    return this.avisoCollection.add(avisoObj);
+    try {
+      return { exitoso: true, objeto: this.avisoCollection.add(avisoObj)};
+    } catch (error) {
+      return { exitoso: false, texto: 'Error al grabar el aviso' };
+    }
   }
 
-  public async uploadImage(nombre: string, base64: any): Promise <Mensaje> {
+  public async uploadImage(nombreArchivo: string, nombreDirectorio: string, base64: any): Promise <Mensaje> {
+    console.log ('estou dentro');
     try {
-      const task = await this.storage.ref('avisos/').child(nombre)
-        .putString(base64, 'data_url');
-      const reff = await this.storage.ref(task.metadata.fullPath);
-      reff.getDownloadURL().subscribe(urlImage => {
-        const downloadURL = urlImage;
-        console.log(downloadURL);
-        return { exitoso: true, texto: downloadURL};
-      });
+      const task = await this.storage.ref(nombreDirectorio).child(nombreArchivo).putString(base64, 'data_url');
+      const reff =  this.storage.ref(task.metadata.fullPath);
+      const urlImage = await reff.getDownloadURL().toPromise();
+      console.log('exitoso');
+      return { exitoso: true, texto: urlImage};
     } catch (error) {
-      return { exitoso: false, texto: 'Error en carga de imagen' };
+      return { exitoso: false, texto: 'Error en carga de imagen', objeto: error };
     }
   }
 }

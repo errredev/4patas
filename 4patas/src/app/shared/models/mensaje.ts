@@ -1,5 +1,5 @@
 export class Mensaje {
     exitoso: boolean;
-    texto?: string;
+    texto?: any;
     objeto?: any;
 }

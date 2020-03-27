@@ -104,32 +104,7 @@
 }
 
 
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 200;
-  src: local('Poppins ExtraLight'), local('Poppins-ExtraLight'),
-       url('./assets/fonts/poppins/poppins-v9-latin-200.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('./assets/fonts/poppins/poppins-v9-latin-200.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* poppins-regular - latin */
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Poppins Regular'), local('Poppins-Regular'),
-       url('./assets/fonts/poppins/poppins-v9-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('./assets/fonts/poppins/poppins-v9-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* poppins-900 - latin */
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 900;
-  src: local('Poppins Black'), local('Poppins-Black'),
-       url('./assets/fonts/poppins/poppins-v9-latin-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('./assets/fonts/poppins/poppins-v9-latin-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
+
 
 @mixin font-regular {
 	font-family: var(--font-normal);
@@ -145,11 +120,15 @@
 }
 
 .alertCustomCss {
-	color: white; // text color for basic alerts
+
+	  font-family: var(--font-normal);
+    font-weight: 400;
 	
     button {
-        color: white!important;
-		background-color: var(--ion-color-dark);
+ font-family: var(--font-normal);
+    font-weight: 900;
+    color: var(--ion-color-medium);
+		background: var(--ion-color-dark)!important;
 		
 	}
 	.alert-header{
@@ -172,14 +151,36 @@ ion-item {
 	background: var(--ion-color-light)!important;
 }
 ion-title {
+    position: absolute;
+     transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
     font-size : 24px;
-    font-family: 'Poppins', cursive;
+    font-family: var(--font-titulo);
 	font-weight:  900!important;
 	color: var(--ion-color-primary);
 	background: var(--ion-color-light);
 }
+ion-toolbar {
+  	background: var(--ion-color-light)!important;
+}
 ion-icon {
 	color : var(--ion-color-dark);
+}
+ion-button {
+   font-family: var(--font-normal);
+   font-weight:  900!important;
+   font-size: 16px;
+}
+ion-select {
+   font-family: var(--font-normal);
+   font-weight:  900!important;
+
+}
+ion-input {
+   font-family: var(--font-normal);
+   font-weight:  900!important;
+
 }
 
 .contenedor {
@@ -188,374 +189,13 @@ ion-icon {
 ion-item {
 	border: 0px!important;
 }
+ion-label {
+ 	font-family: var(--font-normal);
+    font-weight: 400;
 
-
-
-$colorLight: #fafafa;
-$colorDark: #2c2c2c;
-$colorPrimary: #0097a7;
-
-@mixin box-size($width:100%, $height:100%) {
-  width: $width;
-  height: $height;
-}
-
-@mixin flex($direction:row, $break:nowrap, $alignWidth:center, $alignHeight:center) {
-  display: flex;
-  flex-flow: $direction $break;
-  justify-content: $alignWidth;
-  align-items: $alignHeight;
-}
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
 }
 
 
 
-.body-wrapper {
-	@include box-size(80%, 50vh);
-	@include flex();
-	background-color: $colorLight;
-	box-shadow: 0 0 45px -15px rgba(0, 0, 0, 0.8);
-	border-radius: 30px 0 0 30px;
-}
-
-.input-material-design {
-	@include box-size(80%, 50px);
-	position: relative;
-	overflow: hidden;
-	
-	input {
-		@include box-size();
-		color: $colorDark;
-		background-color: transparent;
-		padding-top: 10px;
-		border: none;
-		outline: none;
-		
-		&:focus + .input-label .input-content,
-		&:valid + .input-label .input-content {
-			transform: translatey(-150%);
-			font-size: 14px;
-			color: $colorPrimary;
-		}
-		
-		&:focus + .input-label::after,
-		&:valid + .input-label::after {
-			transform: translatex(0);
-		}
-	}
-	
-	label {
-		@include box-size();
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		pointer-events: none;
-		border-bottom: solid 1px $colorDark;
-		
-		.input-content {
-			position: absolute;
-			bottom: 5px;
-			left: 0;
-			transition: all 0.3s ease;
-		}
-		
-		&:after {
-			@include box-size();
-			content: "";
-			position: absolute;
-			bottom: -1px;
-			left: 0;
-			border-bottom: solid 1px $colorPrimary;
-			transform: translatex(-101%);
-			transition: all 0.3s ease;
-		}
-	}
-}
 
 
-i.material-icons {
-		font-size: 1.5rem;
-		color: white;
-		position: relative;
-		border-radius: 10%;
-		padding: 5px;
-		margin: 3px;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-		transition: color 0.2s ease, background-color 0.2s ease, transform 0.3s ease;
-}
-
-i.material-icons:after {
-		content: "";
-		width: 100%;
-		height: 100%;
-		border: solid 2px;
-		transform: scale(0.8);
-		position: absolute;
-		top: -2px;
-		left: -2px;
-		border-radius: 10%;
-		transition: all 0.3s ease;
-}
-
-i.material-icons:hover:after {
-		transform: scale(1);
-		box-shadow: 10px 0 20px rgba(0, 0, 0, 0.19), 6px 0 6px rgba(0, 0, 0, 0.23);
-}
-
-i.material-icons:nth-of-type(4) {
-		background-color: #88b999;
-}
-
-i.material-icons:nth-of-type(4):hover {
-		color: #88b999;
-}
-
-i.material-icons:nth-of-type(4):after {
-		border-color: #88b999;
-}
-
-i.material-icons:nth-of-type(5) {
-		background-color: #88b2b9;
-}
-
-i.material-icons:nth-of-type(5):hover {
-		color: #88b2b9;
-}
-
-i.material-icons:nth-of-type(5):after {
-		border-color: #88b2b9;
-}
-
-i.material-icons:nth-of-type(6) {
-		background-color: #8897b9;
-}
-
-i.material-icons:nth-of-type(6):hover {
-		color: #8897b9;
-}
-
-i.material-icons:nth-of-type(6):after {
-		border-color: #8897b9;
-}
-
-i.material-icons:nth-of-type(7) {
-		background-color: #af88b9;
-}
-
-i.material-icons:nth-of-type(7):hover {
-		color: #af88b9;
-}
-
-i.material-icons:nth-of-type(7):after {
-		border-color: #af88b9;
-}
-
-i.material-icons:nth-of-type(8) {
-		background-color: #d59acb;
-}
-
-i.material-icons:nth-of-type(8):hover {
-		color: #d59acb;
-}
-
-i.material-icons:nth-of-type(8):after {
-		border-color: #d59acb;
-}
-
-i.material-icons:nth-of-type(1) {
-		background-color: #cd8484;
-}
-
-i.material-icons:nth-of-type(1):hover {
-		color: #cd8484;
-}
-
-i.material-icons:nth-of-type(1):after {
-		border-color: #cd8484;
-}
-
-i.material-icons:nth-of-type(2) {
-		background-color: #ec9f83;
-}
-
-i.material-icons:nth-of-type(2):hover {
-		color: #ec9f83;
-}
-
-i.material-icons:nth-of-type(2):after {
-		border-color: #ec9f83;
-}
-
-i.material-icons:nth-of-type(3) {
-		background-color: #cdb274;
-}
-
-i.material-icons:nth-of-type(3):hover {
-		color: #cdb274;
-}
-
-i.material-icons:nth-of-type(3):after {
-		border-color: #cdb274;
-}
-
-i.material-icons:hover {
-		background-color: transparent;
-		transform: rotate(90deg);
-		cursor: pointer;
-		box-shadow: none;
-}
-
-p {
-		color: #999;
-		font-weight: 300;
-		margin-top: 20px;
-}
-
-@media (min-width:601px) {
-	i.material-icons {
-		padding:10px;
-		margin:5px;
-		font-size:2rem;
-	}
-}
-
-@media (min-width:993px) {
-	i.material-icons {
-		padding:20px;
-		margin:10px;
-		font-size:4rem;
-	}
-	i.material-icons:after {
-		border-width:3px;
-		top:-3px;
-		left:-3px;
-	}
-}
-
-
-	  
-ion-item{
-   --ion-background-color:#fff!important;
-}
-.card--neumorphic {
-   background: white;
-  padding-top: 10px;
-  max-width: 380px;
-  margin: 0 auto;
-  border-radius: 40px;
-  overflow: hidden;
-  box-shadow: 6px 6px 16px 0 rgba(0, 0, 0, 0.26),
-    -6px -6px 12px 0 rgba(255, 255, 255, 0.55);
-}
-
-.card--neumorphic {
-  padding: 1.5em 1.5em 2em;
-}
-
-.card--neumorphic img {
-  border-radius: 40px;
-  margin-bottom: 1.5em;
-  overflow: hidden;
-}
-
-.card--material {
-  background: #eaeaea;
-  margin: 0 auto;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-}
-
-.card--material div {
-  padding: 1.5em 1.5em 2em;
-}
-
-.layout > div {
-  padding-bottom: 3em;
-}
-
-@media screen and (min-width: 900px) {
-  body {
-    padding: 3em 2em;
-  }
-
-  .layout > div {
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-  }
-  .layout {
-    display: flex;
-    justify-content: center;
-  }
-}
-// This is just to center the spinner
-
-html, body { height: 100%; }
-
-body {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}
-
-// Here is where the magic happens
-
-$offset: 187;
-$duration: 1.4s;
-
-.spinner {
-  animation: rotator $duration linear infinite;
-}
-
-@keyframes rotator {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(270deg); }
-}
-
-.path {
-  stroke-dasharray: $offset;
-  stroke-dashoffset: 0;
-  transform-origin: center;
-  animation:
-    dash $duration ease-in-out infinite, 
-    colors ($duration*4) ease-in-out infinite;
-}
-
-@keyframes colors {
-	0% { stroke: #4285F4; }
-	25% { stroke: #DE3E35; }
-	50% { stroke: #F7C223; }
-	75% { stroke: #1B9A59; }
-  100% { stroke: #4285F4; }
-}
-
-@keyframes dash {
- 0% { stroke-dashoffset: $offset; }
- 50% {
-   stroke-dashoffset: $offset/4;
-   transform:rotate(135deg);
- }
- 100% {
-   stroke-dashoffset: $offset;
-   transform:rotate(450deg);
- }
-}
-
-
-ion-alert .alert-wrapper {
-background: var(--ion-color-dark) !important;
-.alert-button-group {
-  background: var(--ion-color-dark) !important;
-  //color: var(--ion-color-dark)!important;
-
- // button {
-  //  color: white;
- // }
-}
-} 

@@ -15,17 +15,17 @@
     height: 50%;
     
 }
-ion-col{
-  padding: 6px;  
-} 
+
+
 @mixin ion-card{
+   
+    margin: 2px;
     object-fit: cover;
     border-radius: 15px;
-    border-radius: 20px;
     background: var(--ion-color-light);
     position: relative;
-    height: 135px!important;
-    left: 3px;
+    height: 125px!important;
+    top:1px;
 }
 .cardvacia{
    @include ion-card;
@@ -37,48 +37,36 @@ ion-col{
   box-shadow:  5px 5px 10px var(--ion-color-secondary), 
              -5px -5px 10px var(--ion-color-medium)!important;
 }
-@mixin font-regular {
-	font-family: var(--font-normal);
-    font-weight: 400;
-}
-ion-label {
-  @include font-regular;
 
-}
+
 ion-textarea{
-  position: relative;
+  	font-family: var(--font-normal);
+    font-weight: 400;
+    position: relative;
     padding-left: 20px;
     border-radius: 10px;
- background: #f6f5f0;
-box-shadow: inset 5px 5px 10px  var(--ion-color-secondary), 
+    background: var(--ion-color-light);
+    box-shadow: inset 5px 5px 10px  var(--ion-color-secondary), 
             inset -5px -5px 10px  var(--ion-color-medium);
 }
 ion-button {
   position: relative;
   top: 1px;
-  font-size: 20px;
+  
   bottom: 70px;
   width: 80%;
   left:10%;
   height: 56px;
-  z-index: 100;
+  z-index: 99;
   border-radius: 49px;
-  background: #f6f5f0!important;
-  box-shadow:  7px 7px 21px var(--secondary), 
-             -7px -7px 21px var(--sombra-palida);
-  
+
 }
 .centro {
+   z-index: 80!important;
+  border: 1px solid var(--ion-color-dark) ;
     position: relative;
-    top:4%;
-    left:4%;
-  height: 94%;
-  width: 94%;
-  max-height: 114px!important;
-  border-radius: 20px;
-  background: #f6f5f0;
-  box-shadow:  5px 5px 10px #d1d0cc, 
-             -5px -5px 10px #ffffff;
+ box-shadow:  5px 5px 10px var(--ion-color-secondary), 
+             -5px -5px 10px var(--ion-color-medium)!important;
 }
 #add {
   

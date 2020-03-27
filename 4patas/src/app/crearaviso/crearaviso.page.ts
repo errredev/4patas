@@ -7,7 +7,7 @@ import { AvisoService } from '../services/aviso.service';
 import { AuthService } from '../services/auth.service';
 import { ThemeService } from '../services/theme/theme.service';
 import { Router } from '@angular/router';
-import {CroppService} from '../services/cropp/cropp.service';
+import { AppService } from '../services/app/app.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { AlertController} from '@ionic/angular';
 
@@ -38,6 +38,7 @@ export class CrearavisoPage implements OnInit {
     salud: new FormControl('', Validators.required),
     region: new FormControl('', Validators.required),
     comuna: new FormControl('', Validators.required),
+    especie: new FormControl('', Validators.required),
     direccion: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required)
   });
@@ -51,8 +52,8 @@ export class CrearavisoPage implements OnInit {
     } else {
       const alert = await this.alrControl.create({
         header: 'Información',
-        subHeader: 'imposible de realizar',
-        message: 'Alcanzo el numero maximo de fotos',
+        subHeader: 'No se aceptan mas fotos',
+        message: 'Alcanzo el numero maximo posible',
         buttons: ['OK'],
         cssClass: 'alertCustomCss' //
       });
@@ -74,8 +75,6 @@ export class CrearavisoPage implements OnInit {
   async tomarcropp() {
     this.cropvisible = false;
     this.imagenes[this.indice].imagen = this.croppedImage;
-    const imagensubida = await this.avisoS.uploadImage('prueba.png', this.imagenes[this.indice].imagen);
-    console.log(this.imagenes[this.indice].imagen);
     this.imagenes[this.indice].cargada = true;
     this.imagenes[this.indice].activo = false;
     this.indice ++;
@@ -87,6 +86,7 @@ export class CrearavisoPage implements OnInit {
               private authsrv: AuthService,
               public themesrv: ThemeService,
               public router: Router,
+              public appsrv: AppService,
               public alrControl: AlertController) {
     this.regiones = Regiones;
     const user = this.authsrv.datosuser();
@@ -98,11 +98,8 @@ export class CrearavisoPage implements OnInit {
 
   onChange(event) {
     const resultado = this.regiones.find(region => region.region === event.detail.value);
-    console.log(resultado);
     this.comunas = resultado.comunas;
-    // this.comunas = JSON.parse(resultado.comunas);
     this.avisoForm.controls.comuna.setValue('foo');
-    console.log(this.comunas);
   }
   // Image Preview
   showPreview(e) {
@@ -118,16 +115,56 @@ export class CrearavisoPage implements OnInit {
       };
     }
   }
-  onSaveAaviso(aviso: AvisoI): void {
-    this.avisoS.saveAviso(aviso, this.uid);
-
+  async onSaveAaviso(aviso: AvisoI): Promise<void> {
+    if (this.indice > 0) {
+      this.appsrv.activarloading ('Guardando Aviso');
+      const respuesta = await this.avisoS.crearAviso(aviso, this.uid, this.imagenes);
+      if (respuesta.exitoso) {
+        this.limpiar();
+        const alert = await this.alrControl.create({
+          header: 'Exitoso',
+          subHeader: 'Operacion Realizada',
+          message: 'Su aviso fue grabada!',
+          buttons: ['OK'],
+          cssClass: 'alertCustomCss' //
+        });
+        await alert.present();
+      } else {
+        const alert = await this.alrControl.create({
+          header: 'Informaciòn',
+          subHeader: 'Error en la operación',
+          message: respuesta.texto,
+          buttons: ['OK'],
+          cssClass: 'alertCustomCss' //
+        });
+        await alert.present();
+      }
+      this.appsrv.desactivarloading();
+    } else {
+      const alert = await this.alrControl.create({
+        header: 'Información',
+        subHeader: 'No se puede grabar',
+        message: 'Falta a lo menos 1 imagen',
+        buttons: ['OK'],
+        cssClass: 'alertCustomCss' //
+      });
+      await alert.present();
+    }
   }
   prueba() {
     const user = this.authsrv.datosuser();
     console.log(user.uid);
   }
-  croppimagen() {
+  limpiar() {
+    this.avisoForm.reset();
+    this.imagenes.forEach(function(value) {
+      value.imagen = '';
+      value.activo = false;
+      value.cargada = false;
+    });
 
+  }
+  croppimagen() {
      this.router.navigate(['cropp']);
   }
 }
