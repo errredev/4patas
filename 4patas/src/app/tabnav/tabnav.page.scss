@@ -16,9 +16,8 @@ ion-button {
 #botonera {
     opacity: 1;
     padding: 5px;
-background: #f6f5f0;
-box-shadow:  8px 8px 16px #b9b8b4, 
-             -8px -8px 16px #ffffff;
+    background: var(--ion-color-light);
+    border: 1px solid var(--ion-color-light-contrast);
     border-radius: 40px;
     border-bottom-right-radius: 0px ;
     border-bottom-left-radius: 0px ;
@@ -35,36 +34,57 @@ box-shadow:  8px 8px 16px #b9b8b4,
     left: 15%;
     position: absolute;
     z-index: 1003;  
-    bottom: 10px;
-    
-    
-    
+    bottom: 2px;  
 }
 #fab2 {
     left: 44%;
     position: absolute;
     z-index: 1003;  
-    bottom: 10px;
+    bottom: 2px;
+    fill: var(--ion-color-light)!important;
+
 }
 #fab3 {
     right: 15%;
     position: absolute;
     z-index: 1003;  
-    bottom: 10px;
+    bottom: 2px;
 }
 .seleccion {
-    color: var(--ion-color-primary)!important;
+    fill: var(--ion-color-primary)!important;
 }
-ion-icon{
-  color: var(--ion-color-secondary)!important;
+
+.icono {
+   position: absolute;
+width: 51px;
+height: 45px;
+left: 14px;
+top: 10px;
+z-index:10;
 }
-ion-icon {
-  height: 34px;
-  width:  34px;
-  font-size: 5px!important;
-  border-radius: 16px;
-  box-shadow: 5px 5px 10px 0 #bdb9a6, -5px -5px 10px 0 #fffefa;
-  border: solid 1px rgba(226, 220, 209, 0.5);
-  background-blend-mode: soft-light, normal;
-  background-image: linear-gradient(318deg, #ffffff 100%, #000000 -5%), linear-gradient(to bottom, #f6f5f0, #f6f5f0);
+.iconoMensaje {
+   position: absolute;
+width: 51px;
+height: 45px;
+left: 14px;
+top: 12px;
+z-index:10;
+}
+.iconoHome {
+   position: absolute;
+width: 51px;
+height: 45px;
+left: 12px;
+top: 7px;
+z-index:10;
+}
+.dot {
+  left: 0px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  height: 45px;
+  width: 51px;
+  background: var(--ion-color-light);
+  border-radius: 50%;
+  display: inline-block;
 }

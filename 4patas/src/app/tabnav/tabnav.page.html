@@ -20,34 +20,86 @@
 
     <div id="nabBar">
       <div id="botonera"></div>
-      <ion-fab-button
+      <div
         [class.seleccion]="tabOpcion[0].selec"
-        size="small"
         [@seleccionado]="tabOpcion[0].estado"
         (click)="push(0)"
         id="fab1"
         color="light"
       >
-        <ion-icon  color ="dark" [style.color]="tabOpcion[0].colorIcon" name="home-outline"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button
-        size="small"
+      
+      <svg-icon
+          src="./assets/svg/icono-home.svg"
+          [style.fill]="tabOpcion[0].colorIcon"
+          class="iconoHome"
+          [stretch]="true"
+        ></svg-icon>
+       <svg-icon
+          src="./assets/svg/boton-redondo.svg"
+          [style.fill]="tabOpcion[0].colorBoton"
+          [stretch]="true"
+        ></svg-icon>
+        <span 
+        *ngIf = (tabOpcion[0].selec)
+        [style.background]="tabOpcion[0].colorBoton"
+        class="dot"></span>
+    </div>
+      <div
         [@seleccionado]="tabOpcion[1].estado"
         (click)="push(1)"
         id="fab2"
-        color="light"
+
       >
-        <ion-icon  color ="dark" [style.color]="tabOpcion[1].colorIcon" name="notifications-outline"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button
+        <!-- <svg-icon
+               *ngIf="!(imagenes[2].cargada)"
+              [className]="imagenes[2].activo ? 'svg-icon addactivo' : 'svg-icon addinactivo'"
+              class="svg-icon"
+              src="./assets/svg/fotoadd.svg"
+              [svgStyle]="{ 'width.px':30  }"
+              [stretch]="true"
+            ></svg-icon -->
+        <svg-icon
+          src="./assets/svg/icono-aviso.svg"
+          [style.fill]="tabOpcion[1].colorIcon"
+          class="icono"
+          [stretch]="true"
+        ></svg-icon>
+        <svg-icon
+          src="./assets/svg/boton-redondo.svg"
+          [style.fill]="tabOpcion[1].colorBoton"
+          [stretch]="true"
+        ></svg-icon>
+         <span 
+        *ngIf = (tabOpcion[1].selec)
+        [style.background]="tabOpcion[1].colorBoton"
+        class="dot"></span>
+        </div>
+      
+      <div
         size="small"
         [@seleccionado]="tabOpcion[2].estado"
         (click)="push(2)"
         id="fab3"
         color="light"
       >
-        <ion-icon color ="dark" [style.color]="tabOpcion[2].colorIcon"  name="mail-outline"></ion-icon>
-      </ion-fab-button>
+      <svg-icon
+          src="./assets/svg/icono-mensaje.svg"
+          [style.fill]="tabOpcion[2].colorIcon"
+          class="iconoMensaje"
+          [stretch]="true"
+        ></svg-icon>
+       <svg-icon
+          src="./assets/svg/boton-redondo.svg"
+          [style.fill]="tabOpcion[2].colorBoton"
+          [svgStyle]="{ 'width.px':51  }"
+          [stretch]="true"
+        ></svg-icon>
+         
+         <span 
+        *ngIf = (tabOpcion[2].selec)
+        [style.background]="tabOpcion[2].colorBoton"
+        class="dot"></span>
+      </div>
     </div>
   </ion-tabs>
 </ion-content>

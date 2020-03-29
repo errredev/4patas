@@ -124,7 +124,7 @@ export class CrearavisoPage implements OnInit {
         const alert = await this.alrControl.create({
           header: 'Exitoso',
           subHeader: 'Operacion Realizada',
-          message: 'Su aviso fue grabada!',
+          message: 'Su aviso fue grabado!',
           buttons: ['OK'],
           cssClass: 'alertCustomCss' //
         });
@@ -157,12 +157,11 @@ export class CrearavisoPage implements OnInit {
   }
   limpiar() {
     this.avisoForm.reset();
-    this.imagenes.forEach(function(value) {
+    this.imagenes.forEach((value) => {
       value.imagen = '';
       value.activo = false;
       value.cargada = false;
     });
-
   }
   croppimagen() {
      this.router.navigate(['cropp']);
