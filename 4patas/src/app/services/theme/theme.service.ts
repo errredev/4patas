@@ -11,6 +11,7 @@ export class ThemeService {
   public light = '#f6f5f0';
   public dark = '#242936';
   public medium = '#ffffff';
+  public contrast= '#565B56';
   constructor() {
 
   }

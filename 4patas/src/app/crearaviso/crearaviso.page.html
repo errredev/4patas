@@ -7,7 +7,7 @@
     >
       <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
     </ion-buttons>
-    <ion-title>Tu aviso</ion-title>
+    <ion-title>Crear aviso</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -35,8 +35,7 @@
               *ngIf="!(imagenes[0].cargada)"
               [className]="imagenes[0].activo ? 'svg-icon addactivo' : 'svg-icon addinactivo'"
               class="svg-icon"
-              src="./assets/svg/fotoadd.svg"
-              [svgStyle]="{ 'width.px':30  }"
+              src="./assets/svg/addimage.svg"
               [stretch]="true"
             ></svg-icon>
           </ion-card>
@@ -59,9 +58,7 @@
                *ngIf="!(imagenes[1].cargada)"
               [className]="imagenes[1].activo ? 'svg-icon addactivo animated fadeIn' : 'svg-icon addinactivo'"
               class="svg-icon"
-              src="./assets/svg/fotoadd.svg"
-              [svgStyle]="{ 'width.px':30  }"
-              [stretch]="true"
+               src="./assets/svg/addimage.svg"
             ></svg-icon>
           </ion-card>
         </ion-col>
@@ -80,9 +77,7 @@
                *ngIf="!(imagenes[2].cargada)"
               [className]="imagenes[2].activo ? 'svg-icon addactivo' : 'svg-icon addinactivo'"
               class="svg-icon"
-              src="./assets/svg/fotoadd.svg"
-              [svgStyle]="{ 'width.px':30  }"
-              [stretch]="true"
+               src="./assets/svg/addimage.svg"
             ></svg-icon
           ></ion-card>
         </ion-col>
@@ -99,9 +94,7 @@
                *ngIf="!(imagenes[3].cargada)"
               [className]="imagenes[3].activo ? 'svg-icon addactivo' : 'svg-icon addinactivo'"
               class="svg-icon"
-              src="./assets/svg/fotoadd.svg"
-              [svgStyle]="{ 'width.px':30  }"
-              [stretch]="true"
+               src="./assets/svg/addimage.svg"
             ></svg-icon
           ></ion-card>
         </ion-col>
@@ -114,7 +107,7 @@
       <ion-input placeholder="Nombre" formControlName="nombre"></ion-input>
     </ion-item>
       <ion-item color="light" lines="none">
-      <ion-label color="dark">Especie</ion-label>
+      <ion-label color="dark">Perro o Gato</ion-label>
       <ion-select formControlName="especie" color="dark" interface="action-sheet">
         <ion-select-option value="Perro">Perro</ion-select-option>
         <ion-select-option value="Gato">Gato</ion-select-option>
@@ -142,13 +135,6 @@
         <ion-select-option value="Juvenil">Juvenil</ion-select-option>
         <ion-select-option value="Adulto">Adulto</ion-select-option>
         <ion-select-option value="Senior">Senior</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item color="light" lines="none">
-      <ion-label color="dark">Salud</ion-label>
-      <ion-select formControlName="salud" interface="action-sheet">
-        <ion-select-option value="Saludable">Saludable</ion-select-option>
-        <ion-select-option value="Cuidados">Cuidados</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item color="light" lines="none">
@@ -194,7 +180,7 @@
       [disabled]="!avisoForm.valid"
       type="submit"
       value="Save"
-      >Grabar <ion-ripple-effect></ion-ripple-effect>
+      >Publicar <ion-ripple-effect></ion-ripple-effect>
     </ion-button>
   </form>
  <input

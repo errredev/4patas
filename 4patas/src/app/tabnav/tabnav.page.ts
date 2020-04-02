@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route } from '@angular/compiler/src/core';
 import { AppService } from '../../app/services/app/app.service';
 import { Seleccion } from '../animations/selection.animations';
-import {ThemeService} from '../services/theme/theme.service'
+import {ThemeService} from '../services/theme/theme.service';
 @Component({
   selector: 'app-tabnav',
   templateUrl: './tabnav.page.html',
@@ -16,9 +16,9 @@ export class TabnavPage implements OnInit {
     { nombre: 'mensajes', estado: 'inicial', indice: 2, colorIcon: '', colorBoton: ''}];
 
   constructor(public svcloading: AppService, public themeSrv: ThemeService) {
-    this.tabOpcion[0].colorIcon = this.themeSrv.dark;
-    this.tabOpcion[1].colorIcon = this.themeSrv.dark;
-    this.tabOpcion[2].colorIcon = this.themeSrv.dark;
+    this.tabOpcion[0].colorIcon = this.themeSrv.contrast;
+    this.tabOpcion[1].colorIcon = this.themeSrv.contrast;
+    this.tabOpcion[2].colorIcon = this.themeSrv.contrast;
     this.tabOpcion[0].colorBoton = this.themeSrv.light;
     this.tabOpcion[1].colorBoton = this.themeSrv.light;
     this.tabOpcion[2].colorBoton = this.themeSrv.light;
@@ -33,7 +33,7 @@ export class TabnavPage implements OnInit {
     this.tabOpcion[opcion].colorBoton = this.themeSrv.dark;
     this.tabOpcion[opcion].selec = true;
     if (this.ultimo < 4) {
-      this.tabOpcion[this.ultimo].colorIcon = this.themeSrv.dark;
+      this.tabOpcion[this.ultimo].colorIcon = this.themeSrv.contrast;
       this.tabOpcion[this.ultimo].colorBoton = this.themeSrv.light;
       this.tabOpcion[this.ultimo].estado = 'inicial';
       this.tabOpcion[this.ultimo].selec = false;

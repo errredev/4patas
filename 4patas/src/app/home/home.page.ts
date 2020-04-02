@@ -2,12 +2,14 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { MenuController, ActionSheetController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { escalonado } from '../animations/escalonado.animation';
-
+import {Panelperrogato} from '../animations/panelperrogato.animations';
+import {AvisoService} from '../services/aviso.service';
+import { AvisoComponent } from '../avisos/aviso/aviso.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  animations: [ escalonado]
+  animations: [escalonado, Panelperrogato],
 })
 export class HomePage implements OnInit {
   public size = 'Tamaño';
@@ -18,10 +20,9 @@ export class HomePage implements OnInit {
   public swtSexo = false;
   public swtEdad = false;
   public swtSalud = false;
-  // opcionesBusqueda = [{opcion: 'Tamaño', eleccion: '', opciones: ['Pequeño', 'Mediano', 'Grande']},
-  //                     { opcion: 'Sexo', eleccion: '', opciones: ['Hembra', 'Macho']},
-  //                     { opcion: 'Edad', opciones: ['Cachorro', 'Joven', 'Adulto', 'Senior'] },
-  //                     { opcion: 'Salud', opciones: ['Saludable', 'Cuidados iniciales', 'Cuidados Siempre'] }];
+  public swtPerroGato = 'inicial';
+  public swtFlechaPerroGato = 'inicial';
+  
   avisos = [
     {
       idfb: '1241412342', idususario: '1212412', nombreUsuario: 'Rafa', nombre: 'Charly', distancia: ' 370 Mts',
@@ -62,13 +63,15 @@ export class HomePage implements OnInit {
   constructor(private menu: MenuController,
               public authSrv: AuthService,
               private actSheet: ActionSheetController,
-              private ngZone: NgZone) { }
+              private ngZone: NgZone,
+              private avisoSrv: AvisoService
+              ) { }
 
   ngOnInit() {
     this.authSrv.userData$.subscribe(user => {
       // console.log(user.email);
       this.user = user;
-
+      this.avisoSrv.traerAvisos();
     });
   }
   abrirMenu() {
@@ -170,7 +173,7 @@ export class HomePage implements OnInit {
         handler: () => {
           this.ngZone.run(() => {
             this.swtEdad = true;
-            this.edad = 'adulto';
+            this.edad = 'Adulto';
           });
         }
       },
@@ -196,39 +199,10 @@ export class HomePage implements OnInit {
     });
     await actionSheet.present();
   }
-  async opcionesSalud() {
-    const actionSheet = await this.actSheet.create({
-      header: 'Salud',
-      buttons: [{
-        text: 'Saludable',
 
+  public pushPerroGato() {
+    this.swtFlechaPerroGato = (this.swtFlechaPerroGato === 'inicial' ? 'activo' : 'inicial');
+    this.swtPerroGato = (this.swtPerroGato === 'inicial' ? 'activo' : 'inicial');
 
-        handler: () => {
-          this.ngZone.run(() => {
-            this.salud = 'Saludable';
-            this.swtSalud = true;
-          });
-        }
-      }, {
-        text: 'Cuidados',
-        handler: () => {
-          this.ngZone.run(() => {
-            this.salud = 'Cuidados';
-            this.swtSalud = true;
-          });
-        }
-      },
-      {
-        text: 'Todos',
-        handler: () => {
-          this.ngZone.run(() => {
-            this.salud = 'Salud';
-            this.swtSalud = false;
-          });
-        }
-      }
-      ]
-    });
-    await actionSheet.present();
+    }
   }
-}

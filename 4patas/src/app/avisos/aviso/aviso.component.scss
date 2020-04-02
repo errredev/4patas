@@ -1,14 +1,19 @@
 
 ion-card {
+
   position: relative;
+  background: var(--ion-color-medium)!important;
+  max-width: 364px;
+height: 346px;
   min-width: 330px;
   background: var(--ion-color-light);
   border-radius: 20px;
- box-shadow:  0px 0px 0px 0px;
+ box-shadow: 0px 4px 4px var(--ion-color-light-contrast);
   ion-card-header {
+    padding: 0px!important;
     ion-item {
-      background: var(--ion-color-light);
-     
+      background:var(--ion-color-light);
+      padding: 0px!important;
       position: absolute;
       width: 100%;
       left: 10%;
@@ -16,27 +21,26 @@ ion-card {
       border-radius: 30px;
     }
     ion-label {
-      font-family: "Poppin";
       font-size: 1.3rem;
-
       position: absolute;
       color: var(--ion-color-light);
       top: 10px;
       z-index: 8;
     }
     .dias {
+      z-index: 8;
       color: var(--ion-color-medium) !important;
-      right: 20px;
+      right: 12px;
       top : 30px;
-      font-family: "acme";
-      font-size: 20px;
+      font-weight: 900;
+      font-size: 15px;
     }
     .diasNumero {
+      font-weight: 900;
       color: var(--ion-color-medium) !important;
-      right: 20px;
+      right: 12px;
       top : 10px;
-      font-family: "acme";
-      font-size: 20px;
+      font-size: 15px;
     }
     object-fit: cover;
     min-height: 200px;
@@ -53,7 +57,7 @@ ion-card-content {
     padding: 0px;
     ion-col {
       padding: 0px;
-      min-width: 90px !important;
+     
     }
   }
 
@@ -63,16 +67,14 @@ ion-card-content {
   }
 }
 .ayudabusca {
-  font-size: 0.5 rem !important;
+  font-size: 18px !important;
 }
 ion-text {
-  background: var(--ion-color-light);
-  font-family: Nunito;
+  background: var(--ion-color-medium);
   font-weight: 900;
   font-size: 25px !important;
   padding-left: 20px;
-
-  font-size: 2rem;
+  color: var(--ion-color-dark);
 }
 .foto {
   height: 260px;
@@ -80,10 +82,7 @@ ion-text {
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
 }
-#numeros {
-  font-family: "Nunito" !important;
-  font-size: 15px !important;
-}
+
 #iconofotos {
   position: absolute;
   font-size: 30px;
@@ -93,14 +92,24 @@ ion-text {
   color :white
 }
 #distancia {
+  font-weight: 200;
+  font-size: 15px;
+  color: var(--ion-color-light-contrast);
   position: absolute;
-  color:var(--ion-color-secondary);
-  top:5px;
-  left: 170px;
+  top:20px;
+  right: 45px;
 }
 #fecha {
+  font-weight: 200;
+  font-size: 15px;
+  color: var(--ion-color-light-contrast);
   position: absolute;
-  color:var(--ion-color-secondary);
-  top:25px;
-  left: 170px;
+  top:5px;
+  right: 45px;
+}
+svg-icon {
+  position: absolute;
+  z-index: 1000;
+  top: 10px;
+  left: 10px;
 }

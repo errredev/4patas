@@ -5,6 +5,8 @@ import { AvisoI } from '../shared/models/aviso.interace';
 import { Mensaje} from '../shared/models/mensaje';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {Imagen} from '../shared/models/imagen';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +18,15 @@ export class AvisoService {
     this.avisoCollection = afs.collection<AvisoI>('avisos');
   }
 
+  public async traerAvisos () {
+    let ref = this.avisoCollection.ref.where("estatus", "==", "Activo");
+    let resultado = await ref.get()
+    resultado.forEach(function (doc) {
+      console.log(doc.id, " => ", doc.data());
+    });
+    }
   public async crearAviso(aviso: AvisoI, Userid: string, imagenes: Imagen[]): Promise <Mensaje>  {
     aviso.fotos = [];
-    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < imagenes.length; i++) {
       if (imagenes[i].cargada) {
         const nombreArchivo =  aviso.nombre + i + '.png';

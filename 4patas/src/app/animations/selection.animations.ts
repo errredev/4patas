@@ -5,7 +5,7 @@ export const Seleccion = [
     trigger('seleccionado', [
         state('ok',
             style({
-                transform: 'translatey(-20px) scale(1.3)',
+                transform: 'translatey(-20px) scale(1)',
             })
         ),
         // 3 - Comment this and Uncomment GROUPED ANIMATIONS to see them in action.
@@ -14,7 +14,7 @@ export const Seleccion = [
         ]),
         state('inicial',
             style({
-                transform: 'scale(1)',
+                transform: 'scale(0.9)',
             })
         ),
         // 3 - Comment this and Uncomment GROUPED ANIMATIONS to see them in action.

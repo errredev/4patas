@@ -2,29 +2,25 @@
   <div id="titulo" color="dark">Avisos</div>
 
   <div id="contenedortags">
+   
+    
+      <label
+        [className]="swtSize ? 'activo' : 'inactivo'"
+        (click)="opcionesTamano()"
+        id="tags"
+        >{{size}}</label
+      >
     <label
-      [className]="swtSize ? 'activo bounce' : 'inactivo'"
-      (click)="opcionesTamano()"
-      id="tags"
-      >{{size}}</label
-    >
-    <label
-      [className]="swtSexo ? 'activo bounce' : 'inactivo'"
+      [className]="swtSexo ? 'activo' : 'inactivo'"
       (click)="opcionesSexo()"
       id="tags"
       >{{sexo}}</label
     >
     <label
-      [className]="swtEdad ? 'activo bounce' : 'inactivo'"
+      [className]="swtEdad ? 'activo' : 'inactivo'"
       (click)="opcionesEdad()"
       id="tags"
       >{{edad}}</label
-    >
-    <label
-      [className]="swtSalud ? 'activo' : 'inactivo'"
-      (click)="opcionesSalud()"
-      id="tags"
-      >{{salud}}</label
     >
   </div>
   <img
@@ -38,11 +34,18 @@
     <ion-menu-button></ion-menu-button>
   </ion-buttons> -->
 </div>
-<div class="fab" [routerLink]="['/crearaviso']"  > <ion-icon name="add"></ion-icon></div>
+  <span [routerLink]="['/crearaviso']"
+      class="dot">
+    <svg-icon src="./assets/svg/add.svg" class="addsvg"></svg-icon>
+    </span>
+
 
 <ion-content color="light">
-  <!--https://dribbble.com/shots/2210153-Day-057-Twitter-Profile<div class="circulo">-->
-
+  <div  [@estadoPerroGato]="swtPerroGato" class="perrogato" >
+    <svg-icon src="./assets/svg/perro.svg" class="perro"></svg-icon>
+    <svg-icon src="./assets/svg/gato.svg" class="gato"></svg-icon>
+    <ion-icon [@iconoPerroGato]='swtFlechaPerroGato' (click)="pushPerroGato()" class="iconoFlecha" name="chevron-forward-outline"></ion-icon>
+  </div>
   <ion-grid [@cardAnimation]="avisos.length">
     <ion-row justify-content-center>
       <ion-col
