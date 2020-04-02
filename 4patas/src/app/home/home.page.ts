@@ -5,6 +5,7 @@ import { escalonado } from '../animations/escalonado.animation';
 import {Panelperrogato} from '../animations/panelperrogato.animations';
 import {AvisoService} from '../services/aviso.service';
 import { AvisoComponent } from '../avisos/aviso/aviso.component';
+import { AvisoI } from '../shared/models/aviso.interace';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -15,50 +16,11 @@ export class HomePage implements OnInit {
   public size = 'Tamaño';
   public sexo = 'Sexo';
   public edad = 'Edad';
-  public salud = 'Salud';
-  public swtSize = false;
-  public swtSexo = false;
-  public swtEdad = false;
-  public swtSalud = false;
   public swtPerroGato = 'inicial';
   public swtFlechaPerroGato = 'inicial';
   
-  avisos = [
-    {
-      idfb: '1241412342', idususario: '1212412', nombreUsuario: 'Rafa', nombre: 'Charly', distancia: ' 370 Mts',
-      multiplesFotos: true, portada: './assets/demo/perro1.jpg',
-      vistas: 134, seguimiento: 3, difundido: 4, creacion: '1 de enero', dias: 3, tags: [
-        'mestizos', 'adulto', 'Saludable', 'Mediano']
-    },
-    {
-      idfb: '1241412342', idususario: '1212412', nombreUsuario: 'Laura', nombre: 'Yayita', distancia: '1 Km',
-      multiplesFotos: true, portada: './assets/demo/perro2.jpg',
-      vistas: 14, seguimiento: 1, difundido: 4, creacion: '16 de enero', dias: 10, tags: [
-        'mestizos', 'cachorro', 'Saludable', 'Mediano'
-      ]
-    },
-    {
-      idfb: '1241412342', idususario: '1212412', nombreUsuario: 'Laura', nombre: 'Cholo', distancia: '1 Km',
-      multiplesFotos: true, portada: './assets/demo/perro3.jpg',
-      vistas: 14, seguimiento: 1, difundido: 4, creacion: '16 de enero', dias: 9, tags: [
-        'mestizos', 'senior', 'Saludable', 'Mediano'
-      ]
-    },
-    {
-      idfb: '1241412342', idususario: '1212412', nombreUsuario: 'Laura', nombre: 'Yayita', distancia: '1 Km',
-      multiplesFotos: true, portada: './assets/demo/perro4.jpg',
-      vistas: 14, seguimiento: 1, difundido: 4, creacion: '16 de enero', dias: 31, tags: [
-        'mestizos', 'cachorro', 'Saludable', 'Mediano'
-      ]
-    },
-    {
-      idfb: '1241412342', idususario: '1212412', nombreUsuario: 'Laura', nombre: 'Cholo', distancia: '1 Km',
-      multiplesFotos: true, portada: './assets/demo/perro1.jpg',
-      vistas: 14, seguimiento: 1, difundido: 4, creacion: '16 de enero', dias: 1, tags: [
-        'mestizos', 'senior', 'Saludable', 'Mediano'
-      ]
-    }
-  ];
+  public avisos: AvisoI;
+  
   public user: firebase.User;
   constructor(private menu: MenuController,
               public authSrv: AuthService,
@@ -68,12 +30,21 @@ export class HomePage implements OnInit {
               ) { }
 
   ngOnInit() {
-    this.authSrv.userData$.subscribe(user => {
+    this.authSrv.userData$.subscribe(async user => {
       // console.log(user.email);
       this.user = user;
-      this.avisoSrv.traerAvisos();
+      this.llamarAvisos ()
     });
   }
+  async llamarAvisos() {
+    let mensaje = await this.avisoSrv.traerAvisos(this.size,this.sexo,this.edad);
+    if (mensaje.exitoso) {
+      this.avisos = mensaje.objeto;
+    } else {
+
+    }
+  }
+  
   abrirMenu() {
     this.menu.enable(true, 'star');
     this.menu.open('start');
@@ -85,38 +56,24 @@ export class HomePage implements OnInit {
       header: 'Tamaño',
       buttons: [{
         text: 'Pequeño',
-
-
         handler: () => {
-          this.ngZone.run(() => {
-            this.size = 'Pequeño';
-            this.swtSize = true;
-          });
+          this.gatillarAccion('Tamaño', 'Pequeño');
         }
       }, {
         text: 'Mediano',
         handler: () => {
-          this.ngZone.run(() => {
-            this.size = 'Mediano';
-            this.swtSize = true;
-          });
+          this.gatillarAccion('Tamaño', 'Mediano');
         }
       }, {
         text: 'Grande',
         handler: () => {
-            this.ngZone.run(() => {
-            this.size = 'Grande';
-            this.swtSize = true;
-          });
+          this.gatillarAccion('Tamaño', 'Grande');
         }
       },
         {
           text: 'Todos',
           handler: () => {
-            this.ngZone.run(() => {
-              this.size = 'Tamaño';
-              this.swtSize = false;
-            });
+            this.gatillarAccion('Tamaño', 'Tamaño');
           }
         }]
     });
@@ -124,33 +81,23 @@ export class HomePage implements OnInit {
   }
 
   async opcionesSexo() {
-
     const actionSheet = await this.actSheet.create({
       header: 'Sexo',
       buttons: [{
         text: 'Hembra',
         handler: () => {
-          this.ngZone.run(() => {
-            this.sexo = 'Hembra';
-            this.swtSexo = true;
-          });
+          this.gatillarAccion('Sexo', 'Hembra');
         }
       }, {
         text: 'Macho',
         handler: () => {
-          this.ngZone.run(() => {
-            this.sexo = 'Macho';
-            this.swtSexo = true;
-          });
+          this.gatillarAccion('Sexo', 'Macho');
         }
       },
         {
           text: 'Todos',
           handler: () => {
-            this.ngZone.run(() => {
-              this.sexo = 'Sexo';
-              this.swtSexo = false;
-            });
+            this.gatillarAccion('Sexo', 'Sexo');
           }
         }]
     });
@@ -163,46 +110,67 @@ export class HomePage implements OnInit {
       buttons: [{
         text: 'Cachorro',
         handler: () => {
-          this.ngZone.run(() => {
-            this.swtEdad = true;
-            this.edad = 'Cachorro';
-          });
+          this.gatillarAccion('Edad', 'Cachorro');
         }
       }, {
-        text: 'Adulto',
+        text: 'Juvenil',
         handler: () => {
-          this.ngZone.run(() => {
-            this.swtEdad = true;
-            this.edad = 'Adulto';
-          });
+          this.gatillarAccion('Edad', 'Juvenil');
         }
       },
       {
-        text: 'Senior',
+        text: 'Adulto',
         handler: () => {
-          this.ngZone.run(() => {
-            this.swtEdad = true;
-            this.edad = 'Senior';
-          });
+          this.gatillarAccion('Edad', 'Adulto');
         }
       },
         {
+          text: 'Senior',
+          handler: () => {
+            this.gatillarAccion('Edad', 'Senior');
+          }
+        },
+        {
           text: 'Todos',
           handler: () => {
-            this.ngZone.run(() => {
-              this.edad = 'Edad';
-              this.swtEdad = false;
-            });
+            this.gatillarAccion('Edad', 'Edad');
           }
         }
       ]
     });
     await actionSheet.present();
   }
+  private gatillarAccion (tipo:string, valor:string) {
+    if (tipo==='Tamaño') {
+      this.ngZone.run(() => {
+        this.size = valor;
+      });
+    }
+    if (tipo === 'Sexo') {
+      this.ngZone.run(() => {
+        this.sexo = valor;
+      });
+    }
+    if (tipo === 'Edad') {
+      this.ngZone.run(() => {
+        this.edad = valor;
+      });
+    }
+    this.llamarAvisos();
+  }
+  async doRefresh(event) {
+    let mensaje = await this.avisoSrv.traerAvisos(this.size, this.sexo, this.edad);
+    if (mensaje.exitoso) {
 
+      this.avisos = mensaje.objeto;
+      event.target.complete();
+    } else {
+
+    }
+    
+  }
   public pushPerroGato() {
     this.swtFlechaPerroGato = (this.swtFlechaPerroGato === 'inicial' ? 'activo' : 'inicial');
     this.swtPerroGato = (this.swtPerroGato === 'inicial' ? 'activo' : 'inicial');
-
     }
   }

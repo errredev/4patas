@@ -5,19 +5,19 @@
    
     
       <label
-        [className]="swtSize ? 'activo' : 'inactivo'"
+        [className]="size !=='Tamaño'? 'activo' : 'inactivo'"
         (click)="opcionesTamano()"
         id="tags"
         >{{size}}</label
       >
     <label
-      [className]="swtSexo ? 'activo' : 'inactivo'"
+      [className]="sexo !== 'Sexo' ? 'activo' : 'inactivo'"
       (click)="opcionesSexo()"
       id="tags"
       >{{sexo}}</label
     >
     <label
-      [className]="swtEdad ? 'activo' : 'inactivo'"
+      [className]="edad !== 'Edad' ? 'activo' : 'inactivo'"
       (click)="opcionesEdad()"
       id="tags"
       >{{edad}}</label
@@ -41,12 +41,18 @@
 
 
 <ion-content color="light">
+   <ion-refresher  color = "primary" slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      refreshingSpinner="lines">
+    </ion-refresher-content>
+  </ion-refresher>
+<div *ngIf="(avisos) ; else esperando">
   <div  [@estadoPerroGato]="swtPerroGato" class="perrogato" >
     <svg-icon src="./assets/svg/perro.svg" class="perro"></svg-icon>
     <svg-icon src="./assets/svg/gato.svg" class="gato"></svg-icon>
     <ion-icon [@iconoPerroGato]='swtFlechaPerroGato' (click)="pushPerroGato()" class="iconoFlecha" name="chevron-forward-outline"></ion-icon>
   </div>
-  <ion-grid [@cardAnimation]="avisos.length">
+  <ion-grid *ngIf="(avisos)" [@cardAnimation]="avisos.length">
     <ion-row justify-content-center>
       <ion-col
         sizeXl="4"
@@ -64,4 +70,9 @@
   <br />
   <br />
   <br />
+  </div>
+  <ng-template #esperando>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <ion-spinner color="primary"name="lines"></ion-spinner>
+  </ng-template>
 </ion-content>

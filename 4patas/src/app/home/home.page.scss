@@ -50,6 +50,13 @@ ion-grid {
     }
   }
 }
+ion-spinner  {
+    width: 300%;
+    position: absolute;
+    transform: translatex(-50%);
+    left: 50%;
+    top: 20px;
+}
 #contenedortags {
   margin-left: 30px;
   position: absolute;

@@ -1,44 +1,47 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { AvisoI } from '../shared/models/aviso.interace';
 import { Mensaje} from '../shared/models/mensaje';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {Imagen} from '../shared/models/imagen';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AvisoService {
   private avisoCollection: AngularFirestoreCollection<AvisoI>;
-
   constructor(private afs: AngularFirestore, private storage: AngularFireStorage) {
     this.avisoCollection = afs.collection<AvisoI>('avisos');
   }
 
-  public async traerAvisos () {
+  public async traerAvisos(size?: string, sexo?:string, edad?:string): Promise<Mensaje>{
     let ref = this.avisoCollection.ref.where("estatus", "==", "Activo");
-    let resultado = await ref.get()
-    resultado.forEach(function (doc) {
-      console.log(doc.id, " => ", doc.data());
-    });
+    let avisos = [];
+    ref = (size !== 'Tamaño' ? ref.where("size", "==", size) : ref);
+    ref = (sexo !== 'Sexo' ? ref.where("sexo", "==", sexo) : ref);
+    ref = (edad !== 'Edad' ? ref.where("edad", "==", edad) : ref);
+    try {
+      const resultado = await ref.get()
+      resultado.forEach(function (doc) {
+        avisos.push({ id: doc.id, detalle: doc.data()})
+      });
+      return { exitoso: true, objeto:avisos };
+    } catch (error) {
+        return { exitoso: false, texto: 'Error en Consulta de Base de datos', objeto: error };
     }
+  }
   public async crearAviso(aviso: AvisoI, Userid: string, imagenes: Imagen[]): Promise <Mensaje>  {
     aviso.fotos = [];
     for (let i = 0; i < imagenes.length; i++) {
       if (imagenes[i].cargada) {
         const nombreArchivo =  aviso.nombre + i + '.png';
         const nombreDirectorio = Userid + '/';
-        console.log(nombreArchivo);
         const imagensubida = await this.uploadImage(nombreArchivo, nombreDirectorio, imagenes[i].imagen);
-        console.log(imagensubida);
         if (imagensubida.exitoso) {
-          console.log(imagensubida.texto);
           aviso.fotos.push(imagensubida.texto);
         } else {
-          console.log(imagensubida);
           return imagensubida;
         }
       }
@@ -73,7 +76,6 @@ export class AvisoService {
   }
 
   public async uploadImage(nombreArchivo: string, nombreDirectorio: string, base64: any): Promise <Mensaje> {
-    console.log ('estou dentro');
     try {
       const task = await this.storage.ref(nombreDirectorio).child(nombreArchivo).putString(base64, 'data_url');
       const reff =  this.storage.ref(task.metadata.fullPath);

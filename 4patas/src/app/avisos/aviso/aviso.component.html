@@ -1,14 +1,14 @@
         <ion-card>
           <ion-card-header>
 
-            <ion-label class="diasNumero">{{aviso.dias}}</ion-label>
+            <ion-label class="diasNumero">"'aviso.fotos.length'"</ion-label>
             <ion-label class="dias">Fotos</ion-label>
             <ion-item  lines="none">
-               <ion-text >{{aviso.nombre}}</ion-text>
-               <label id="fecha">{{aviso.creacion}}</label>
-              <label id="distancia">{{aviso.distancia}}</label>
+               <ion-text >{{aviso.detalle.nombre}}</ion-text>
+               <label id="fecha">{{aviso.detalle.fecha| date:'mediumDate'}}</label>
+              <label id="distancia">{{aviso.detalle.comuna}}</label>
             </ion-item>
-            <img class="foto" [src]="aviso.portada" />
+            <img class="foto" [src]="aviso.detalle.fotos[0]" />
             <svg-icon
           src="./assets/svg/corazon.svg"
           class="icono"
@@ -18,9 +18,9 @@
           <ion-card-content>
             <ion-row>
               <br>
-              <ion-col class="ayudabusca" size="3">Macho </ion-col>
-              <ion-col class="ayudabusca" size="3">Adulto</ion-col>
-              <ion-col class="ayudabusca" size="3">Grande</ion-col>
+              <ion-col class="ayudabusca" size="3">{{aviso.detalle.sexo}}</ion-col>
+              <ion-col class="ayudabusca" size="3">{{aviso.detalle.edad}}</ion-col>
+              <ion-col class="ayudabusca" size="3">{{aviso.detalle.size}}</ion-col>
             </ion-row>
           </ion-card-content>
         </ion-card>
