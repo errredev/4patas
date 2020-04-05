@@ -2,10 +2,12 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { MenuController, ActionSheetController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { escalonado } from '../animations/escalonado.animation';
-import {Panelperrogato} from '../animations/panelperrogato.animations';
-import {AvisoService} from '../services/aviso.service';
-import { AvisoComponent } from '../avisos/aviso/aviso.component';
+import { Panelperrogato } from '../animations/panelperrogato.animations';
+import { AvisoService } from '../services/aviso.service';
+import { AppService } from '../services/app/app.service'
 import { AvisoI } from '../shared/models/aviso.interace';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -18,33 +20,54 @@ export class HomePage implements OnInit {
   public edad = 'Edad';
   public swtPerroGato = 'inicial';
   public swtFlechaPerroGato = 'inicial';
-  
-  public avisos: AvisoI;
-  
+  public swtCargando = true;
+  public swtLleno = false;
+  public perrogato = { perro: { activo: true, color: '' }, gato: { activo: true, color: this.srvApp.primary } }
+  public avisos: Array<AvisoI>;
+
   public user: firebase.User;
   constructor(private menu: MenuController,
-              public authSrv: AuthService,
-              private actSheet: ActionSheetController,
-              private ngZone: NgZone,
-              private avisoSrv: AvisoService
-              ) { }
+    public authSrv: AuthService,
+    private actSheet: ActionSheetController,
+    private ngZone: NgZone,
+    private avisoSrv: AvisoService,
+    public srvApp: AppService,
+    public alerta: AlertController,
+  ) {
+    this.srvApp.swtRefreshHome$.subscribe((valor: any) => {
+      console.log(valor);
+      if (valor) {
+        this.llamarAvisos()
+        this.srvApp.refrescarOff();
+      }
+
+    });
+  }
 
   ngOnInit() {
+    this.perrogato.gato.color = this.srvApp.tertiary;
+    this.perrogato.perro.color = this.srvApp.tertiary;
+    console.log(this.perrogato)
     this.authSrv.userData$.subscribe(async user => {
       // console.log(user.email);
       this.user = user;
-      this.llamarAvisos ()
+      this.llamarAvisos()
     });
+
   }
   async llamarAvisos() {
-    let mensaje = await this.avisoSrv.traerAvisos(this.size,this.sexo,this.edad);
+    this.swtCargando = true;
+    let mensaje = await this.avisoSrv.traerAvisos(this.size, this.sexo, this.edad, this.perrogato.perro.activo, this.perrogato.gato.activo);
     if (mensaje.exitoso) {
       this.avisos = mensaje.objeto;
     } else {
 
     }
+    this.swtLleno = ((this.avisos.length !== 0) ? true : false);
+    this.swtCargando = false;
+    console.log(this.avisos.length, this.swtLleno, this.swtCargando)
   }
-  
+
   abrirMenu() {
     this.menu.enable(true, 'star');
     this.menu.open('start');
@@ -55,14 +78,14 @@ export class HomePage implements OnInit {
     const actionSheet = await this.actSheet.create({
       header: 'Tamaño',
       buttons: [{
-        text: 'Pequeño',
+        text: 'Pequeño(a)',
         handler: () => {
-          this.gatillarAccion('Tamaño', 'Pequeño');
+          this.gatillarAccion('Tamaño', 'Pequeño(a)');
         }
       }, {
-        text: 'Mediano',
+        text: 'Mediano(a)',
         handler: () => {
-          this.gatillarAccion('Tamaño', 'Mediano');
+          this.gatillarAccion('Tamaño', 'Mediano(a)');
         }
       }, {
         text: 'Grande',
@@ -70,16 +93,15 @@ export class HomePage implements OnInit {
           this.gatillarAccion('Tamaño', 'Grande');
         }
       },
-        {
-          text: 'Todos',
-          handler: () => {
-            this.gatillarAccion('Tamaño', 'Tamaño');
-          }
-        }]
+      {
+        text: 'Todos',
+        handler: () => {
+          this.gatillarAccion('Tamaño', 'Tamaño');
+        }
+      }]
     });
     await actionSheet.present();
   }
-
   async opcionesSexo() {
     const actionSheet = await this.actSheet.create({
       header: 'Sexo',
@@ -94,12 +116,12 @@ export class HomePage implements OnInit {
           this.gatillarAccion('Sexo', 'Macho');
         }
       },
-        {
-          text: 'Todos',
-          handler: () => {
-            this.gatillarAccion('Sexo', 'Sexo');
-          }
-        }]
+      {
+        text: 'Todos',
+        handler: () => {
+          this.gatillarAccion('Sexo', 'Sexo');
+        }
+      }]
     });
     await actionSheet.present();
   }
@@ -108,9 +130,9 @@ export class HomePage implements OnInit {
     const actionSheet = await this.actSheet.create({
       header: 'Edad',
       buttons: [{
-        text: 'Cachorro',
+        text: 'Cachorro(a)',
         handler: () => {
-          this.gatillarAccion('Edad', 'Cachorro');
+          this.gatillarAccion('Edad', 'Cachorro(a)');
         }
       }, {
         text: 'Juvenil',
@@ -119,29 +141,29 @@ export class HomePage implements OnInit {
         }
       },
       {
-        text: 'Adulto',
+        text: 'Adulto(a)',
         handler: () => {
-          this.gatillarAccion('Edad', 'Adulto');
+          this.gatillarAccion('Edad', 'Adulto(a)');
         }
       },
-        {
-          text: 'Senior',
-          handler: () => {
-            this.gatillarAccion('Edad', 'Senior');
-          }
-        },
-        {
-          text: 'Todos',
-          handler: () => {
-            this.gatillarAccion('Edad', 'Edad');
-          }
+      {
+        text: 'Senior',
+        handler: () => {
+          this.gatillarAccion('Edad', 'Senior');
         }
+      },
+      {
+        text: 'Todos',
+        handler: () => {
+          this.gatillarAccion('Edad', 'Edad');
+        }
+      }
       ]
     });
     await actionSheet.present();
   }
-  private gatillarAccion (tipo:string, valor:string) {
-    if (tipo==='Tamaño') {
+  private gatillarAccion(tipo: string, valor: string) {
+    if (tipo === 'Tamaño') {
       this.ngZone.run(() => {
         this.size = valor;
       });
@@ -167,10 +189,48 @@ export class HomePage implements OnInit {
     } else {
 
     }
-    
+
+  }
+  public pushperro() {
+    if (this.perrogato.perro.activo) {
+      if (this.perrogato.gato.activo) {
+        this.perrogato.perro.activo = false;
+        this.perrogato.perro.color = this.srvApp.secondary;
+      } else {
+        this.mensaje();
+      }
+    } else {
+      this.perrogato.perro.activo = true;
+      this.perrogato.perro.color = this.srvApp.tertiary;
+    }
+    this.llamarAvisos();
+  }
+  public pushgato() {
+    if (this.perrogato.gato.activo) {
+      if (this.perrogato.perro.activo) {
+        this.perrogato.gato.activo = false;
+        this.perrogato.gato.color = this.srvApp.secondary;
+      } else {
+        this.mensaje();
+      }
+    } else {
+      this.perrogato.gato.activo = true;
+      this.perrogato.gato.color = this.srvApp.tertiary;
+    }
+    this.llamarAvisos();
+  }
+  public async mensaje() {
+    const alert = await this.alerta.create({
+      header: 'Aviso',
+      subHeader: 'No realizado',
+      message: 'Marque al menos una opción',
+      buttons: ['OK'],
+      cssClass: 'alertCustomCss' //
+    });
+    await alert.present();
   }
   public pushPerroGato() {
     this.swtFlechaPerroGato = (this.swtFlechaPerroGato === 'inicial' ? 'activo' : 'inicial');
     this.swtPerroGato = (this.swtPerroGato === 'inicial' ? 'activo' : 'inicial');
-    }
   }
+}

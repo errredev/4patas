@@ -82,7 +82,6 @@ export class ProfilePage implements OnInit {
       reader.onload = (event: any) => {
         this.currentImage = event.target.result;
         this.image = e.target.files[0];
-        console.log(this.image);
       };
     }
   }

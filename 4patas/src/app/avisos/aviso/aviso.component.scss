@@ -21,7 +21,7 @@ height: 346px;
       border-radius: 30px;
     }
     ion-label {
-      font-size: 1.3rem;
+      font-size: 15px;
       position: absolute;
       color: var(--ion-color-light);
       top: 10px;
@@ -35,11 +35,12 @@ height: 346px;
       font-weight: 900;
       font-size: 15px;
     }
-    .diasNumero {
-      font-weight: 900;
-      color: var(--ion-color-medium) !important;
-      right: 12px;
-      top : 10px;
+    .fotosNumero {
+      z-index: 1001;
+      font-weight: 200;
+      color: var(--ion-color-dark) !important;
+      right: 22px;
+      top : 13px;
       font-size: 15px;
     }
     object-fit: cover;
@@ -53,22 +54,10 @@ height: 346px;
   }
 }
 ion-card-content {
-  ion-row {
-    padding: 0px;
-    ion-col {
-      padding: 0px;
-     
-    }
-  }
-
   padding-top: 27px;
-  ion-icon {
-    font-size: 1.3rem !important;
-  }
 }
-.ayudabusca {
-  font-size: 18px !important;
-}
+
+
 ion-text {
   background: var(--ion-color-medium);
   font-weight: 900;
@@ -107,9 +96,18 @@ ion-text {
   top:5px;
   right: 45px;
 }
-svg-icon {
+.corazon {
   position: absolute;
   z-index: 1000;
   top: 10px;
   left: 10px;
+}
+.camara {
+  position: absolute;
+  z-index: 1000;
+  top: 10px;
+  right: 10px!important;
+}
+.ayudabusca {
+  font-size : 17px!important;
 }

@@ -13,15 +13,22 @@ import {Imagen} from '../shared/models/imagen';
 export class AvisoService {
   private avisoCollection: AngularFirestoreCollection<AvisoI>;
   constructor(private afs: AngularFirestore, private storage: AngularFireStorage) {
-    this.avisoCollection = afs.collection<AvisoI>('avisos');
+    this.avisoCollection = this.afs.collection<AvisoI>('avisos');
   }
 
-  public async traerAvisos(size?: string, sexo?:string, edad?:string): Promise<Mensaje>{
+  public async traerAvisos(size?: string, sexo?:string, edad?:string, perro?:boolean, gato?:boolean): Promise<Mensaje>{
     let ref = this.avisoCollection.ref.where("estatus", "==", "Activo");
     let avisos = [];
     ref = (size !== 'Tamaño' ? ref.where("size", "==", size) : ref);
     ref = (sexo !== 'Sexo' ? ref.where("sexo", "==", sexo) : ref);
     ref = (edad !== 'Edad' ? ref.where("edad", "==", edad) : ref);
+    if (perro && gato) {
+      // nada
+    } else {
+      console.log ('perrogato')
+      ref = (perro ? ref.where("especie", "==", 'Perro') : ref);
+      ref = (gato ? ref.where("especie", "==", 'Gato') : ref);
+    }
     try {
       const resultado = await ref.get()
       resultado.forEach(function (doc) {
@@ -50,27 +57,17 @@ export class AvisoService {
   }
 
   public async saveAviso(aviso: AvisoI, Userid: string): Promise<Mensaje>  {
-    const avisoObj = {
-      nombre: aviso.nombre,
-      size: aviso.size,
-      sexo: aviso.sexo,
-      edad: aviso.edad,
-      salud: aviso.salud,
-      region: aviso.region,
-      comuna: aviso.comuna,
-      uid: Userid,
-      descripcion: aviso.descripcion,
-      direccion: aviso.direccion,
-      especie: aviso.especie,
-      fotos: aviso.fotos,
-      estatus: 'Activo',
-      favoritos: 0,
-      mensajes: 0,
-      fecha: Date().toLocaleString()
-    };
+      aviso.cantidadfotos = aviso.fotos.length,
+      aviso.estatus= 'Activo',
+      aviso.favoritos= 0,
+      aviso.mensajes= 0,
+      aviso.fecha =Date().toLocaleString()
+  
     try {
-      return { exitoso: true, objeto: this.avisoCollection.add(avisoObj)};
+      const avisogenerado = await this.avisoCollection.add(aviso);
+      return { exitoso: true, objeto:avisogenerado};
     } catch (error) {
+      console.log(error);
       return { exitoso: false, texto: 'Error al grabar el aviso' };
     }
   }
@@ -80,7 +77,6 @@ export class AvisoService {
       const task = await this.storage.ref(nombreDirectorio).child(nombreArchivo).putString(base64, 'data_url');
       const reff =  this.storage.ref(task.metadata.fullPath);
       const urlImage = await reff.getDownloadURL().toPromise();
-      console.log('exitoso');
       return { exitoso: true, texto: urlImage};
     } catch (error) {
       return { exitoso: false, texto: 'Error en carga de imagen', objeto: error };

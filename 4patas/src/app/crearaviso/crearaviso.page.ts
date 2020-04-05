@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Regiones } from './regiones';
 import { AvisoI } from '../shared/models/aviso.interace';
-import { FileI } from '../shared/models/file.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AvisoService } from '../services/aviso.service';
 import { AuthService } from '../services/auth.service';
-import { ThemeService } from '../services/theme/theme.service';
 import { Router } from '@angular/router';
 import { AppService } from '../services/app/app.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
@@ -22,11 +20,8 @@ export class CrearavisoPage implements OnInit {
                       { imagen: null, activo: false, cargada: false },
                       { imagen: null, activo: false, cargada: false },
                       { imagen: null, activo: false, cargada: false }];
-  public colorng = this.themesrv.primary;
   public cropvisible = false;
   public indice = 0;
-  public image: FileI;
-  public currentImage = '';
   public regiones: any;
   public uid: string;
   public comunas: string;
@@ -35,7 +30,6 @@ export class CrearavisoPage implements OnInit {
     size: new FormControl('', Validators.required),
     sexo: new FormControl('', Validators.required),
     edad: new FormControl('', Validators.required),
-    salud: new FormControl('', Validators.required),
     region: new FormControl('', Validators.required),
     comuna: new FormControl('', Validators.required),
     especie: new FormControl('', Validators.required),
@@ -44,21 +38,30 @@ export class CrearavisoPage implements OnInit {
   });
   imageChangedEvent: any = '';
   croppedImage: any = '';
-
+  constructor(private avisoS: AvisoService,
+    private authsrv: AuthService,
+    public router: Router,
+    public appsrv: AppService,
+    public alrControl: AlertController) {
+    this.regiones = Regiones;
+    this.uid = this.authsrv.datosuser().uid;
+  }
   async fileChangeEvent(event: any): Promise<void> {
-    if (this.indice !== 4) {
-    this.cropvisible = true;
-    this.imageChangedEvent = event;
-    } else {
-      const alert = await this.alrControl.create({
-        header: 'Información',
-        subHeader: 'No se aceptan mas fotos',
-        message: 'Alcanzo el numero maximo posible',
-        buttons: ['OK'],
-        cssClass: 'alertCustomCss' //
-      });
-      await alert.present();
-    }
+    if (event.target.files) {
+      if (this.indice !== 4) {
+      this.cropvisible = true;
+      this.imageChangedEvent = event;
+      } else {
+        const alert = await this.alrControl.create({
+          header: 'Información',
+          subHeader: 'No se aceptan mas fotos',
+          message: 'Alcanzo el numero maximo posible',
+          buttons: ['OK'],
+          cssClass: 'alertCustomCss' //
+        });
+        await alert.present();
+      }
+  }
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
@@ -78,43 +81,24 @@ export class CrearavisoPage implements OnInit {
     this.imagenes[this.indice].cargada = true;
     this.imagenes[this.indice].activo = false;
     this.indice ++;
-    if (this.indice < 3) {
+    if (this.indice < 4) {
       this.imagenes[this.indice].activo = true;
     }
   }
-  constructor(private avisoS: AvisoService,
-              private authsrv: AuthService,
-              public themesrv: ThemeService,
-              public router: Router,
-              public appsrv: AppService,
-              public alrControl: AlertController) {
-    this.regiones = Regiones;
-    const user = this.authsrv.datosuser();
-    this.uid = user.uid;
-  }
+  
 
   ngOnInit() {
   }
 
   onChange(event) {
     const resultado = this.regiones.find(region => region.region === event.detail.value);
-    this.comunas = resultado.comunas;
-    this.avisoForm.controls.comuna.setValue('foo');
+    if (resultado){
+      this.comunas = resultado.comunas;
+      this.avisoForm.controls.comuna.setValue('');
+    } 
+
   }
-  // Image Preview
-  showPreview(e) {
-    if (e.target.files) {
-      const reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = (event: any) => {
-          this.imagenes[0].imagen = event.target.result;
-          this.imagenes[0].cargada = true;
-          this.imagenes[0].activo = false;
-          this.imagenes[1].activo = true;
-          this.image = e.target.files[0];
-      };
-    }
-  }
+  
   async onSaveAaviso(aviso: AvisoI): Promise<void> {
     if (this.indice > 0) {
       this.appsrv.activarloading ('Guardando Aviso');
@@ -131,8 +115,8 @@ export class CrearavisoPage implements OnInit {
         await alert.present();
       } else {
         const alert = await this.alrControl.create({
-          header: 'Informaciòn',
-          subHeader: 'Error en la operación',
+          header: 'Problemas',
+          subHeader: 'Lo Sentimos',
           message: respuesta.texto,
           buttons: ['OK'],
           cssClass: 'alertCustomCss' //
@@ -163,7 +147,10 @@ export class CrearavisoPage implements OnInit {
       value.cargada = false;
     });
   }
-  croppimagen() {
-     this.router.navigate(['cropp']);
+  public volverHome() {
+    console.log('volver')
+    this.appsrv.refrescarOn()
+    this.router.navigate(['/tabnav/home'])
   }
+
 }

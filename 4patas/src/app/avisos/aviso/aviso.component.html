@@ -1,26 +1,31 @@
         <ion-card>
           <ion-card-header>
 
-            <ion-label class="diasNumero">"'aviso.fotos.length'"</ion-label>
-            <ion-label class="dias">Fotos</ion-label>
+            <ion-label class="fotosNumero">{{aviso.detalle.cantidadfotos}}</ion-label>
+ 
             <ion-item  lines="none">
-               <ion-text >{{aviso.detalle.nombre}}</ion-text>
+               <ion-text >{{aviso.detalle.nombre| titlecase }}</ion-text>
                <label id="fecha">{{aviso.detalle.fecha| date:'mediumDate'}}</label>
               <label id="distancia">{{aviso.detalle.comuna}}</label>
             </ion-item>
             <img class="foto" [src]="aviso.detalle.fotos[0]" />
             <svg-icon
           src="./assets/svg/corazon.svg"
-          class="icono"
-          [stretch]="true"
+          class="corazon"
+        ></svg-icon>
+          <svg-icon 
+          class="camara"
+          src="./assets/svg/camara.svg"
         ></svg-icon>
           </ion-card-header>
           <ion-card-content>
             <ion-row>
               <br>
-              <ion-col class="ayudabusca" size="3">{{aviso.detalle.sexo}}</ion-col>
-              <ion-col class="ayudabusca" size="3">{{aviso.detalle.edad}}</ion-col>
-              <ion-col class="ayudabusca" size="3">{{aviso.detalle.size}}</ion-col>
+              <ion-col class="ayudabusca" size="4">{{aviso.detalle.sexo}}</ion-col>
+              <ion-col class="ayudabusca" size="4">{{aviso.detalle.edad}}</ion-col>
+              <ion-col class="ayudabusca" size="4">{{aviso.detalle.size}}</ion-col>
             </ion-row>
           </ion-card-content>
         </ion-card>
+
+        

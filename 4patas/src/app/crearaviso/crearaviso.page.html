@@ -1,11 +1,10 @@
 <ion-header>
   <ion-toolbar color="light">
     <ion-buttons
-      [routerLink]="['/']"
-      routerLinkActive="router-link-active"
+      (click)="volverHome()"
       slot="start"
     >
-      <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+      <ion-icon  slot="icon-only" name="chevron-back"></ion-icon>
     </ion-buttons>
     <ion-title>Crear aviso</ion-title>
   </ion-toolbar>
@@ -116,8 +115,8 @@
     <ion-item color="light" lines="none">
       <ion-label color="dark">Tamaño</ion-label>
       <ion-select formControlName="size" color="dark" interface="action-sheet">
-        <ion-select-option value="Pequeño">Pequeño</ion-select-option>
-        <ion-select-option value="Mediano">Mediano</ion-select-option>
+        <ion-select-option value="Pequeño(a)">Pequeño(a)</ion-select-option>
+        <ion-select-option value="Mediano(a)">Mediano(a)</ion-select-option>
         <ion-select-option value="Grande">Grande</ion-select-option>
       </ion-select>
     </ion-item>
@@ -131,9 +130,9 @@
     <ion-item color="light" lines="none">
       <ion-label color="dark">Edad</ion-label>
       <ion-select formControlName="edad" interface="action-sheet">
-        <ion-select-option value="Cachorro">Cachoro</ion-select-option>
+        <ion-select-option value="Cachorro(a)">Cachoro(a)</ion-select-option>
         <ion-select-option value="Juvenil">Juvenil</ion-select-option>
-        <ion-select-option value="Adulto">Adulto</ion-select-option>
+        <ion-select-option value="Adulto(a)">Adult(a)</ion-select-option>
         <ion-select-option value="Senior">Senior</ion-select-option>
       </ion-select>
     </ion-item>

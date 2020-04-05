@@ -4,12 +4,6 @@
   <div id="contenedortags">
    
     
-      <label
-        [className]="size !=='Tamaño'? 'activo' : 'inactivo'"
-        (click)="opcionesTamano()"
-        id="tags"
-        >{{size}}</label
-      >
     <label
       [className]="sexo !== 'Sexo' ? 'activo' : 'inactivo'"
       (click)="opcionesSexo()"
@@ -22,7 +16,14 @@
       id="tags"
       >{{edad}}</label
     >
+      <label
+        [className]="size !=='Tamaño'? 'activo' : 'inactivo'"
+        (click)="opcionesTamano()"
+        id="tags"
+        >{{size}}</label
+      >
   </div>
+
   <img
     (click)="abrirMenu()"
     class="avatar"
@@ -41,18 +42,20 @@
 
 
 <ion-content color="light">
+     <ion-progress-bar *ngIf=(swtCargando) type="indeterminate"></ion-progress-bar>
    <ion-refresher  color = "primary" slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       refreshingSpinner="lines">
     </ion-refresher-content>
   </ion-refresher>
-<div *ngIf="(avisos) ; else esperando">
   <div  [@estadoPerroGato]="swtPerroGato" class="perrogato" >
-    <svg-icon src="./assets/svg/perro.svg" class="perro"></svg-icon>
-    <svg-icon src="./assets/svg/gato.svg" class="gato"></svg-icon>
+    <svg-icon  (click)="pushperro()" [style.fill]="perrogato.perro.color" src="./assets/svg/perro.svg" class="perro"></svg-icon>
+    <svg-icon (click)="pushgato()" [style.fill]="perrogato.gato.color" src="./assets/svg/gato.svg" class="gato"></svg-icon>
     <ion-icon [@iconoPerroGato]='swtFlechaPerroGato' (click)="pushPerroGato()" class="iconoFlecha" name="chevron-forward-outline"></ion-icon>
   </div>
-  <ion-grid *ngIf="(avisos)" [@cardAnimation]="avisos.length">
+<div *ngIf=" swtLleno  ; else vacio">
+  
+  <ion-grid *ngIf=(avisos) [@cardAnimation]="avisos.length">
     <ion-row justify-content-center>
       <ion-col
         sizeXl="4"
@@ -71,8 +74,21 @@
   <br />
   <br />
   </div>
-  <ng-template #esperando>
+  <!-- <ng-template #esperando>
     <ion-progress-bar type="indeterminate"></ion-progress-bar>
     <ion-spinner color="primary"name="lines"></ion-spinner>
+  </ng-template> -->
+  <!--?xml version="1.0" standalone="no"?-->
+
+ <ng-template class=vacio #vacio>
+    <div *ngIf=(!swtCargando)>
+      <svg-icon  src="./assets/svg/triste.svg" class="triste"></svg-icon>
+      <br>
+     
+      <div class='mensaje'>
+        <ion-label >No hay mascotas con el criterio de busqueda seleccionado, quizas si intentas mas tarde</ion-label>
+      </div>
+    </div>
   </ng-template>
 </ion-content>
+
