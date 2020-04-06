@@ -5,6 +5,7 @@ import { AvisoI } from '../shared/models/aviso.interace';
 import { Mensaje} from '../shared/models/mensaje';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {Imagen} from '../shared/models/imagen';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -15,7 +16,9 @@ export class AvisoService {
   constructor(private afs: AngularFirestore, private storage: AngularFireStorage) {
     this.avisoCollection = this.afs.collection<AvisoI>('avisos');
   }
-
+  public traeraviso(id: string): Observable<AvisoI> {
+    return this.afs.doc<AvisoI>('avisos/' + id).valueChanges();
+  }
   public async traerAvisos(size?: string, sexo?:string, edad?:string, perro?:boolean, gato?:boolean): Promise<Mensaje>{
     let ref = this.avisoCollection.ref.where("estatus", "==", "Activo");
     let avisos = [];

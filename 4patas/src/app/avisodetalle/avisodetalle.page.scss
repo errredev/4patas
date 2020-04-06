@@ -1,0 +1,31 @@
+.back {
+  position: absolute;
+  transform: translatey(-50%);
+  top: 50%;
+  left:10px;
+}
+.forward {
+  position: absolute;
+  transform: translatey( -50%);
+  top: 50%;
+  right: 10px;
+}
+.marco {
+    min-height: 200px;
+}
+div {
+ position: relative;
+}
+ion-fab-button {
+   display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+.fab {
+  position: absolute;
+  transform: translatex( -50%);
+  bottom:0px;
+  left: 50%;
+  z-index: 3;
+  display: inline!important;
+}

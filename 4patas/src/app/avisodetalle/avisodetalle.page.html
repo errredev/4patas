@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="aviso$ | async as aviso"
+      >{{aviso.nombre | titlecase}}</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="aviso$ | async as aviso">
+  <div>
+    <div *ngFor="let foto of fotos index as i">
+      <div *ngIf="foto.activa" class="marco">
+        <img [@inOutAnimation]="estado" [src]="foto.imagen" />
+        <svg-icon (click)="pasarFoto('back',i)" class="back" src="./assets/svg/back.svg"></svg-icon>
+        <svg-icon (click)="pasarFoto('forward',i)" class="forward" src="./assets/svg/forward.svg"></svg-icon>
+      </div>
+    </div>
+    <div class="fab">
+        <ion-fab-button *ngFor="let foto of fotos index as i" (click)="activarFoto(i)" [color]="foto.color" size="small"
+          >{{foto.numero}}</ion-fab-button>
+    </div>
+  </div>
+  {{aviso.descripcion}}
+</ion-content>

@@ -132,15 +132,10 @@ ion-item {
 	background: var(--ion-color-light)!important;
 }
 ion-title {
-    position: absolute;
-     transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
     font-size : 24px;
     font-family: var(--font-titulo);
 	font-weight:  900!important;
 	color: var(--ion-color-primary);
-	background: var(--ion-color-light);
 }
 ion-toolbar {
   	background: var(--ion-color-light)!important;
