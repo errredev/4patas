@@ -15,10 +15,14 @@ export class AvisodetallePage implements OnInit {
   private avisoId: string;
   private ultimoIndice: number =0;
   public imagenpreload: Array<any>;
+  public largocaja='';
+  public topbotones = '';
   public src: string = "http://example.com/yourInitialImage.png";
   public fotos : Array<{imagen:string,activa:boolean,numero:number, color:string, estado:string}>
   public aviso$: Observable<AvisoI>;
   constructor(private route: ActivatedRoute, private srvAviso: AvisoService, private srvApp: AppService) {
+    this.largocaja = (srvApp.ancho - (srvApp.ancho / 4))+'px'
+    this.topbotones = ((srvApp.ancho - (srvApp.ancho / 4))/2) + 'px'
     this.avisoId = route.snapshot.paramMap.get('id')
     this.aviso$ = srvAviso.traeraviso(this.avisoId)
   }
@@ -32,11 +36,12 @@ export class AvisodetallePage implements OnInit {
         let imagen = new Image();
         imagen.src = aviso.fotos[i];
         this.imagenpreload.push(imagen);
-        this.fotos.push({ imagen: aviso.fotos[i], activa: false, numero: indice, color: 'secondary',estado : 'inicial'});
+        this.fotos.push({ imagen: aviso.fotos[i], activa: false, numero: indice, color: 'secondary',estado : 'inactive'});
       indice++;
       }
       this.fotos[0].color = 'primary';
       this.fotos[0].activa=true;
+      this.fotos[0].estado = 'active';
    });
     console.log(this.fotos);
   }
@@ -45,12 +50,15 @@ export class AvisodetallePage implements OnInit {
     if (indice !== lastindice) {
       this.fotos[indice].color = 'primary';
       this.fotos[indice].activa = true;
+      this.fotos[indice].estado = 'active';
       this.fotos[lastindice].color = 'secondary';
       this.fotos[lastindice].activa = false;
+      this.fotos[lastindice].estado = 'inactive';
       this.ultimoIndice = indice;
     }
   }
   public pasarFoto(direccion:string, indice:number){
+    this.fotos[indice].estado = 'activa';
     let newindice:number;
     let largo = this.fotos.length
     if (direccion === 'back') {

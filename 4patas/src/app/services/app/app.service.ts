@@ -11,6 +11,8 @@ export class AppService {
   public medium = '#ffffff';
   public contrast = '#565B56';
   public tertiary = '#FF8A65';
+  public largo = 0;
+  public ancho = 0;
   
   swchloading$ = new EventEmitter<boolean>();
   swtRefreshHome$ = new EventEmitter<boolean>();

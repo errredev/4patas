@@ -1,17 +1,27 @@
 .back {
   position: absolute;
   transform: translatey(-50%);
-  top: 50%;
+  top: 150px;
   left:10px;
 }
 .forward {
   position: absolute;
   transform: translatey( -50%);
-  top: 50%;
+  top:150px;
   right: 10px;
 }
+content {
+  position: relative;
+}
 .marco {
-    min-height: 200px;
+    position: absolute;
+    min-height: 300px;
+    width: 100%;
+   border:1px solid;
+}
+.pared {
+    position: relative;
+ 
 }
 div {
  position: relative;
@@ -20,6 +30,7 @@ ion-fab-button {
    display: inline-block;
     width: 20px;
     height: 20px;
+    z-index: 23;
 }
 .fab {
   position: absolute;
@@ -28,4 +39,8 @@ ion-fab-button {
   left: 50%;
   z-index: 3;
   display: inline!important;
+}
+.foto{
+  top:0;
+  position: absolute;
 }

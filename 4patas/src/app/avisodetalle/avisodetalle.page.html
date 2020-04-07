@@ -10,18 +10,24 @@
 </ion-header>
 
 <ion-content *ngIf="aviso$ | async as aviso">
-  <div>
+  <div [style.height]="largocaja" class="pared"> 
     <div *ngFor="let foto of fotos index as i">
-      <div *ngIf="foto.activa" class="marco">
-        <img [@inOutAnimation]="estado" [src]="foto.imagen" />
-        <svg-icon (click)="pasarFoto('back',i)" class="back" src="./assets/svg/back.svg"></svg-icon>
-        <svg-icon (click)="pasarFoto('forward',i)" class="forward" src="./assets/svg/forward.svg"></svg-icon>
-      </div>
+ 
+        <img class="foto" [@thumbState]="foto.estado" [src]="foto.imagen" />
+        <svg-icon [style.top]="topbotones" *ngIf=(foto.activa) (click)="pasarFoto('back',i)" class="back" src="./assets/svg/back.svg"></svg-icon>
+        <svg-icon [style.top]="topbotones" *ngIf=(foto.activa) (click)="pasarFoto('forward',i)" class="forward" src="./assets/svg/forward.svg"></svg-icon>
+      
     </div>
     <div class="fab">
         <ion-fab-button *ngFor="let foto of fotos index as i" (click)="activarFoto(i)" [color]="foto.color" size="small"
           >{{foto.numero}}</ion-fab-button>
     </div>
   </div>
+
+ <br>
+  {{srvApp.ancho}}
+  <br>
+  {{largocaja}}
+  <br>
   {{aviso.descripcion}}
 </ion-content>

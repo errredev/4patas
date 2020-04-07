@@ -18,14 +18,17 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public svcloading: AppService
+    public svcApp: AppService
   ) {
-    this.svcloading.desactivarloading();
+    this.svcApp.desactivarloading();
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.svcApp.largo = this.platform.height()
+      this.svcApp.ancho = this.platform.width()
+      console.log(this.platform.platforms)
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

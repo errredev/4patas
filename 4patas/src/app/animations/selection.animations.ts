@@ -18,5 +18,5 @@ export const Seleccion = [
             })
         ),
         // 3 - Comment this and Uncomment GROUPED ANIMATIONS to see them in action.
-        transition('ok <=> inicial', animate('200ms linear'))
+        transition('ok <=> inicial', animate('200ms ease-In-Out'))
 ])];
