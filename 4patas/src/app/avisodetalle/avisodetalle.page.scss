@@ -44,3 +44,38 @@ ion-fab-button {
   top:0;
   position: absolute;
 }
+.region {
+  top: -15px;
+  position: absolute;
+  right: 10px;
+   font-weight: 200;
+}
+.comuna {
+  top: 3px;
+  position: absolute;
+  right: 10px;
+   font-weight: 200;
+}
+.corazonactivo {
+   position: absolute;
+  top: -1px!important;
+  fill: var(--ion-color-tertiary);
+}
+.corazoninactivo {
+   position: absolute;
+  top: -1px!important;
+  fill: white;
+}
+.info {
+  font-weight: 900;
+}
+.tit {
+  font-weight: 900;
+  text-align: center;
+}
+.favoritos {
+  position: absolute;
+  top: -3px!important;
+  left: 40px;
+  font-weight: 200;
+}

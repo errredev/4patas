@@ -10,24 +10,68 @@
 </ion-header>
 
 <ion-content *ngIf="aviso$ | async as aviso">
-  <div [style.height]="largocaja" class="pared"> 
+  <div [style.height]="largocaja" class="pared">
     <div *ngFor="let foto of fotos index as i">
- 
-        <img class="foto" [@thumbState]="foto.estado" [src]="foto.imagen" />
-        <svg-icon [style.top]="topbotones" *ngIf=(foto.activa) (click)="pasarFoto('back',i)" class="back" src="./assets/svg/back.svg"></svg-icon>
-        <svg-icon [style.top]="topbotones" *ngIf=(foto.activa) (click)="pasarFoto('forward',i)" class="forward" src="./assets/svg/forward.svg"></svg-icon>
-      
+      <img class="foto" [@thumbState]="foto.estado" [src]="foto.imagen" />
+      <svg-icon
+        [style.top]="topbotones"
+        *ngIf="(foto.activa)"
+        (click)="pasarFoto('back',i)"
+        class="back"
+        src="./assets/svg/back.svg"
+      ></svg-icon>
+      <svg-icon
+        [style.top]="topbotones"
+        *ngIf="(foto.activa)"
+        (click)="pasarFoto('forward',i)"
+        class="forward"
+        src="./assets/svg/forward.svg"
+      ></svg-icon>
     </div>
     <div class="fab">
-        <ion-fab-button *ngFor="let foto of fotos index as i" (click)="activarFoto(i)" [color]="foto.color" size="small"
-          >{{foto.numero}}</ion-fab-button>
+      <ion-fab-button
+        *ngFor="let foto of fotos index as i"
+        (click)="activarFoto(i)"
+        [color]="foto.color"
+        size="small"
+        >{{foto.numero}}</ion-fab-button
+      >
     </div>
   </div>
 
- <br>
-  {{srvApp.ancho}}
-  <br>
-  {{largocaja}}
-  <br>
-  {{aviso.descripcion}}
+  <br />
+ 
+  <ion-item lines="none">
+    <svg-icon (click)="pushfavorito()" src="./assets/svg/corazon.svg" class="corazon"  [className]="activoFavorito ? 'corazonactivo' : 'corazoninactivo'"></svg-icon>
+    <ion-label class="favoritos">4</ion-label>
+    <ion-label class="region">{{aviso.region}}</ion-label>
+    <ion-label class="comuna">{{aviso.comuna}}</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label slot="start">Sexo</ion-label>
+    <ion-label slot="end" class="info">{{aviso.sexo}}</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label slot="start">Edad</ion-label>
+    <ion-label slot="end" class="info">{{aviso.edad}}</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-label slot="start">Tamaño</ion-label>
+    <ion-label slot="end" class="info">{{aviso.size}}</ion-label>
+  </ion-item>
+  <ion-item *ngIf="(aviso.sexo ==='Macho')" lines="none"
+    ><ion-label class="tit">Asi lo describen</ion-label></ion-item
+  >
+  <ion-item *ngIf="(aviso.sexo ==='Hembra')" lines="none"
+    ><ion-label class="tit">Asi la describen</ion-label></ion-item
+  >
+  <ion-item
+    ><ion-label class="ion-text-wrap"
+      >{{aviso.descripcion}}</ion-label
+    ></ion-item
+  >
+  <br />
+   {{aviso.uid}}
+  <ion-button expand="block">Solicitar Adopciòn</ion-button>
+  <br />
 </ion-content>

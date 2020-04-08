@@ -35,25 +35,20 @@ export class HomePage implements OnInit {
     public alerta: AlertController,
   ) {
     this.srvApp.swtRefreshHome$.subscribe((valor: any) => {
-      console.log(valor);
       if (valor) {
         this.llamarAvisos()
         this.srvApp.refrescarOff();
       }
-
     });
   }
 
   ngOnInit() {
     this.perrogato.gato.color = this.srvApp.tertiary;
     this.perrogato.perro.color = this.srvApp.tertiary;
-    console.log(this.perrogato)
     this.authSrv.userData$.subscribe(async user => {
-      // console.log(user.email);
       this.user = user;
-      this.llamarAvisos()
     });
-
+    this.llamarAvisos()
   }
   async llamarAvisos() {
     this.swtCargando = true;

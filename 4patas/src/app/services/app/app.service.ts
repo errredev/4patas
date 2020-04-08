@@ -13,6 +13,7 @@ export class AppService {
   public tertiary = '#FF8A65';
   public largo = 0;
   public ancho = 0;
+  public uId:string;
   
   swchloading$ = new EventEmitter<boolean>();
   swtRefreshHome$ = new EventEmitter<boolean>();

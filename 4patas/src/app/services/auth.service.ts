@@ -14,6 +14,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class AuthService {
   public isreset: boolean;
   public errMensaje = 'vacio';
+  public usuario:string;
   public userData$: Observable<firebase.User>;
   private filePath: string;
   swchloading$ = new EventEmitter<string>();
@@ -55,8 +56,7 @@ export class AuthService {
     }
   }
   async usuarioactivo() {
-    const user = this.afAuth.authState;
-    console.log(user);
+    const user =  this.afAuth.authState;
     return user;
   }
   // salir de aplicacion
