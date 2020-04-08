@@ -1,12 +1,12 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { AvisoI } from '../shared/models/aviso.interace';
 import { Mensaje} from '../shared/models/mensaje';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {Imagen} from '../shared/models/imagen';
 import { Observable } from 'rxjs';
-
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +73,10 @@ export class AvisoService {
       console.log(error);
       return { exitoso: false, texto: 'Error al grabar el aviso' };
     }
+  }
+  public incrementarFavoritos (id:string, incremento:number){
+    let Ref = this.avisoCollection.doc(id);
+    Ref.update({"favoritos" : firebase.firestore.FieldValue.increment(incremento)});
   }
 
   public async uploadImage(nombreArchivo: string, nombreDirectorio: string, base64: any): Promise <Mensaje> {

@@ -43,7 +43,7 @@
  
   <ion-item lines="none">
     <svg-icon (click)="pushfavorito()" src="./assets/svg/corazon.svg" class="corazon"  [className]="activoFavorito ? 'corazonactivo' : 'corazoninactivo'"></svg-icon>
-    <ion-label class="favoritos">4</ion-label>
+    <ion-label class="favoritos">{{aviso.favoritos}}</ion-label>
     <ion-label class="region">{{aviso.region}}</ion-label>
     <ion-label class="comuna">{{aviso.comuna}}</ion-label>
   </ion-item>

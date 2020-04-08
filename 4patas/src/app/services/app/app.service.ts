@@ -17,6 +17,7 @@ export class AppService {
   
   swchloading$ = new EventEmitter<boolean>();
   swtRefreshHome$ = new EventEmitter<boolean>();
+  refreshFavorito$ = new EventEmitter<string>();
   menuok$ = new EventEmitter<boolean>();
   public mensaje: string;
   constructor() {
@@ -27,6 +28,9 @@ export class AppService {
   }
   refrescarOn(): void {
     this.swtRefreshHome$.emit(true);
+  }
+  refrescarfavorito(idAviso :string): void {
+    this.refreshFavorito$.emit(idAviso);
   }
   refrescarOff(): void {
     this.swtRefreshHome$.emit(false);

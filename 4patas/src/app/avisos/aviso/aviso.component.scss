@@ -111,3 +111,17 @@ ion-text {
 .ayudabusca {
   font-size : 17px!important;
 }
+.corazonactivo {
+   position: absolute;
+  z-index: 1000;
+  top: 10px;
+  left: 10px;
+  fill: var(--ion-color-tertiary);
+}
+.corazoninactivo {
+    position: absolute;
+  z-index: 1000;
+  top: 10px;
+  left: 10px;
+  fill: white;
+}

@@ -65,7 +65,7 @@
         sizeXs="12"
         *ngFor="let aviso of avisos"
       >
-        <app-aviso [aviso]="aviso"></app-aviso>
+        <app-aviso [aviso]="aviso" [user]="user.uid"></app-aviso>
       </ion-col>
     </ion-row>
   </ion-grid>
