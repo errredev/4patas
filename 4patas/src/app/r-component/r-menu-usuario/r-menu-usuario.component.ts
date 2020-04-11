@@ -51,20 +51,6 @@ export class RMenuUsuarioComponent implements OnInit {
         ]
       },
       {
-        iconName2: 'eye', iconName: 'eye-outline', displayText: 'Filtro de visualización',
-        bajar: false, subir: false, expanded: false, hasChild: true,
-        iconFinal2: 'chevron-down', iconFinal: 'radio-button-on-outline', activo: false, subOptions: [
-          {
-            iconName2: 'sunny-outline', iconName: 'sunny', iconFinal: 'checkmark-circle',
-            displayText: 'Gato', url: '/home', check: false
-          },
-          {
-            iconName2: 'moon-outline', iconName: 'moon', iconFinal: 'checkmark-circle',
-            displayText: 'Perro', url: '/home', check: false
-          },
-        ]
-      },
-      {
         iconName2: 'bulb', iconName: 'bulb-outline', displayText: 'Modo Pantalla',
         bajar: false, subir: false, expanded: false, hasChild: true,
         iconFinal2: 'chevron-down', iconFinal: 'radio-button-on-outline', activo: false, subOptions: [
@@ -79,21 +65,7 @@ export class RMenuUsuarioComponent implements OnInit {
         ]
       },
       {
-        iconName2: 'film', iconName: 'film-outline', displayText: 'Historial', bajar: false,
-        subir: false, expanded: false, hasChild: false,
-        iconFinal2: '', iconFinal: 'radio-button-on-outline', activo: false, subOptions: [
-
-        ]
-      },
-      {
         iconName2: 'book', iconName: 'book-outline', displayText: 'Preguntas Frecuentes', bajar: false,
-        subir: false, expanded: false, hasChild: false,
-        iconFinal2: '', iconFinal: 'radio-button-on-outline', activo: false, subOptions: [
-
-        ]
-      },
-      {
-        iconName2: 'thumbs-down', iconName: 'thumbs-down-outline', displayText: 'Denunciar', bajar: false,
         subir: false, expanded: false, hasChild: false,
         iconFinal2: '', iconFinal: 'radio-button-on-outline', activo: false, subOptions: [
 

@@ -20,8 +20,8 @@ const routes: Routes = [
         loadChildren: () => import('../lista-mensajes/lista-mensajes.module').then(m => m.ListaMensajesPageModule)
       },
       {
-        path: 'avisos',
-        loadChildren: () => import('../avisos/avisos.module').then(m => m.AvisosPageModule)
+        path: 'crearaviso',
+        loadChildren: () => import('../crearaviso/crearaviso.module').then(m => m.CrearavisoPageModule)
       },
       {
         path: 'profile',

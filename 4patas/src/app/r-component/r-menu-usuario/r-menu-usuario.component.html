@@ -1,15 +1,15 @@
-<ion-header >
+<ion-header color="light">
  
 
   <img  class="avatar" *ngIf="authSrv.userData$| async" [src]="user.photoURL" />
 
   <ion-label *ngIf="authSrv.userData$| async" class="labelcabecera">{{user.displayName}}</ion-label>
 </ion-header>
-<ion-content  [@cardAnimation]="lista.length" fullscreen="true">
+<ion-content color="light" [@cardAnimation]="lista.length" fullscreen="true">
   <div
     *ngFor="let item of lista; let i = index"
   >
-    <ion-item
+    <ion-item color = "medium"
       lines="none"
       [class.activo]="item.activo"
       class="inactivo"

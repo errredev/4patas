@@ -2,7 +2,7 @@
   <ion-card-header>
     <ion-label [routerLink]="['/avisodetalle', aviso.id]"class="fotosNumero">{{ aviso.detalle.cantidadfotos }}</ion-label>
 
-    <ion-item [routerLink]="['/avisodetalle', aviso.id]" lines="none">
+    <ion-item color="medium" [routerLink]="['/avisodetalle', aviso.id]" lines="none">
       <ion-text>{{ aviso.detalle.nombre | titlecase }}</ion-text>
       <label id="fecha">{{ aviso.detalle.fecha | date: "mediumDate" }}</label>
       <label id="distancia">{{ aviso.detalle.comuna }}</label>

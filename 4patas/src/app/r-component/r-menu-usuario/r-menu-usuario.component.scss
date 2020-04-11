@@ -1,5 +1,7 @@
 
-
+ion-header{
+    background: var(--ion-color-light)!important;
+}
 .ion-content {
   background: var(--ion-color-primary);
   padding-right: 20px;
@@ -7,7 +9,6 @@
 }
 ion-item ´{
 color:  white!important;
-
 
 
 }

@@ -38,6 +38,22 @@ const routes: Routes = [
   {
     path: 'avisodetalle',
     loadChildren: () => import('./avisodetalle/avisodetalle.module').then( m => m.AvisodetallePageModule)
+  },
+  {
+    path: 'favoritos',
+    loadChildren: () => import('./favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+  },
+  {
+    path: 'solicitudes',
+    loadChildren: () => import('./solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule)
+  },
+  {
+    path: 'misavisos',
+    loadChildren: () => import('./misavisos/misavisos.module').then( m => m.MisavisosPageModule)
+  },
+  {
+    path: 'faq',
+    loadChildren: () => import('./faq/faq.module').then( m => m.FaqPageModule)
   }
 ];
 

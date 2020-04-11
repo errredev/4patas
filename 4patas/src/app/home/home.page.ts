@@ -15,16 +15,16 @@ import { AlertController } from '@ionic/angular';
   animations: [escalonado, Panelperrogato],
 })
 export class HomePage implements OnInit {
-  public size = 'Tamaño';
-  public sexo = 'Sexo';
-  public edad = 'Edad';
-  public swtPerroGato = 'inicial';
-  public swtFlechaPerroGato = 'inicial';
-  public swtCargando = true;
-  public swtLleno = false;
+  public size: string = 'Tamaño';
+  public sexo: string = 'Sexo';
+  public edad: string = 'Edad';
+  public swtPerroGato: string = 'inicial';
+  public swtFlechaPerroGato: string = 'inicial';
+  public modoDark: boolean = true;
+  public swtCargando: boolean = true;
+  public swtLleno: boolean = false;
   public perrogato = { perro: { activo: true, color: '' }, gato: { activo: true, color: this.srvApp.primary } }
   public avisos: Array<AvisoI>;
-
   public user: firebase.User;
   constructor(private menu: MenuController,
     public authSrv: AuthService,
@@ -178,11 +178,10 @@ export class HomePage implements OnInit {
   async doRefresh(event) {
     let mensaje = await this.avisoSrv.traerAvisos(this.size, this.sexo, this.edad);
     if (mensaje.exitoso) {
-
       this.avisos = mensaje.objeto;
       event.target.complete();
     } else {
-
+      //
     }
 
   }
@@ -228,4 +227,15 @@ export class HomePage implements OnInit {
     this.swtFlechaPerroGato = (this.swtFlechaPerroGato === 'inicial' ? 'activo' : 'inicial');
     this.swtPerroGato = (this.swtPerroGato === 'inicial' ? 'activo' : 'inicial');
   }
+  public modovisualizacion() {
+    document.body.classList.toggle('dark', this.modoDark);
+   
+    if (this.modoDark) {
+      this.srvApp.modoDark();
+    } else {
+      this.srvApp.modoLight();
+    }
+
+  }
+
 }
