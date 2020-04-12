@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { escalonado } from '../animations/escalonado.animation';
 import { Panelperrogato } from '../animations/panelperrogato.animations';
 import { AvisoService } from '../services/aviso.service';
-import { AppService } from '../services/app/app.service'
+import { AppService } from '../services/app/app.service';
 import { AvisoI } from '../shared/models/aviso.interace';
 import { AlertController } from '@ionic/angular';
 

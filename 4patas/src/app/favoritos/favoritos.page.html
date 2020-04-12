@@ -1,9 +1,14 @@
 <ion-header>
+   <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   <ion-toolbar>
     <ion-title>favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item *ngFor="let favorito of favorito$ | async">{{favorito.id}}</ion-item>
+{{user}}
+<ion-button (click)="push()">cmon</ion-button>
 </ion-content>

@@ -13,7 +13,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './avisodetalle.page.html',
   styleUrls: ['./avisodetalle.page.scss'],
   animations: [fotoSlide]
-})
+}) 
 export class AvisodetallePage implements OnInit {
   private avisoId: string;
   private ultimoIndice: number = 0;

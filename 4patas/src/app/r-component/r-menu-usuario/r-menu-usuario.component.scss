@@ -7,25 +7,6 @@ ion-header{
   padding-right: 20px;
   color : #56c8d8
 }
-ion-item ´{
-color:  white!important;
-
-
-}
-
-.inactivo {
-  border: 1px; 
-  color: #bdbdbd;
-}
-.activo {
-  right: 2px;
-  bottom: 4px;
-  background: silver !important;
- 
-}
-.coloricon {
-  color: var(--ion-color-primary)!important;
-}
 
 ion-header {
   height: 170px;
@@ -43,8 +24,8 @@ ion-header {
 
 }
 .labelcabecera{
- font-family: 'Acme', sans-serif!important;
-  font-size: 25px!important;
+
+  font-size: 20px!important;
   bottom: 15px;
   font-weight: bold;
   padding-left: 20px;
@@ -63,21 +44,8 @@ ion-header {
    position:absolute!important;
 }
 ion-label{
-  font-family: 'Raleway', sans-serif!important;
-  font-size:  15px!important;
+  font-size:  16px!important;
   padding-left: 20px!important;
   color:  var(--ion-color-dark)!important;
 } 
-.hijo {
-  -webkit-box-shadow: 12px 13px 14px -4px #2d5256; 
-  box-shadow: 12px 13px 14px -4px #2d5256;
-  color: var(--ion-color-dark)!important;
-  background: var(--ion-color-light)!important;
 
-}
-.hijo-item {
-  padding-bottom: 20;
-  width: 190px;
-  color:  var(--ion-color-dark)!important;
-  background: var(--ion-color-light)!important;
-}
