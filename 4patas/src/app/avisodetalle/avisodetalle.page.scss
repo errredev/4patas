@@ -2,68 +2,71 @@
   position: absolute;
   transform: translatey(-50%);
   top: 150px;
-  left:10px;
+  left: 10px;
 }
 .forward {
   position: absolute;
-  transform: translatey( -50%);
-  top:150px;
+  transform: translatey(-50%);
+  top: 150px;
   right: 10px;
 }
 content {
   position: relative;
 }
 .marco {
-    position: absolute;
-    min-height: 300px;
-    width: 100%;
-   border:1px solid;
+  position: absolute;
+  min-height: 300px;
+  width: 100%;
+  border: 1px solid;
 }
 .pared {
-    position: relative;
- 
+  position: relative;
 }
 div {
- position: relative;
+  position: relative;
 }
 ion-fab-button {
-   display: inline-block;
-    width: 20px;
-    height: 20px;
-    z-index: 23;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  z-index: 23;
 }
 .fab {
   position: absolute;
-  transform: translatex( -50%);
-  bottom:0px;
+  transform: translatex(-50%);
+  bottom: 0px;
   left: 50%;
   z-index: 3;
-  display: inline!important;
+  display: inline !important;
 }
-.foto{
-  top:0;
+.foto {
+  top: 0;
   position: absolute;
 }
 .region {
   top: -15px;
   position: absolute;
   right: 10px;
-   font-weight: 200;
+  font-weight: 200;
 }
 .comuna {
   top: 3px;
   position: absolute;
   right: 10px;
-   font-weight: 200;
+  font-weight: 200;
 }
 .corazonactivo {
-   position: absolute;
-  top: -1px!important;
+  position: absolute;
+  top: 3px !important;
+  left: 2px;
   fill: var(--ion-color-tertiary);
+  animation: jello-vertical 0.9s both;
 }
 .corazoninactivo {
-   position: absolute;
-  top: -1px!important;
+  animation: jello-vertical 0.9s both;
+  position: absolute;
+  left: 2px;
+  top: 3px !important;
   fill: white;
 }
 .info {
@@ -76,7 +79,7 @@ ion-fab-button {
 }
 .favoritos {
   position: absolute;
-  top: -3px!important;
+  top: -3px !important;
   left: 40px;
   font-weight: 200;
 }

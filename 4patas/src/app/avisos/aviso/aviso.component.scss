@@ -118,8 +118,10 @@ ion-text {
   top: 10px;
   left: 10px;
   fill: var(--ion-color-tertiary);
+  animation: jello-vertical 0.9s both;
 }
 .corazoninactivo {
+  animation: jello-vertical 0.9s both;
     position: absolute;
   z-index: 1000;
   top: 10px;

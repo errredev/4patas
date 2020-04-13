@@ -6,68 +6,85 @@ import { AvisoI } from 'src/app/shared/models/aviso.interace';
 import { AppService } from '../app/app.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {AvisoService} from '../aviso.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritoService {
-  private favoritoCollection: AngularFirestoreCollection<FavoritO>;
+  private favoritoxUsuarioCollection: AngularFirestoreCollection<FavoritO>;
   private avisoCollection: AngularFirestoreCollection<AvisoI>;
-  public FavoritosDeUsuariO: { FavoritoId: string }
+  public Favoritos: AngularFirestoreCollection<FavoritO>;
   private favoritosDeUsuarioCollection: AngularFirestoreCollection<{ FavoritoId: string }>;
 
-  constructor(private afs: AngularFirestore, private srvApp: AppService) {
-    this.favoritoCollection = this.afs.collection<FavoritO>('favoritos');
+  constructor(private afs: AngularFirestore, private srvApp: AppService, private srvAviso:AvisoService) {
+    this.favoritoxUsuarioCollection = this.afs.collection<any>('favoritos');
     this.avisoCollection = this.afs.collection<AvisoI>('avisos')
+    this.Favoritos = this.afs.collection<FavoritO>('favoritos')
   }
-  public  favoritosdeUsuario(id: string): Observable<any> {
-    return this.afs.doc('favoritosUsuario/' + id).collection('avisos').snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as any;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
-  }
-
-
-  public async saveFavorito(avisoId: string, userId: string): Promise<Mensaje> {
-    const ruta = this.avisoCollection.doc(avisoId).collection<FavoritO>('favoritos')
-    const favorito: FavoritO = {
-      uid: userId,
-      fecha: Date().toLocaleString()
-    }
+  public async favoritosdeUsuario(userId: string): Promise<Mensaje> {
+    let favoritos =[] ;
+    const favoritoUsuario = this.favoritoxUsuarioCollection.doc(userId).collection<FavoritO>('favoritos')
+    const resultado = await  favoritoUsuario.get().toPromise()
     try {
-      const favoritogenerado = await ruta.add(favorito);
+    let indice:number=0
+    resultado.forEach(function (doc) {
+      favoritos.push (doc.data())
+      favoritos[indice].avisoid= doc.id
+      indice++
+    });
+    console.log(favoritos)
+       return { exitoso: true, objeto:favoritos }
+    } catch (error) {
+      console.log(error)
+      return {exitoso:false}
+    }
+  }
+  // public favoritosdeUsuario(userId: string): Observable<any> {
+  //   const favoritoUsuario = this.favoritoxUsuarioCollection.doc(userId).collection<FavoritO>('favoritos')
+  //   return favoritoUsuario.get().snapshotChanges().pipe(
+  //     map(actions => actions.map(a => {
+  //       const data = a.payload.doc.data() as any;
+  //       const id = a.payload.doc.id;
+  //       return { id, ...data };
+  //     }))
+  //   );
+  // }
+
+
+  public async saveFavorito(avisoId: string, userId: string, fechaAviso: string, nombreAviso: string, fotoAviso:string): Promise<Mensaje> {
+    const favoritoUsuario = this.favoritoxUsuarioCollection.doc(userId).collection<FavoritO>('favoritos')
+    try {
+      const favoritoUsurioAviso = await favoritoUsuario.doc(avisoId).set({ fechaAviso: fechaAviso, nombreAviso: nombreAviso, fotoAviso: fotoAviso})
       this.srvApp.refrescarfavorito(avisoId);
-      return { exitoso: true, texto: favoritogenerado.id, objeto: favoritogenerado };
+      this.srvAviso.incrementarFavoritos(avisoId, 1)
+      return { exitoso: true,  objeto: favoritoUsurioAviso};
     } catch (error) {
       console.log(error);
       return { exitoso: false, texto: 'Error al grabar favorito' };
     }
   }
-  public async deleteFavorito(avisoId: string, favoritoId: string): Promise<any> {
-    const ruta = this.avisoCollection.doc(avisoId).collection<FavoritO>('favoritos');
+  public async deleteFavorito(avisoId: string, userId: string): Promise<Mensaje> {
+    const favoritoUsuario = this.favoritoxUsuarioCollection.doc(userId).collection<FavoritO>('favoritos')
     try {
-      const borrado = await ruta.doc(favoritoId).delete();
+      const favoritoUsurioAviso = await favoritoUsuario.doc(avisoId).delete()
       this.srvApp.refrescarfavorito(avisoId);
-      return
-
-      return
+      this.srvAviso.incrementarFavoritos(avisoId, -1)
+      return { exitoso: true, objeto: favoritoUsurioAviso };
     } catch (error) {
       console.log(error)
-      return error
+      return { exitoso: true, objeto: error };
     }
   }
   public async comprobarFavorito(avisoId: string, userId: string) {
-    let ref = this.avisoCollection.doc(avisoId).collection<FavoritO>('favoritos').ref.where("uid", "==", userId).limit(1);
+    const favoritoUsuario = this.favoritoxUsuarioCollection.doc(userId).collection<FavoritO>('favoritos')
     try {
-      const resultado = await ref.get()
-      if (!resultado.empty) {
-        return { exitoso: true, texto: resultado.docs[0].id };
-      } else {
-        return { exitoso: false, texto: 'vacio' };
-      }
+      let resultado = await favoritoUsuario.doc(avisoId).get().toPromise()
+        if(resultado.exists) {
+          return { exitoso: true, texto: resultado };
+        }else {
+          return { exitoso: false, texto: resultado };
+        }
     } catch (error) {
       console.log(error)
       return { exitoso: false, texto: 'Error en Consulta de favoritos', objeto: error };

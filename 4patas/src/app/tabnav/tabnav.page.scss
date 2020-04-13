@@ -32,12 +32,15 @@ ion-button {
     position: absolute;
     z-index: 1003;  
     bottom: 0px;  
+   outline: none;
+
 }
 #fab2 {
     left: 44%;
     position: absolute;
     z-index: 1003;  
     bottom: 0px;
+     outline: none;
 
 }
 #fab3 {
@@ -45,6 +48,7 @@ ion-button {
     position: absolute;
     z-index: 1003;  
     bottom: 0px;
+     outline: none;
 }
 .seleccion {
     fill: var(--ion-color-primary)!important;

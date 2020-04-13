@@ -19,13 +19,12 @@ export class AvisodetallePage implements OnInit {
   private ultimoIndice: number = 0;
   public largocaja: string;
   public uId: string;
-  public favoritoId: string;
   public activoFavorito: boolean = false;
-  public emisorId: string;
   public topbotones: string;
   public pushBotonFavoritos: boolean = false;
   public fotos: Array<{ imagen: string, activa: boolean, numero: number, color: string, estado: string, }>
   public aviso$: Observable<AvisoI>;
+  public aviso: AvisoI;
   constructor(private srvauth: AuthService, private route: ActivatedRoute, private srvApp: AppService, private srvAviso: AvisoService, private srvFavorito: FavoritoService) {
     this.largocaja = (srvApp.ancho - (srvApp.ancho / 4)) + 'px'
     this.topbotones = ((srvApp.ancho - (srvApp.ancho / 4)) / 2) + 'px'
@@ -41,7 +40,7 @@ export class AvisodetallePage implements OnInit {
     this.fotos = [];
     let indice = 1;
     this.aviso$.subscribe(async aviso => {
-      this.emisorId = aviso.uid;
+      this.aviso= aviso;
       if (this.fotos.length === 0) {
         for (let i = 0; i < aviso.fotos.length; i++) {
           let imagen = new Image();
@@ -54,9 +53,8 @@ export class AvisodetallePage implements OnInit {
         const mensajeFavorito = await this.srvFavorito.comprobarFavorito(this.avisoId, this.uId)
         if (mensajeFavorito.exitoso) {
           this.activoFavorito = true;
-          this.favoritoId = mensajeFavorito.texto;
         } else {
-          //error
+          this.activoFavorito = false;
         }
       }
     });
@@ -93,22 +91,21 @@ export class AvisodetallePage implements OnInit {
     this.activarFoto(newindice, indice)
   }
   public async pushfavorito() {
+
     if (!this.pushBotonFavoritos) {
       this.pushBotonFavoritos=true;
       if (!this.activoFavorito) {
-        const mensajeFavorito: Mensaje = await this.srvFavorito.saveFavorito(this.avisoId, this.uId);
-        if (mensajeFavorito.exitoso) {
-          this.activoFavorito = true;
-          this.favoritoId = mensajeFavorito.texto;
-          this.srvAviso.incrementarFavoritos(this.avisoId, 1)
-        } else {
-          //error
+        this.activoFavorito = true;
+        const mensajeFavorito: Mensaje = await this.srvFavorito.saveFavorito(this.avisoId, this.uId, this.aviso.fecha, this.aviso.nombre, this.aviso.fotos[0] );
+        if (!mensajeFavorito.exitoso) {
+          this.activoFavorito = false;
         }
       } else {
-        const mensajeFavorito = await this.srvFavorito.deleteFavorito(this.avisoId, this.favoritoId);
         this.activoFavorito = false;
-        this.favoritoId = '';
-        this.srvAviso.incrementarFavoritos(this.avisoId, -1)
+        const mensajeFavorito = await this.srvFavorito.deleteFavorito(this.avisoId, this.uId);
+        if (!mensajeFavorito.exitoso) {
+          this.activoFavorito = true;
+        }
       }
       this.pushBotonFavoritos = false;
     }

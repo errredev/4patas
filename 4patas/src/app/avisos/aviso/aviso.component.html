@@ -8,7 +8,8 @@
       <label id="distancia">{{ aviso.detalle.comuna }}</label>
     </ion-item>
     <img [routerLink]="['/avisodetalle', aviso.id]" class="foto" [src]="aviso.detalle.fotos[0]" />
-    <svg-icon (click)= "pushfavorito()" src="./assets/svg/corazon.svg"  [className]="activoFavorito ? 'corazonactivo' : 'corazoninactivo'"></svg-icon>
+    <svg-icon *ngIf=!activoFavorito (click)= "pushfavorito()" src="./assets/svg/corazon.svg"  class= "corazoninactivo"></svg-icon>
+    <svg-icon *ngIf=activoFavorito (click)= "pushfavorito()" src="./assets/svg/corazon.svg"  class="corazonactivo"></svg-icon>
     <svg-icon class="camara" src="./assets/svg/camara.svg"></svg-icon>
   </ion-card-header>
   <ion-card-content [routerLink]="['/avisodetalle', aviso.id]">

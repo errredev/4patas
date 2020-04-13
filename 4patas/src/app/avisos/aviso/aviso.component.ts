@@ -13,7 +13,7 @@ export class AvisoComponent implements OnInit {
   @Input() user: string;
   public activoFavorito:boolean=false;
   public pushBotonFavoritos: boolean = false;
-  public favoritoId: string;
+  
   
   constructor(private srvAviso: AvisoService, private srvFavorito: FavoritoService, private srvApp:AppService) {
   
@@ -34,7 +34,6 @@ export class AvisoComponent implements OnInit {
     const mensajeFavorito = await this.srvFavorito.comprobarFavorito(this.aviso.id, this.user)
     if (mensajeFavorito.exitoso) {
       this.activoFavorito = true;
-      this.favoritoId = mensajeFavorito.texto;
     } else {
       // this.activoFavorito = true;
       this.activoFavorito = false;
@@ -45,19 +44,17 @@ export class AvisoComponent implements OnInit {
   if (!this.pushBotonFavoritos) {
     this.pushBotonFavoritos = true;
     if (!this.activoFavorito) {
-      const mensajeFavorito: Mensaje = await this.srvFavorito.saveFavorito(this.aviso.id, this.user);
-      if (mensajeFavorito.exitoso) {
-        this.activoFavorito = true;
-        this.favoritoId = mensajeFavorito.texto;
-        this.srvAviso.incrementarFavoritos(this.aviso.id, 1)
-      } else {
-        //error
+      this.activoFavorito = true;
+      const mensajeFavorito: Mensaje = await this.srvFavorito.saveFavorito(this.aviso.id, this.user, this.aviso.detalle.fecha, this.aviso.detalle.nombre, this.aviso.detalle.fotos[0]);
+      if (!mensajeFavorito.exitoso) {
+        this.activoFavorito = false;
       }
     } else {
-      const mensajeFavorito = await this.srvFavorito.deleteFavorito(this.aviso.id, this.favoritoId);
       this.activoFavorito = false;
-      this.favoritoId = '';
-      this.srvAviso.incrementarFavoritos(this.aviso.id, -1)
+      const mensajeFavorito = await this.srvFavorito.deleteFavorito(this.aviso.id, this.user);
+      if (!mensajeFavorito.exitoso) {
+        this.activoFavorito = true;
+      }
     }
     this.pushBotonFavoritos = false;
   }

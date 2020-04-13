@@ -1,6 +1,7 @@
 export interface FavoritO {
-    uid: string;
     avisoid?: string;
-    fecha: string;
-    emisorid?: string;
+    fechaAviso: string;
+    nombreAviso:string;
+    fotoAviso:string;
+
 }
